@@ -1,0 +1,8 @@
+DragAndDropDemo.MainActivity, DragAndDropTest;md51867fdbddbb1da6ba08f3354d69af9bc.MainActivity
+DragAndDropDemo.MainActivity, DragAndDropTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md51867fdbddbb1da6ba08f3354d69af9bc.MainActivity
+DragAndDropDemo.MainActivity;md51867fdbddbb1da6ba08f3354d69af9bc.MainActivity
+draganddropdemo.MainActivity;md51867fdbddbb1da6ba08f3354d69af9bc.MainActivity
+DragAndDropDemo.Activity1, DragAndDropTest;md51867fdbddbb1da6ba08f3354d69af9bc.Activity1
+DragAndDropDemo.Activity1, DragAndDropTest, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md51867fdbddbb1da6ba08f3354d69af9bc.Activity1
+DragAndDropDemo.Activity1;md51867fdbddbb1da6ba08f3354d69af9bc.Activity1
+draganddropdemo.Activity1;md51867fdbddbb1da6ba08f3354d69af9bc.Activity1
