@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace DragAndDropDemo
 {
-    [Activity(Label = "LoginActivity", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "LoginActivity")]
     public class LoginActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
