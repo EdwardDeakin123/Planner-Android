@@ -48,8 +48,11 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivityLogModel.cs" />
     <Compile Include="ActivityModel.cs" />
     <Compile Include="Backend.cs" />
+    <Compile Include="BackendActivity.cs" />
+    <Compile Include="BackendParameter.cs" />
     <Compile Include="IBackendType.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="MainActivity.cs" />

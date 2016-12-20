@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace DragAndDropDemo
 {
-    [Activity(Label = "LoginActivity")]
+    [Activity(Label = "LoginActivity", MainLauncher = true, Icon = "@drawable/icon")]
     public class LoginActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -31,12 +31,24 @@ namespace DragAndDropDemo
 
         private async void BackendGet()
         {
-            // Test getting activitys from the backend.
-            Backend<ActivityModel> backend = new Backend<ActivityModel>();
-            ActivityModel activity = await backend.Get();
+            // Use this Try / Catch to get errors connecting to the backend.
+            try
+            {
+                // Test getting activitys from the backend.
+                BackendActivity backend = new BackendActivity();
+                List<ActivityModel> activity = await backend.GetAll();
 
-            System.Diagnostics.Debug.WriteLine("Maybe got an activity...");
-            System.Diagnostics.Debug.WriteLine("This one is " + activity.ActivityName);
+                System.Diagnostics.Debug.WriteLine("Maybe got an activity...");
+
+                foreach (ActivityModel act in activity)
+                {
+                    System.Diagnostics.Debug.WriteLine("This one is " + act.ActivityName);
+                }
+            }
+            catch(System.Net.WebException ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
+            }
         }
     }
 }

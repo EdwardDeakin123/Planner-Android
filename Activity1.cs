@@ -9,7 +9,7 @@ using Android.OS;
 
 namespace DragAndDropDemo
 {
-	[Activity(Label = "Drag and Drop", MainLauncher = true, Icon = "@drawable/icon")]
+	[Activity(Label = "Drag and Drop")]
 	public class Activity1 : Activity
 	{
 
