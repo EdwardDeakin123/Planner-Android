@@ -41,5 +41,14 @@ E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\asse
 E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.Runtime.Serialization.dll.mdb
 E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.ServiceModel.Internals.dll.mdb
 E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.Xml.dll.mdb
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\bin\Debug\Newtonsoft.Json.dll
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\bin\Debug\Newtonsoft.Json.xml
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\res\layout\login.xml
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\bin\Debug\Microsoft.CSharp.dll.mdb
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\bin\Debug\Mono.CSharp.dll.mdb
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\bin\Debug\System.Xml.Linq.dll.mdb
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\Microsoft.CSharp.dll.mdb
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\Mono.CSharp.dll.mdb
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\DragAndDropTest.dll.mdb
 E:\Projects\Programming\VSProjects\SIT302\Planner-Android\bin\Debug\DragAndDropTest.dll.mdb

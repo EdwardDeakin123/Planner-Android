@@ -5,13 +5,14 @@
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
   <application android:label="DragAndDropDemo" android:name="android.app.Application" android:allowBackup="true" android:icon="@drawable/icon" android:debuggable="true">
-    <activity android:icon="@drawable/icon" android:label="Drag and Drop" android:name="md51867fdbddbb1da6ba08f3354d69af9bc.MainActivity" />
-    <activity android:icon="@drawable/icon" android:label="Drag and Drop" android:name="md51867fdbddbb1da6ba08f3354d69af9bc.Activity1">
+    <activity android:icon="@drawable/icon" android:label="LoginActivity" android:name="md51867fdbddbb1da6ba08f3354d69af9bc.LoginActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
+    <activity android:icon="@drawable/icon" android:label="Drag and Drop" android:name="md51867fdbddbb1da6ba08f3354d69af9bc.MainActivity" />
+    <activity android:label="Drag and Drop" android:name="md51867fdbddbb1da6ba08f3354d69af9bc.Activity1" />
     <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="com.companyname.DragAndDropDemo.mono.MonoRuntimeProvider.__mono_init__" />
     <!--suppress ExportedReceiver-->
     <receiver android:name="mono.android.Seppuku">

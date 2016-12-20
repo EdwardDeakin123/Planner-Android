@@ -5,6 +5,7 @@ E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\asse
 E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.dll
 E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.Xml.dll
 E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\mscorlib.dll
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\Newtonsoft.Json.dll
 E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.Threading.dll
 E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.Runtime.dll
 E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.ComponentModel.Composition.dll
@@ -19,3 +20,18 @@ E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\asse
 E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.Net.Http.dll
 E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.Runtime.Serialization.dll
 E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.ServiceModel.Internals.dll
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.IO.dll
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.Threading.Tasks.dll
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.Xml.XDocument.dll
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.Xml.Linq.dll
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.Globalization.dll
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.Runtime.Serialization.Primitives.dll
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.Linq.Expressions.dll
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.Dynamic.Runtime.dll
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.ObjectModel.dll
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.Text.RegularExpressions.dll
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.Xml.ReaderWriter.dll
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.Text.Encoding.dll
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.Text.Encoding.Extensions.dll
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\Microsoft.CSharp.dll
+E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\Mono.CSharp.dll
