@@ -15,9 +15,9 @@ using System.Threading.Tasks;
 namespace DragAndDropDemo
 {
     // This is a helper class which manages API calls to the backend related to Activities.
-    class BackendActivity : Backend<ActivityModel>
+    class BackendActivity : Backend
     {
-        public BackendActivity()
+        public BackendActivity() : base()
         {
             // Set the _Resource variable in the parent class. This defines which part of the API will be queried.
             _Resource = "Activity";
@@ -28,7 +28,7 @@ namespace DragAndDropDemo
             // Set the command.
             _Command = "GetAll";
 
-            return await GetRequestListAsync();
+            return await GetRequestListAsync<ActivityModel>();
         }
 
         public async Task<ActivityModel> Get(int activityId)
@@ -38,7 +38,7 @@ namespace DragAndDropDemo
 
             _Parameters.Add(new BackendParameter { Key = "activityId", Value = activityId.ToString() });
 
-            return await GetRequestAsync();
+            return await GetRequestAsync<ActivityModel>();
         }
     }
 }

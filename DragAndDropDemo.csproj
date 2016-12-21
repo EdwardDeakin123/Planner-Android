@@ -53,6 +53,7 @@
     <Compile Include="Backend.cs" />
     <Compile Include="BackendActivity.cs" />
     <Compile Include="BackendParameter.cs" />
+    <Compile Include="BackendUser.cs" />
     <Compile Include="IBackendType.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="MainActivity.cs" />

@@ -19,7 +19,7 @@ namespace DragAndDropDemo
     // This class is intended to manage all communication with the backend.
     // Information regarding how to query a REST API found here:
     // https://developer.xamarin.com/recipes/android/web_services/consuming_services/call_a_rest_web_service/
-    class Backend<T> where T : IBackendType
+    class Backend
     {
         // Variables to handle building the request.
         private string _Protocol = "http";
@@ -28,8 +28,9 @@ namespace DragAndDropDemo
         private int _Port = 52029;
         protected string _Resource = "";
         protected string _Command = "";
-        //protected string _QueryString = "";
         protected List<BackendParameter> _Parameters;
+
+        //TODO Cleanup parameters are POST or GET requests.
 
         public Backend()
         {
@@ -75,8 +76,9 @@ namespace DragAndDropDemo
             return queryString;
         }
 
-        public async Task<List<T>> GetRequestListAsync()
+        public async Task<List<T>> GetRequestListAsync<T>() where T : IBackendType
         {
+            // Using Generics so I can have a single function for getting elements of any type from the API.
             // Function using GET to query the backend. This variant is meant to get a List of objects
             // from the backend.
             // Get the URL.
@@ -115,7 +117,7 @@ namespace DragAndDropDemo
             }
         }
 
-        public async Task<T> GetRequestAsync()
+        public async Task<T> GetRequestAsync<T>() where T : IBackendType
         {
             // Function using GET to query the backend.
             // Get the URL.
@@ -154,7 +156,7 @@ namespace DragAndDropDemo
             }
         }
 
-        public async void PostRequestAsync()
+        public async Task PostRequestAsync()
         {
             // Function using POST to write to the backend.
             // Get the URL.
