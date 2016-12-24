@@ -1,14 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using System.Threading.Tasks;
 
 namespace DragAndDropDemo
@@ -25,7 +14,6 @@ namespace DragAndDropDemo
         {
             _Command = "Login";
 
-            //TODO Work out a way to determine if the login was successful. (Status codes).
             // Set the parameters and post the login request.
             _Parameters.Add(new BackendParameter { Key = "username", Value = username });
             _Parameters.Add(new BackendParameter { Key = "password", Value = password });
@@ -33,14 +21,14 @@ namespace DragAndDropDemo
             await PostRequestAsync();
         }
 
-        public void Logout()
+        public async Task Logout()
         {
             _Command = "Logout";
 
-            PostRequestAsync();
+            await PostRequestAsync();
         }
 
-        public void Register(string firstname, string lastname, string username, string password)
+        public async Task Register(string firstname, string lastname, string username, string password)
         {
             _Command = "Register";
 
@@ -50,7 +38,7 @@ namespace DragAndDropDemo
             _Parameters.Add(new BackendParameter { Key = "username", Value = username });
             _Parameters.Add(new BackendParameter { Key = "password", Value = password });
 
-            PostRequestAsync();
+            await PostRequestAsync();
         }
     }
 }

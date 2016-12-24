@@ -52,6 +52,7 @@
     <Compile Include="ActivityModel.cs" />
     <Compile Include="Backend.cs" />
     <Compile Include="BackendActivity.cs" />
+    <Compile Include="BackendActivityLog.cs" />
     <Compile Include="BackendParameter.cs" />
     <Compile Include="BackendUser.cs" />
     <Compile Include="IBackendType.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Activity1.cs" />
+    <Compile Include="UserModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
