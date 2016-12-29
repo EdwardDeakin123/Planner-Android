@@ -9,9 +9,9 @@ using Android.OS;
 
 namespace DragAndDropDemo
 {
-    [Activity(Label = "Drag and Drop", Icon = "@drawable/icon")]
-    public class MainActivity : Activity
-    {
+	[Activity(Label = "Drag and Drop", MainLauncher = true, Icon = "@drawable/icon")]
+	public class MainActivity : Activity
+	{
 
 		TextView hold;
 		string color;
@@ -21,13 +21,13 @@ namespace DragAndDropDemo
 		TextView T4;
 
 		ImageButton imageB1;
-		ImageButton imageB21;
+		ImageButton imageB2;
 		ImageButton imageB4;
 
 		ImageView image4;
-        protected override void OnCreate(Bundle bundle)
-        {
-            // Set our view from the "main" layout resource
+		protected override void OnCreate(Bundle bundle)
+		{
+			// Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.Main);
 
 			// Get UI elements out of the layout
@@ -37,9 +37,9 @@ namespace DragAndDropDemo
 			T2 = FindViewById<TextView>(Resource.Id.T2);
 			T3 = FindViewById<TextView>(Resource.Id.T3);
 			T4 = FindViewById<TextView>(Resource.Id.T4);
-				
+
 			imageB1 = FindViewById<ImageButton>(Resource.Id.myButton1);
-			imageB21 = FindViewById<ImageButton>(Resource.Id.myButton2);
+			imageB2 = FindViewById<ImageButton>(Resource.Id.myButton2);
 
 			imageB4 = FindViewById<ImageButton>(Resource.Id.myButton4);
 
@@ -47,32 +47,32 @@ namespace DragAndDropDemo
 
 			image4 = FindViewById<ImageView>(Resource.Id.image4);
 
-            var button1 = FindViewById<Button>(Resource.Id.button1);
-            button1.LongClick += Button1_LongClick;
-            var button2 = FindViewById<Button>(Resource.Id.button2);
-            button2.LongClick += Button2_LongClick;
+			var button1 = FindViewById<Button>(Resource.Id.button1);
+			button1.LongClick += Button1_LongClick;
+			var button2 = FindViewById<Button>(Resource.Id.button2);
+			button2.LongClick += Button2_LongClick;
 			var dropZone1 = FindViewById<RelativeLayout>(Resource.Id.dropz);
 			var dropZone2 = FindViewById<RelativeLayout>(Resource.Id.dropz1);
 			var dropZone3 = FindViewById<RelativeLayout>(Resource.Id.dropz2);
 			var dropZone4 = FindViewById<RelativeLayout>(Resource.Id.dropz3);
 
 			//var button3 = FindViewById<ImageButton>(Resource.Id.myButton2);
-			imageB1.LongClick += Button3_LongClick;
+			imageB1.LongClick += IMButton1_LongClick;
 			//var button4 = FindViewById<ImageButton>(Resource.Id.myButton4);
-			imageB21.LongClick += Button4_LongClick;
+			imageB2.LongClick += IMButton2_LongClick;
 
 
 
-            // Attach event to drop zone
-            dropZone1.Drag += DropZone_Drag;
+			// Attach event to drop zone
+			dropZone1.Drag += DropZone_Drag;
 			dropZone2.Drag += DropZone_Drag2;
 			dropZone3.Drag += DropZone_Drag3;
 			dropZone4.Drag += DropZone_Drag4;
 
-            base.OnCreate(bundle);
-        }
+			base.OnCreate(bundle);
+		}
 
-		void Button3_LongClick (object sender, View.LongClickEventArgs e)
+		void IMButton1_LongClick(object sender, View.LongClickEventArgs e)
 		{
 			// Generate clip data package to attach it to the drag
 			var data = ClipData.NewPlainText("name", "Element 3");
@@ -81,7 +81,7 @@ namespace DragAndDropDemo
 			((sender) as ImageButton).StartDrag(data, new View.DragShadowBuilder(((sender) as ImageButton)), null, 0);
 		}
 
-		void Button4_LongClick(object sender, View.LongClickEventArgs e)
+		void IMButton2_LongClick(object sender, View.LongClickEventArgs e)
 		{
 			// Generate clip data package to attach it to the drag
 			var data = ClipData.NewPlainText("name", "Element 4");
@@ -89,94 +89,109 @@ namespace DragAndDropDemo
 			// Start dragging and pass data
 			((sender) as ImageButton).StartDrag(data, new View.DragShadowBuilder(((sender) as ImageButton)), null, 0);
 		}
-            
-        void Button1_LongClick (object sender, View.LongClickEventArgs e)
-        {
-            // Generate clip data package to attach it to the drag
-            var data = ClipData.NewPlainText("name", "Element 1");
 
-            // Start dragging and pass data
-            ((sender) as Button).StartDrag(data, new View.DragShadowBuilder(((sender) as Button)), null, 0);
-        }
 
-        void Button2_LongClick (object sender, View.LongClickEventArgs e)
-        {
-            // Generate clip data package to attach it to the drag
-            var data = ClipData.NewPlainText("name", "Element 2");
 
-            // Start dragging and pass data
-            ((sender) as Button).StartDrag(data, new View.DragShadowBuilder(((sender) as Button)), null, 0);
-            ((sender) as Button).StartDrag(data, new View.DragShadowBuilder(((sender) as Button)), null, 0);
-        }
 
-        void DropZone_Drag (object sender, View.DragEventArgs e)
-        {
-            // React on different dragging events
-            var evt = e.Event;
-            switch (evt.Action) 
-            {
-                case DragAction.Ended:  
-                case DragAction.Started:
-                    e.Handled = true;
-                    break;                
-                // Dragged element enters the drop zone
-                case DragAction.Entered:  
-					
+
+
+		void Button1_LongClick(object sender, View.LongClickEventArgs e)
+		{
+			// Generate clip data package to attach it to the drag
+			var data = ClipData.NewPlainText("name", "red");
+
+			// Start dragging and pass data
+			((sender) as Button).StartDrag(data, new View.DragShadowBuilder(((sender) as Button)), null, 0);
+		}
+
+		void Button2_LongClick(object sender, View.LongClickEventArgs e)
+		{
+			// Generate clip data package to attach it to the drag
+			var data = ClipData.NewPlainText("name", "blue");
+
+			// Start dragging and pass data
+			((sender) as Button).StartDrag(data, new View.DragShadowBuilder(((sender) as Button)), null, 0);
+			((sender) as Button).StartDrag(data, new View.DragShadowBuilder(((sender) as Button)), null, 0);
+		}
+
+		void DropZone_Drag(object sender, View.DragEventArgs e)
+		{
+			// React on different dragging events
+			var evt = e.Event;
+			switch (evt.Action)
+			{
+				case DragAction.Ended:
+				case DragAction.Started:
+					e.Handled = true;
+					break;
+				// Dragged element enters the drop zone
+				case DragAction.Entered:
+
+
+
 					if (T1.Text == "red")
 						imageB1.SetImageResource(Resource.Drawable.red);
-					
-						
-						
-                    break;
-                // Dragged element exits the drop zone
-                case DragAction.Exited:                   
-                  
 
-                    break;
-                // Dragged element has been dropped at the drop zone
-                case DragAction.Drop:
-                    // You can check if element may be dropped here
-                    // If not do not set e.Handled to true
-                    e.Handled = true;
+					else if (T1.Text == "blue")
+						imageB1.SetImageResource(Resource.Drawable.blue);
 
-                    // Try to get clip data
-                    var data = e.Event.ClipData;
+
+
+
+					if (T3.Text == T2.Text)
+
+						T1.Text = T1.Text;
+
+					else if (T2.Text == T1.Text)
+					{
+						imageB2.SetImageResource(Resource.Drawable.grey);
+						T2.Text = "blank";
+					}
+
+					break;
+				// Dragged element exits the drop zone
+				case DragAction.Exited:
+
+
+					break;
+				// Dragged element has been dropped at the drop zone
+				case DragAction.Drop:
+					// You can check if element may be dropped here
+					// If not do not set e.Handled to true
+					e.Handled = true;
+
+					// Try to get clip data
+					var data = e.Event.ClipData;
 					if (data != null)
 
 
-						
-                        color = data.GetItemAt(0).Text;
-					if (T1.Text == "red")
-						{
-						imageB1.SetImageResource(Resource.Drawable.grey);
-						T1.Text = "blank";
-					}
 
-					else if (T1.Text == "blue")
-					{
-						imageB1.SetImageResource(Resource.Drawable.grey);
-						T1.Text = "blank";
-					}
-						
+						color = data.GetItemAt(0).Text;
+					
 
-				else if (color == "Element 1")
+					if (color == "red")
 					{
 						imageB1.SetImageResource(Resource.Drawable.red);
 						T1.Text = "red";
 					}
-					/*else if (T2.Text == "blank")
-						imageB1.SetImageResource(Resource.Id.button2); */
 
-			else  if (color == "Element 2")
+
+					else if (color == "blue")
 					{
 						imageB1.SetImageResource(Resource.Drawable.blue);
 						T1.Text = "blue";
 					}
+					else
+					{
+						T1.Text = "blank";
+						imageB1.SetImageResource(Resource.Drawable.grey);
+					}
 
-					
-                    break;
-            }
-        }
+
+
+					break;
+			}
+		}
 
 		void DropZone_Drag2(object sender, View.DragEventArgs e)
 		{
@@ -184,43 +199,64 @@ namespace DragAndDropDemo
 			var evt = e.Event;
 			switch (evt.Action)
 			{
-				
+
 				case DragAction.Ended:
 				case DragAction.Started:
 					e.Handled = true;
 					break;
-					
+
 				// Dragged element enters the drop zone
 				case DragAction.Entered:
 					//result2.Text = "Drop it like it's hot!";
 
-					if (T2.Text == "red")
+					if (T2.Text == "blue")
 					{
-						imageB21.SetImageResource(Resource.Drawable.grey);
-						T2.Text = "blank";
+						T2.Text = T2.Text;
 					}
-					else if (T1.Text == "red")
+				else if (T2.Text == "red")
 					{
-						imageB21.SetImageResource(Resource.Drawable.red);
-						T2.Text = "red";
-					}
-
-
-				else if (T2.Text == "blue")
-					{
-						imageB21.SetImageResource(Resource.Drawable.grey);
-						T2.Text = "blank";
-					}
-					else if (T1.Text == "blue")
-					{
-						imageB21.SetImageResource(Resource.Drawable.blue);
-						T2.Text = "blue";
+						T2.Text = T2.Text;
 					}
 						
+					else if (T2.Text == "blank")
+
+						T2.Text = T1.Text;
+
+					if (T3.Text == T2.Text)
+					{
+						image4.SetImageResource(Resource.Drawable.grey);
+						T3.Text = "blank";
+					}
+
+
+					if (T3.Text != T4.Text)
+						image4.SetImageResource(Resource.Drawable.grey);
+
+
+					if (T2.Text == "red")
+						imageB2.SetImageResource(Resource.Drawable.red);
+
+					else if (T2.Text == "blue")
+						imageB2.SetImageResource(Resource.Drawable.blue);
+
+
+
+
+
+
 					break;
 				// Dragged element exits the drop zone
 				case DragAction.Exited:
-					
+
+					if (T2.Text != T1.Text)
+					{
+						if (T2.Text == "blue")
+							imageB2.SetImageResource(Resource.Drawable.blueup);
+
+						else if (T2.Text == "red")
+							imageB2.SetImageResource(Resource.Drawable.redup);
+					}
+
 
 					break;
 				// Dragged element has been dropped at the drop zone
@@ -233,45 +269,37 @@ namespace DragAndDropDemo
 					var data = e.Event.ClipData;
 					if (data != null)
 						color = data.GetItemAt(0).Text;
-					/*if (T1.Text == "red")
-						{
-						imageB21.SetImageResource(Resource.Drawable.red);
-						T2.Text = "red";
-					}
+					
 
-				else if (T1.Text == "blue")
-					{
-						imageB21.SetImageResource(Resource.Drawable.blue);
-						T2.Text = "blue";
-					}*/
 
-						
-				 if (T2.Text == "red")
+					if (T2.Text == "red")
 					{
-						imageB21.SetImageResource(Resource.Drawable.grey);
+						imageB2.SetImageResource(Resource.Drawable.grey);
 						T2.Text = "blank";
 					}
 
-					else if (T2.Text == "blue")
+					 if (T2.Text == "blue")
 					{
-						imageB21.SetImageResource(Resource.Drawable.grey);
-						T1.Text = "blank";
+						imageB2.SetImageResource(Resource.Drawable.grey);
+						T2.Text = "blank";
 					}
 
 
-					else if (color == "Element 1")
+					 if (color == "red")
 					{
-						imageB21.SetImageResource(Resource.Drawable.red);
+						imageB2.SetImageResource(Resource.Drawable.red);
 						T2.Text = "red";
 					}
 					/*else if (T2.Text == "blank")
 						imageB1.SetImageResource(Resource.Id.button2); */
 
-					else if (color == "Element 2")
+				 if (color == "blue")
 					{
-						imageB21.SetImageResource(Resource.Drawable.blue);
+						imageB2.SetImageResource(Resource.Drawable.blue);
 						T2.Text = "blue";
 					}
+
+
 
 					break;
 			}
@@ -293,34 +321,30 @@ namespace DragAndDropDemo
 				case DragAction.Entered:
 					//result2.Text = "Drop it like it's hot!";
 
+
+
+
+
+					T3.Text = T2.Text;
+
+					if (T4.Text == T3.Text)
+					{
+						imageB4.SetImageResource(Resource.Drawable.grey);
+						T4.Text = "blank";
+					}
+
+
+
+
+
+
 					if (T3.Text == "red")
-					{
-						image4.SetImageResource(Resource.Drawable.grey);
-						T3.Text = "blank";
-					}
-					
-					else if (T2.Text == "red")
-						{
-							image4.SetImageResource(Resource.Drawable.red);
-
-							T3.Text = "red";
-						}
-
-				else if (T3.Text == "blue")
-					{
-						image4.SetImageResource(Resource.Drawable.grey);
-						T3.Text = "blank";
-					}
-
-					else if (T2.Text == "blue")
-					{
+						image4.SetImageResource(Resource.Drawable.red);
+					else if (T3.Text == "blue")
 						image4.SetImageResource(Resource.Drawable.blue);
 
-						T3.Text = "blue";
-					}
-					
-				 
-						
+
+
 					break;
 				// Dragged element exits the drop zone
 				case DragAction.Exited:
@@ -356,31 +380,20 @@ namespace DragAndDropDemo
 				// Dragged element enters the drop zone
 				case DragAction.Entered:
 
+					T4.Text = T3.Text;
+
+
+
+
+
+
+
+
 					if (T4.Text == "red")
-					{
-						imageB4.SetImageResource(Resource.Drawable.grey);
-						T4.Text = "blank";
-					}
-
-					else if (T3.Text == "red")
-					{
 						imageB4.SetImageResource(Resource.Drawable.red);
-
-						T4.Text = "red";
-					}
-
-					else if (T4.Text == "blue")
-					{
-						imageB4.SetImageResource(Resource.Drawable.grey);
-						T4.Text = "blank";
-					}
-
-					else if (T3.Text == "blue")
-					{
+					if (T4.Text == "blue")
 						imageB4.SetImageResource(Resource.Drawable.blue);
 
-						T4.Text = "blue";
-					}
 
 					break;
 				// Dragged element exits the drop zone
@@ -403,15 +416,14 @@ namespace DragAndDropDemo
 						color = data.GetItemAt(0).Text;
 					var image = FindViewById<ImageButton>(Resource.Id.myButton4);
 
-					if (color == "Element 1")
+					if (color == "red")
 					{
 						imageB1.SetImageResource(Resource.Drawable.red);
 						T4.Text = "red";
 					}
-					/*else if (T2.Text == "blank")
-						imageB1.SetImageResource(Resource.Id.button2); */
 
-					else if (color == "Element 2")
+
+					else if (color == "blue")
 					{
 						image.SetImageResource(Resource.Drawable.blue);
 						T4.Text = "blue";
@@ -423,4 +435,4 @@ namespace DragAndDropDemo
 		}
 
 	}
-}    
+}
