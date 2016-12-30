@@ -13,7 +13,7 @@ using Android.OS;
 using Android.Provider;
 using Java.Util;
 
-namespace Front_End
+namespace DragAndDropDemo
 {
 	[Activity(Label = "Drag and Drop", MainLauncher = true, Icon = "@drawable/icon")]
 	public class MainActivity : Activity
@@ -371,6 +371,18 @@ namespace Front_End
 				// Dragged element enters the drop zone
 				case DragAction.Entered:
 
+					if (T1.Text == "blue")
+					{
+						T1.Text = T1.Text;
+					}
+					else if (T1.Text == "red")
+					{
+						T1.Text = T1.Text;
+					}
+
+					else if (T1.Text == "blank")
+
+						T1.Text = T1.Text;
 
 
 					if (T1.Text == "red")
@@ -469,14 +481,28 @@ namespace Front_End
 					{
 						T2.Text = T2.Text;
 					}
-				else if (T2.Text == "red")
+				 if (T2.Text == "red")
 					{
 						T2.Text = T2.Text;
 					}
 						
-					else if (T2.Text == "blank")
+			     if (T2.Text == "blank")
 
 						T2.Text = T1.Text;
+
+
+
+
+					if (T4.Text != "blank")
+					{
+
+						if (T3.Text != T4.Text)
+						{
+							imageB3.SetImageResource(Resource.Drawable.grey);
+							T3.Text = "blank";
+						}
+					}
+
 
 					if (T3.Text == T2.Text)
 					{
@@ -485,8 +511,7 @@ namespace Front_End
 					}
 
 
-					if (T3.Text != T4.Text)
-						imageB3.SetImageResource(Resource.Drawable.grey);
+
 
 
 					if (T2.Text == "red")
@@ -494,6 +519,8 @@ namespace Front_End
 
 					else if (T2.Text == "blue")
 						imageB2.SetImageResource(Resource.Drawable.blue);
+					else if (T2.Text == "blank")
+						imageB2.SetImageResource(Resource.Drawable.grey);
 
 
 
@@ -523,34 +550,50 @@ namespace Front_End
 					var data = e.Event.ClipData;
 					if (data != null)
 						color = data.GetItemAt(0).Text;
-					
 
 
-				/*	if (T2.Text == "red")
-					{
-						imageB2.SetImageResource(Resource.Drawable.grey);
-						T2.Text = "blank";
-					}
 
-					 if (T2.Text == "blue")
-					{
-						imageB2.SetImageResource(Resource.Drawable.grey);
-						T2.Text = "blank";
-					} */
+					/*	if (T2.Text == "red")
+						{
+							imageB2.SetImageResource(Resource.Drawable.grey);
+							T2.Text = "blank";
+						}
+
+						 if (T2.Text == "blue")
+						{
+							imageB2.SetImageResource(Resource.Drawable.grey);
+							T2.Text = "blank";
+						} */
 
 
-					 if (color == "red")
+					if (color == "red")
 					{
 						imageB2.SetImageResource(Resource.Drawable.red);
 						T2.Text = "red";
 					}
 
 
-				else if (color == "blue")
+					else if (color == "blue")
 					{
 						imageB2.SetImageResource(Resource.Drawable.blue);
 						T2.Text = "blue";
 					}
+
+					else if (T3.Text != "blank")
+
+					{
+						if (T2.Text == "blue")
+						{
+							imageB2.SetImageResource(Resource.Drawable.bluedown);
+						}
+
+						else if (T2.Text == "red")
+						{
+							imageB2.SetImageResource(Resource.Drawable.reddown);
+						}
+					}
+
+
 
 					else
 					{
@@ -615,16 +658,23 @@ namespace Front_End
 
 						T3.Text = T2.Text;
 
+
+
+
 					if (T4.Text == T3.Text)
 					{
 						imageB4.SetImageResource(Resource.Drawable.grey);
 						T4.Text = "blank";
 					}
 
-
-					if (T4.Text != T5.Text)
-						imageB4.SetImageResource(Resource.Drawable.grey);
-
+					if (T5.Text != "blank")
+					{
+						if (T4.Text != T5.Text)
+						{
+							imageB4.SetImageResource(Resource.Drawable.grey);
+							T4.Text = "blank";
+						}
+					}
 
 					if (T3.Text == "red")
 						imageB3.SetImageResource(Resource.Drawable.red);
@@ -637,7 +687,7 @@ namespace Front_End
 					break;
 				// Dragged element exits the drop zone
 				case DragAction.Exited:
-					var data2 = e.Event.ClipData;
+					//var data2 = e.Event.ClipData;
 					if (T3.Text != T2.Text)
 					{
 						if (T3.Text == "blue")
@@ -674,23 +724,37 @@ namespace Front_End
 							T3.Text = "blue";
 						}
 
-						else
+						else if (T4.Text != "blank")
+
+					{
+						if (T3.Text == "blue")
 						{
-							T3.Text = "blank";
-							imageB3.SetImageResource(Resource.Drawable.grey);
+							imageB3.SetImageResource(Resource.Drawable.bluedown);
+						}
+
+						else if (T3.Text == "red")
+						{
+							imageB3.SetImageResource(Resource.Drawable.reddown);
+						}
+					}
+
+					else
+					{
+						T3.Text = "blank";
+						imageB3.SetImageResource(Resource.Drawable.grey);
 
 						if (T2.Text == "blue")
-							{
-								imageB2.SetImageResource(Resource.Drawable.bluedown);
+						{
+							imageB2.SetImageResource(Resource.Drawable.bluedown);
 						}
 
 						else if (T2.Text == "red")
-							{
-								imageB2.SetImageResource(Resource.Drawable.reddown);
-							}
-
-
+						{
+							imageB2.SetImageResource(Resource.Drawable.reddown);
 						}
+
+					}
+
 					break;
 			}
 		}
@@ -739,8 +803,12 @@ namespace Front_End
 					}
 
 
-					if (T5.Text != T6.Text)
-						imageB5.SetImageResource(Resource.Drawable.grey);
+					if (T6.Text != "blank")
+					{
+						if (T5.Text != T6.Text)
+							imageB5.SetImageResource(Resource.Drawable.grey);
+						T5.Text = "blank";
+					}
 
 
 					if (T4.Text == "red")
@@ -752,7 +820,14 @@ namespace Front_End
 					break;
 				// Dragged element exits the drop zone
 				case DragAction.Exited:
+					if (T4.Text != T3.Text)
+					{
+						if (T4.Text == "blue")
+							imageB4.SetImageResource(Resource.Drawable.blueup);
 
+						else if (T4.Text == "red")
+							imageB4.SetImageResource(Resource.Drawable.redup);
+					}
 
 					break;
 				// Dragged element has been dropped at the drop zone
@@ -786,6 +861,19 @@ namespace Front_End
 						T4.Text = "blue";
 					}
 
+					else if (T5.Text != "blank")
+
+					{
+						if (T4.Text == "blue")
+						{
+							imageB4.SetImageResource(Resource.Drawable.bluedown);
+						}
+
+						else if (T4.Text == "red")
+						{
+							imageB4.SetImageResource(Resource.Drawable.reddown);
+						}
+					}
 					else
 					{
 						T4.Text = "blank";
@@ -844,8 +932,12 @@ namespace Front_End
 					}
 
 
-					if (T6.Text != T7.Text)
-						imageB6.SetImageResource(Resource.Drawable.grey);
+					if (T7.Text != "blank")
+					{
+						if (T6.Text != T7.Text)
+							imageB6.SetImageResource(Resource.Drawable.grey);
+						T6.Text = "blank";
+					}
 
 
 					if (T5.Text == "red")
@@ -900,6 +992,19 @@ namespace Front_End
 						T5.Text = "blue";
 					}
 
+					else if (T6.Text != "blank")
+
+					{
+						if (T5.Text == "blue")
+						{
+							imageB5.SetImageResource(Resource.Drawable.bluedown);
+						}
+
+						else if (T5.Text == "red")
+						{
+							imageB5.SetImageResource(Resource.Drawable.reddown);
+						}
+					}
 					else
 					{
 						T5.Text = "blank";
@@ -959,8 +1064,12 @@ namespace Front_End
 					}
 
 
-					if (T7.Text != T8.Text)
-						imageB7.SetImageResource(Resource.Drawable.grey);
+					if (T8.Text != "blank")
+					{
+						if (T7.Text != T8.Text)
+							imageB7.SetImageResource(Resource.Drawable.grey);
+						T7.Text = "blank";
+					}
 
 
 					if (T6.Text == "red")
@@ -1014,7 +1123,19 @@ namespace Front_End
 						imageB6.SetImageResource(Resource.Drawable.blue);
 						T6.Text = "blue";
 					}
+					else if (T7.Text != "blank")
 
+					{
+						if (T6.Text == "blue")
+						{
+							imageB6.SetImageResource(Resource.Drawable.bluedown);
+						}
+
+						else if (T6.Text == "red")
+						{
+							imageB6.SetImageResource(Resource.Drawable.reddown);
+						}
+					}
 					else
 					{
 						T6.Text = "blank";
@@ -1074,8 +1195,12 @@ namespace Front_End
 					}
 
 
-					if (T8.Text != T9.Text)
-						imageB8.SetImageResource(Resource.Drawable.grey);
+					if (T9.Text != "blank")
+					{
+						if (T8.Text != T9.Text)
+							imageB8.SetImageResource(Resource.Drawable.grey);
+						T8.Text = "blank";
+					}
 
 
 					if (T7.Text == "red")
@@ -1130,6 +1255,19 @@ namespace Front_End
 						T7.Text = "blue";
 					}
 
+					else if (T8.Text != "blank")
+
+					{
+						if (T7.Text == "blue")
+						{
+							imageB7.SetImageResource(Resource.Drawable.bluedown);
+						}
+
+						else if (T7.Text == "red")
+						{
+							imageB7.SetImageResource(Resource.Drawable.reddown);
+						}
+					}
 					else
 					{
 						T7.Text = "blank";
