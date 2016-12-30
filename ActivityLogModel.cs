@@ -1,6 +1,6 @@
 using System;
 
-namespace DragAndDropDemo
+namespace Front_End
 {
     class ActivityLogModel : IBackendType
     {

@@ -7,7 +7,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 
-namespace DragAndDropDemo
+namespace Front_End
 {
 	[Activity(Label = "Drag and Drop")]
 	public class Activity1 : Activity
@@ -24,7 +24,7 @@ namespace DragAndDropDemo
 		ImageButton imageB21;
 		ImageButton imageB4;
 
-		ImageView image4;
+		//ImageView image4;
 		protected override void OnCreate(Bundle bundle)
 		{
 			// Set our view from the "main" layout resource
@@ -45,7 +45,7 @@ namespace DragAndDropDemo
 
 
 
-			image4 = FindViewById<ImageView>(Resource.Id.image4);
+			//image4 = FindViewById<ImageView>(Resource.Id.);
 
 			var button1 = FindViewById<Button>(Resource.Id.button1);
 			button1.LongClick += Button1_LongClick;
@@ -230,20 +230,20 @@ namespace DragAndDropDemo
 
 					if (T3.Text == T2.Text)
 {
-						image4.SetImageResource(Resource.Drawable.grey);
+						//image4.SetImageResource(Resource.Drawable.grey);
 						T3.Text = "blank";
 					}
 
 
-					if (T3.Text != T4.Text)
-						image4.SetImageResource(Resource.Drawable.grey);
+					//if (T3.Text != T4.Text)
+					//	image4.SetImageResource(Resource.Drawable.grey);
 
 
-					if (T2.Text == "red")
-						imageB21.SetImageResource(Resource.Drawable.red);
+					//if (T2.Text == "red")
+					//	imageB21.SetImageResource(Resource.Drawable.red);
 
-					else if (T2.Text == "blue")
-						imageB21.SetImageResource(Resource.Drawable.blue);
+					//else if (T2.Text == "blue")
+					//	imageB21.SetImageResource(Resource.Drawable.blue);
 
 
 
@@ -345,10 +345,10 @@ namespace DragAndDropDemo
 
 
 
-					if (T3.Text == "red")
-						image4.SetImageResource(Resource.Drawable.red);
-					else if (T3.Text == "blue")
-						image4.SetImageResource(Resource.Drawable.blue);
+					//if (T3.Text == "red")
+					//	image4.SetImageResource(Resource.Drawable.red);
+					//else if (T3.Text == "blue")
+					//	image4.SetImageResource(Resource.Drawable.blue);
 
 
 

@@ -11,9 +11,9 @@ using Android.Views;
 using Android.Widget;
 using System.Net;
 
-namespace DragAndDropDemo
+namespace Front_End
 {
-    [Activity(Label = "LoginActivity", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "LoginActivity", Icon = "@drawable/icon")]
     public class LoginActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)

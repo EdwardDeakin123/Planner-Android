@@ -10,7 +10,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
-namespace DragAndDropDemo
+namespace Front_End
 {
     // Helper class used when defining parameters that are passed to the backend.
     class BackendParameter

@@ -14,7 +14,7 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 
-namespace DragAndDropDemo
+namespace Front_End
 {
     // This class is intended to manage all communication with the backend.
     // Information regarding how to query a REST API found here:

@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace DragAndDropDemo
+namespace Front_End
 {
     class BackendActivityLog : Backend
     {

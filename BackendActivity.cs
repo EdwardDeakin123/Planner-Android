@@ -12,7 +12,7 @@ using Android.Widget;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace DragAndDropDemo
+namespace Front_End
 {
     // This is a helper class which manages API calls to the backend related to Activities.
     class BackendActivity : Backend

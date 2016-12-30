@@ -13,7 +13,7 @@ using Android.OS;
 using Android.Provider;
 using Java.Util;
 
-namespace DragAndDropDemo
+namespace Front_End
 {
 	[Activity(Label = "Drag and Drop", MainLauncher = true, Icon = "@drawable/icon")]
 	public class MainActivity : Activity

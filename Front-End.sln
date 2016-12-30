@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DragAndDropDemo", "DragAndDropDemo.csproj", "{E5CF3EFB-1D4D-4457-9E8A-89FB77F4C16F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Front-End", "Front-End.csproj", "{E5CF3EFB-1D4D-4457-9E8A-89FB77F4C16F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

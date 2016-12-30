@@ -51,4 +51,3 @@ E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\asse
 E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\Mono.CSharp.dll.mdb
 E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\android\assets\System.Xml.Linq.dll.mdb
 E:\Projects\Programming\VSProjects\SIT302\Planner-Android\obj\Debug\DragAndDropTest.dll.mdb
-E:\Projects\Programming\VSProjects\SIT302\Planner-Android\bin\Debug\DragAndDropTest.dll.mdb
