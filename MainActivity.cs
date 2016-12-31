@@ -13,9 +13,9 @@ using Android.OS;
 using Android.Provider;
 using Java.Util;
 
-namespace DragAndDropDemo
+namespace Front_End
 {
-	[Activity(Label = "Drag and Drop", MainLauncher = true, Icon = "@drawable/icon")]
+	[Activity(Label = "Main", MainLauncher = true, Icon = "@drawable/icon")]
 	public class MainActivity : Activity
 	{
 
@@ -56,6 +56,8 @@ namespace DragAndDropDemo
 		ImageButton imageB14;
 		ImageButton imageB15;
 		ImageButton imageB16;
+
+        ImageButton ivTemp;
 
 
 		protected override void OnCreate(Bundle bundle)
@@ -107,12 +109,15 @@ namespace DragAndDropDemo
 
 
 			var button1 = FindViewById<Button>(Resource.Id.button1);
-			button1.LongClick += Button1_LongClick;
 			var button2 = FindViewById<Button>(Resource.Id.button2);
-			button2.LongClick += Button2_LongClick;
+            /*button1.LongClick += Button1_LongClick;
+            button2.LongClick += Button2_LongClick;*/
+
+            button1.LongClick += Activity_LongClick;
+            button2.LongClick += Activity_LongClick;
 
 
-			var dropZone1 = FindViewById<RelativeLayout>(Resource.Id.dropz);
+            var dropZone1 = FindViewById<RelativeLayout>(Resource.Id.dropz);
 			var dropZone2 = FindViewById<RelativeLayout>(Resource.Id.dropz1);
 			var dropZone3 = FindViewById<RelativeLayout>(Resource.Id.dropz2);
 			var dropZone4 = FindViewById<RelativeLayout>(Resource.Id.dropz3);
@@ -132,7 +137,7 @@ namespace DragAndDropDemo
 
 
 
-			imageB1.LongClick += IMButton1_LongClick;
+			/*imageB1.LongClick += IMButton1_LongClick;
 			imageB2.LongClick += IMButton2_LongClick;
 			imageB3.LongClick += IMButton3_LongClick;
 			imageB4.LongClick += IMButton4_LongClick;
@@ -147,33 +152,40 @@ namespace DragAndDropDemo
 			imageB13.LongClick += IMButton13_LongClick;
 			imageB14.LongClick += IMButton14_LongClick;
 			imageB15.LongClick += IMButton15_LongClick;
-			imageB16.LongClick += IMButton16_LongClick;
+			imageB16.LongClick += IMButton16_LongClick;*/
 
 
 			// Attach event to drop zone
-			dropZone1.Drag += DropZone_Drag;
+			/*dropZone1.Drag += DropZone_Drag;
 			dropZone2.Drag += DropZone_Drag2;
 			dropZone3.Drag += DropZone_Drag3;
-			dropZone4.Drag += DropZone_Drag4;
-			dropZone5.Drag += DropZone_Drag5;
+            dropZone4.Drag += DropZone_Drag4;
+            dropZone5.Drag += DropZone_Drag5;
 			dropZone6.Drag += DropZone_Drag6;
-			dropZone7.Drag += DropZone_Drag7;
-		/*	dropZone4.Drag += DropZone_Drag8;
-			dropZone1.Drag += DropZone_Drag9;
-			dropZone2.Drag += DropZone_Drag10;
-			dropZone3.Drag += DropZone_Drag11;
-			dropZone4.Drag += DropZone_Drag12;
-			dropZone1.Drag += DropZone_Drag13;
-			dropZone2.Drag += DropZone_Drag14;
-			dropZone3.Drag += DropZone_Drag15;
-			dropZone4.Drag += DropZone_Drag16;*/
+			dropZone7.Drag += DropZone_Drag7;*/
+            /*	dropZone4.Drag += DropZone_Drag8;
+                dropZone1.Drag += DropZone_Drag9;
+                dropZone2.Drag += DropZone_Drag10;
+                dropZone3.Drag += DropZone_Drag11;
+                dropZone4.Drag += DropZone_Drag12;
+                dropZone1.Drag += DropZone_Drag13;
+                dropZone2.Drag += DropZone_Drag14;
+                dropZone3.Drag += DropZone_Drag15;
+                dropZone4.Drag += DropZone_Drag16;*/
+
+            dropZone1.Drag += DropZone_Drop;
+            dropZone2.Drag += DropZone_Drop;
+            dropZone3.Drag += DropZone_Drop;
+            dropZone4.Drag += DropZone_Drop;
+            dropZone5.Drag += DropZone_Drop;
+            dropZone6.Drag += DropZone_Drop;
+            dropZone7.Drag += DropZone_Drop;
 
 
-
-
-			base.OnCreate(bundle);
+            base.OnCreate(bundle);
 		}
 
+        /*
 		void IMButton1_LongClick(object sender, View.LongClickEventArgs e)
 		{
 			// Generate clip data package to attach it to the drag
@@ -328,11 +340,10 @@ namespace DragAndDropDemo
 			// Start dragging and pass data
 			((sender) as ImageButton).StartDrag(data, new View.DragShadowBuilder(((sender) as ImageButton)), null, 0);
 		}
+        */
 
 
-
-
-
+        /*
 		void Button1_LongClick(object sender, View.LongClickEventArgs e)
 		{
 			// Generate clip data package to attach it to the drag
@@ -351,14 +362,84 @@ namespace DragAndDropDemo
 			((sender) as Button).StartDrag(data, new View.DragShadowBuilder(((sender) as Button)), null, 0);
 			((sender) as Button).StartDrag(data, new View.DragShadowBuilder(((sender) as Button)), null, 0);
 		}
+        */
 
 
+        /*
+         *
+         * CODE CLEANUP 
+         * 
+         */
+        private void Activity_LongClick(object sender, View.LongClickEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Activity Long Click... Starting Drag...");
+
+            // Get the Activity button from the sender object.
+            Button activityButton = (Button)sender;
+
+            // Create clip data that will be attached to the drag operation.
+            var data = ClipData.NewPlainText("activity", activityButton.Text);
+
+            // Start dragging and pass data
+            // StartDrag was deprecated in API 24, check which version of Android we're running on and use the appropriate method.
+            if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.N)
+            {
+                activityButton.StartDragAndDrop(data, new View.DragShadowBuilder(activityButton), null, 0);
+            }
+            else
+            {
+                activityButton.StartDrag(data, new View.DragShadowBuilder(activityButton), null, 0);
+            }
+        }
+
+        private void DropZone_Drop(object sender, View.DragEventArgs e)
+        {
+            //System.Diagnostics.Debug.WriteLine("Started dropping...");
+
+            // Get the event from the sender object.
+            var dragEvent = e.Event;
+
+            RelativeLayout rLayout = (RelativeLayout)sender;
+
+            // Perform an action.
+            switch (dragEvent.Action)
+            {
+                case DragAction.Ended:
+                case DragAction.Started:
+                    e.Handled = true;
+                    break;
+                case DragAction.Entered:
+                    System.Diagnostics.Debug.WriteLine("Entered this area.");
+
+                    // Create an ImageView object that can be added to the drop zone as
+                    // the button is dragged into it.
+                    ivTemp = new ImageButton(this);
+
+                    // Assign the image.
+                    ivTemp.SetImageResource(Resource.Drawable.blue);
+
+                    rLayout.AddView(ivTemp);
+                    break;
+                case DragAction.Exited:
+                    System.Diagnostics.Debug.WriteLine("Exited this area.");
+
+                    // Remove the temporary ImageView when leaving the drop zone.
+                    rLayout.RemoveView(ivTemp);
+                    break;
+                case DragAction.Drop:
+
+                    break;
+            }
+        }
+        /*
+         *
+         * END CODE CLEANUP 
+         * 
+         */
 
 
-
-
-
-		void DropZone_Drag(object sender, View.DragEventArgs e)
+        /*
+        void DropZone_Drag(object sender, View.DragEventArgs e)
 		{
 			// React on different dragging events
 			var evt = e.Event;
@@ -563,7 +644,7 @@ namespace DragAndDropDemo
 						{
 							imageB2.SetImageResource(Resource.Drawable.grey);
 							T2.Text = "blank";
-						} */
+						}
 
 
 					if (color == "red")
@@ -1290,5 +1371,6 @@ namespace DragAndDropDemo
 					break;
 			}
 		}
+        */
 	}
 }
