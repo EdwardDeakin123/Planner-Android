@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Front_End
@@ -21,14 +22,12 @@ namespace Front_End
             return await GetRequestAsync<ActivityLogModel>();
         }
 
-        public async Task<ActivityLogModel> GetByUser(int userId)
+        public async Task<List<ActivityLogModel>> GetByUser()
         {
             // Set the command and create the query string.
-            _Command = "Get";
+            _Command = "GetByUser";
 
-            _Parameters.Add(new BackendParameter { Key = "userId", Value = userId.ToString() });
-
-            return await GetRequestAsync<ActivityLogModel>();
+            return await GetRequestListAsync<ActivityLogModel>();
         }
 
         public async Task Add(int userId, int activityId, DateTime startTime, DateTime endTime)

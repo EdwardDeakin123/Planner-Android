@@ -1,467 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_height="500dp"
-        android:layout_width="match_parent">
-        <FrameLayout
-            android:background="#ff505050"
-            android:id="@+id/dropzone"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <GridLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <RelativeLayout
-                        android:background="#ff949494"
-                        android:layout_row="0"
-                        android:layout_column="2"
-                        android:layout_width="100dp"
-                        android:layout_height="60dp"
-                        android:id="@+id/dropz">
-                        <ImageButton
-                            android:id="@+id/myButton1"
-                            android:layout_width="100dp"
-                            Stretch="Fill"
-                            android:layout_height="50dp" />
-                        <TextView
-                            android:id="@+id/T1"
-                            android:layout_width="1dp"
-                            android:layout_height="1dp"
-                            android:text="blank" />
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:background="#ff949494"
-                        android:layout_row="1"
-                        android:layout_column="2"
-                        android:layout_width="100dp"
-                        android:layout_height="60dp"
-                        android:id="@+id/dropz1">
-                        <ImageButton
-                            android:id="@+id/myButton2"
-                            Stretch="Fill"
-                            android:layout_width="100dp"
-                            android:layout_height="50dp"
-                            Margin="0,0,0,0" />
-                        <TextView
-                            android:id="@+id/T2"
-                            android:layout_width="1dp"
-                            android:layout_height="1dp"
-                            android:text="blank" />
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:background="#ff949494"
-                        android:layout_row="2"
-                        android:layout_column="2"
-                        android:layout_width="100dp"
-                        android:layout_height="60dp"
-                        android:id="@+id/dropz2">
-                        <ImageButton
-                            android:id="@+id/myButton3"
-                            Stretch="Fill"
-                            android:layout_width="100dp"
-                            android:layout_height="50dp" />
-                        <TextView
-                            android:id="@+id/T3"
-                            android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:layout_width="1dp"
-                            android:layout_height="1dp"
-                            android:textSize="1dip"
-                            android:text="blank" />
-                    </RelativeLayout>
-                    <RelativeLayout
-                        android:background="#ff949494"
-                        android:layout_row="3"
-                        android:layout_column="2"
-                        android:layout_width="100dp"
-                        android:layout_height="60dp"
-                        android:id="@+id/dropz3">
-                        <ImageButton
-                            android:id="@+id/myButton4"
-                            android:layout_width="100dp"
-                            Stretch="Fill"
-                            android:layout_height="60dp" />
-                        <TextView
-                            android:id="@+id/T4"
-                            android:layout_width="1dp"
-                            android:layout_height="1dp"
-                            android:text="blank" />
-                    </RelativeLayout>
-                    <TextView
-                        android:id="@+id/result4"
-                        android:text="4"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:layout_width="100dp"
-                        android:layout_height="50dp"
-                        android:layout_row="3"
-                        android:layout_column="0"
-                        android:textSize="12dip" />
-                    <RelativeLayout
-                        android:background="#ff949494"
-                        android:layout_row="4"
-                        android:layout_column="2"
-                        android:layout_width="100dp"
-                        android:layout_height="60dp"
-                        android:id="@+id/dropz4">
-                        <ImageButton
-                            android:id="@+id/myButton5"
-                            android:layout_width="100dp"
-                            Stretch="Fill"
-                            android:layout_height="60dp" />
-                        <TextView
-                            android:id="@+id/T5"
-                            android:layout_width="1dp"
-                            android:layout_height="1dp"
-                            android:text="blank" />
-                    </RelativeLayout>
-                    <TextView
-                        android:id="@+id/result5"
-                        android:text="5"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:layout_width="100dp"
-                        android:layout_height="50dp"
-                        android:layout_row="4"
-                        android:layout_column="0"
-                        android:textSize="12dip" />
-                    <RelativeLayout
-                        android:background="#ff949494"
-                        android:layout_row="5"
-                        android:layout_column="2"
-                        android:layout_width="100dp"
-                        android:layout_height="60dp"
-                        android:id="@+id/dropz5">
-                        <ImageButton
-                            android:id="@+id/myButton6"
-                            android:layout_width="100dp"
-                            Stretch="Fill"
-                            android:layout_height="60dp" />
-                        <TextView
-                            android:id="@+id/T6"
-                            android:layout_width="1dp"
-                            android:layout_height="1dp"
-                            android:text="blank" />
-                    </RelativeLayout>
-                    <TextView
-                        android:id="@+id/result6"
-                        android:text="6"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:layout_width="100dp"
-                        android:layout_height="50dp"
-                        android:layout_row="5"
-                        android:layout_column="0"
-                        android:textSize="12dip" />
-                    <RelativeLayout
-                        android:background="#ff949494"
-                        android:layout_row="6"
-                        android:layout_column="2"
-                        android:layout_width="100dp"
-                        android:layout_height="60dp"
-                        android:id="@+id/dropz6">
-                        <ImageButton
-                            android:id="@+id/myButton7"
-                            android:layout_width="100dp"
-                            Stretch="Fill"
-                            android:layout_height="60dp" />
-                        <TextView
-                            android:id="@+id/T7"
-                            android:layout_width="1dp"
-                            android:layout_height="1dp"
-                            android:text="blank" />
-                    </RelativeLayout>
-                    <TextView
-                        android:id="@+id/result7"
-                        android:text="7"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:layout_width="100dp"
-                        android:layout_height="50dp"
-                        android:layout_row="6"
-                        android:layout_column="0"
-                        android:textSize="12dip" />
-                    <RelativeLayout
-                        android:background="#ff949494"
-                        android:layout_row="7"
-                        android:layout_column="2"
-                        android:layout_width="100dp"
-                        android:layout_height="60dp"
-                        android:id="@+id/dropz7">
-                        <ImageButton
-                            android:id="@+id/myButton8"
-                            android:layout_width="100dp"
-                            Stretch="Fill"
-                            android:layout_height="60dp" />
-                        <TextView
-                            android:id="@+id/T8"
-                            android:layout_width="1dp"
-                            android:layout_height="1dp"
-                            android:text="blank" />
-                    </RelativeLayout>
-                    <TextView
-                        android:id="@+id/result8"
-                        android:text="8"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:layout_width="100dp"
-                        android:layout_height="50dp"
-                        android:layout_row="7"
-                        android:layout_column="0"
-                        android:textSize="12dip" />
-                    <RelativeLayout
-                        android:background="#ff949494"
-                        android:layout_row="8"
-                        android:layout_column="2"
-                        android:layout_width="100dp"
-                        android:layout_height="60dp"
-                        android:id="@+id/dropz8">
-                        <ImageButton
-                            android:id="@+id/myButton9"
-                            android:layout_width="100dp"
-                            Stretch="Fill"
-                            android:layout_height="60dp" />
-                        <TextView
-                            android:id="@+id/T9"
-                            android:layout_width="1dp"
-                            android:layout_height="1dp"
-                            android:text="blank" />
-                    </RelativeLayout>
-                    <TextView
-                        android:id="@+id/result9"
-                        android:text="9"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:layout_width="100dp"
-                        android:layout_height="50dp"
-                        android:layout_row="8"
-                        android:layout_column="0"
-                        android:textSize="12dip" />
-                    <RelativeLayout
-                        android:background="#ff949494"
-                        android:layout_row="9"
-                        android:layout_column="2"
-                        android:layout_width="100dp"
-                        android:layout_height="60dp"
-                        android:id="@+id/dropz9">
-                        <ImageButton
-                            android:id="@+id/myButton10"
-                            android:layout_width="100dp"
-                            Stretch="Fill"
-                            android:layout_height="60dp" />
-                        <TextView
-                            android:id="@+id/T10"
-                            android:layout_width="1dp"
-                            android:layout_height="1dp"
-                            android:text="blank" />
-                    </RelativeLayout>
-                    <TextView
-                        android:id="@+id/result10"
-                        android:text="10"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:layout_width="100dp"
-                        android:layout_height="50dp"
-                        android:layout_row="9"
-                        android:layout_column="0"
-                        android:textSize="12dip" />
-                    <RelativeLayout
-                        android:background="#ff949494"
-                        android:layout_row="10"
-                        android:layout_column="2"
-                        android:layout_width="100dp"
-                        android:layout_height="60dp"
-                        android:id="@+id/dropz10">
-                        <ImageButton
-                            android:id="@+id/myButton11"
-                            android:layout_width="100dp"
-                            Stretch="Fill"
-                            android:layout_height="60dp" />
-                        <TextView
-                            android:id="@+id/T11"
-                            android:layout_width="1dp"
-                            android:layout_height="1dp"
-                            android:text="blank" />
-                    </RelativeLayout>
-                    <TextView
-                        android:id="@+id/result11"
-                        android:text="11"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:layout_width="100dp"
-                        android:layout_height="50dp"
-                        android:layout_row="10"
-                        android:layout_column="0"
-                        android:textSize="12dip" />
-                    <RelativeLayout
-                        android:background="#ff949494"
-                        android:layout_row="11"
-                        android:layout_column="2"
-                        android:layout_width="100dp"
-                        android:layout_height="60dp"
-                        android:id="@+id/dropz11">
-                        <ImageButton
-                            android:id="@+id/myButton12"
-                            android:layout_width="100dp"
-                            Stretch="Fill"
-                            android:layout_height="60dp" />
-                        <TextView
-                            android:id="@+id/T12"
-                            android:layout_width="1dp"
-                            android:layout_height="1dp"
-                            android:text="blank" />
-                    </RelativeLayout>
-                    <TextView
-                        android:id="@+id/result12"
-                        android:text="12"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:layout_width="100dp"
-                        android:layout_height="50dp"
-                        android:layout_row="11"
-                        android:layout_column="0"
-                        android:textSize="12dip" />
-                    <RelativeLayout
-                        android:background="#ff949494"
-                        android:layout_row="12"
-                        android:layout_column="2"
-                        android:layout_width="100dp"
-                        android:layout_height="60dp"
-                        android:id="@+id/dropz12">
-                        <ImageButton
-                            android:id="@+id/myButton13"
-                            android:layout_width="100dp"
-                            Stretch="Fill"
-                            android:layout_height="60dp" />
-                        <TextView
-                            android:id="@+id/T13"
-                            android:layout_width="1dp"
-                            android:layout_height="1dp"
-                            android:text="blank" />
-                    </RelativeLayout>
-                    <TextView
-                        android:id="@+id/result13"
-                        android:text="13"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:layout_width="100dp"
-                        android:layout_height="50dp"
-                        android:layout_row="12"
-                        android:layout_column="0"
-                        android:textSize="12dip" />
-                    <RelativeLayout
-                        android:background="#ff949494"
-                        android:layout_row="13"
-                        android:layout_column="2"
-                        android:layout_width="100dp"
-                        android:layout_height="60dp"
-                        android:id="@+id/dropz13">
-                        <ImageButton
-                            android:id="@+id/myButton14"
-                            android:layout_width="100dp"
-                            Stretch="Fill"
-                            android:layout_height="60dp" />
-                        <TextView
-                            android:id="@+id/T14"
-                            android:layout_width="1dp"
-                            android:layout_height="1dp"
-                            android:text="blank" />
-                    </RelativeLayout>
-                    <TextView
-                        android:id="@+id/result14"
-                        android:text="13"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:layout_width="100dp"
-                        android:layout_height="50dp"
-                        android:layout_row="13"
-                        android:layout_column="0"
-                        android:textSize="12dip" />
-                    <RelativeLayout
-                        android:background="#ff949494"
-                        android:layout_row="14"
-                        android:layout_column="2"
-                        android:layout_width="100dp"
-                        android:layout_height="60dp"
-                        android:id="@+id/dropz14">
-                        <ImageButton
-                            android:id="@+id/myButton15"
-                            android:layout_width="100dp"
-                            Stretch="Fill"
-                            android:layout_height="60dp" />
-                        <TextView
-                            android:id="@+id/T15"
-                            android:layout_width="1dp"
-                            android:layout_height="1dp"
-                            android:text="blank" />
-                    </RelativeLayout>
-                    <TextView
-                        android:id="@+id/result15"
-                        android:text="13"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:layout_width="100dp"
-                        android:layout_height="50dp"
-                        android:layout_row="14"
-                        android:layout_column="0"
-                        android:textSize="12dip" />
-                    <RelativeLayout
-                        android:background="#ff949494"
-                        android:layout_row="15"
-                        android:layout_column="2"
-                        android:layout_width="100dp"
-                        android:layout_height="60dp"
-                        android:id="@+id/dropz15">
-                        <ImageButton
-                            android:id="@+id/myButton16"
-                            android:layout_width="100dp"
-                            Stretch="Fill"
-                            android:layout_height="60dp" />
-                        <TextView
-                            android:id="@+id/T16"
-                            android:layout_width="1dp"
-                            android:layout_height="1dp"
-                            android:text="blank" />
-                    </RelativeLayout>
-                    <TextView
-                        android:id="@+id/result16"
-                        android:text="13"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:layout_width="100dp"
-                        android:layout_height="50dp"
-                        android:layout_row="15"
-                        android:layout_column="0"
-                        android:textSize="12dip" />
-                </GridLayout>
-            </ScrollView>
-        </FrameLayout>
-        <LinearLayout
-            android:background="#ff949494"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:id="@+id/llActivities"
-            android:orientation="vertical">
-        <!--
-            <Button
-                android:id="@+id/button1"
-                android:text="Sample Element 1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <Button
-                android:id="@+id/button2"
-                android:text="Sample Element 2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/button1" />
-            <Button
-                android:id="@+id/button3"
-                android:text="Sample Element 2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/button2" />
-                -->
-        </LinearLayout>
-    </LinearLayout>
-    <RelativeLayout
-        android:background="#ff949494"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+<!-- Daily view here.-->
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_weight="1" />
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:scrollbars="none"
+        android:id="@+id/svCalendar">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rlTimeMarkers">
+                <TextView
+                    android:id="@+id/tv0000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/t0000hrs" />
+                <TextView
+                    android:id="@+id/tv0100"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="60dp"
+                    android:text="@string/t0100hrs" />
+                <TextView
+                    android:id="@+id/tv0200"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="120dp"
+                    android:text="@string/t0200hrs" />
+                <TextView
+                    android:id="@+id/tv0300"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="180dp"
+                    android:text="@string/t0300hrs" />
+                <TextView
+                    android:id="@+id/tv0400"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="240dp"
+                    android:text="@string/t0400hrs" />
+                <TextView
+                    android:id="@+id/tv0500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="300dp"
+                    android:text="@string/t0500hrs" />
+                <TextView
+                    android:id="@+id/tv0600"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="360dp"
+                    android:text="@string/t0600hrs" />
+                <TextView
+                    android:id="@+id/tv0700"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="420dp"
+                    android:text="@string/t0700hrs" />
+                <TextView
+                    android:id="@+id/tv0800"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="480dp"
+                    android:text="@string/t0800hrs" />
+                <TextView
+                    android:id="@+id/tv0900"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="540dp"
+                    android:text="@string/t0900hrs" />
+                <TextView
+                    android:id="@+id/tv1000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="600dp"
+                    android:text="@string/t1000hrs" />
+                <TextView
+                    android:id="@+id/tv1100"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="660dp"
+                    android:text="@string/t1100hrs" />
+                <TextView
+                    android:id="@+id/tv1200"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="720dp"
+                    android:text="@string/t1200hrs" />
+                <TextView
+                    android:id="@+id/tv1300"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="780dp"
+                    android:text="@string/t1300hrs" />
+                <TextView
+                    android:id="@+id/tv1400"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="840dp"
+                    android:text="@string/t1400hrs" />
+                <TextView
+                    android:id="@+id/tv1500"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="900dp"
+                    android:text="@string/t1500hrs" />
+                <TextView
+                    android:id="@+id/tv1600"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="960dp"
+                    android:text="@string/t1600hrs" />
+                <TextView
+                    android:id="@+id/tv1700"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1020dp"
+                    android:text="@string/t1700hrs" />
+                <TextView
+                    android:id="@+id/tv1800"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1080dp"
+                    android:text="@string/t1800hrs" />
+                <TextView
+                    android:id="@+id/tv1900"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1140dp"
+                    android:text="@string/t1900hrs" />
+                <TextView
+                    android:id="@+id/tv2000"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1200dp"
+                    android:text="@string/t2000hrs" />
+                <TextView
+                    android:id="@+id/tv2100"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1260dp"
+                    android:text="@string/t2100hrs" />
+                <TextView
+                    android:id="@+id/tv2200"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1320dp"
+                    android:text="@string/t2200hrs" />
+                <TextView
+                    android:id="@+id/tv2300"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1380dp"
+                    android:text="@string/t2300hrs" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="1440dp"
+                android:id="@+id/rlDropzone"
+                android:layout_toRightOf="@id/rlTimeMarkers" />
+        </RelativeLayout>
+    </ScrollView>
+    <LinearLayout
+        android:background="#ff949494"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:id="@+id/llActivities"
+        android:orientation="vertical"
+        android:layout_toRightOf="@+id/svCalendar"
+        android:layout_marginLeft="0.0dp">
+    <!-- This is where the Activity Buttons / Icons go. -->
+    </LinearLayout>
 </LinearLayout>

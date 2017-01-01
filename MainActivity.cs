@@ -20,28 +20,6 @@ namespace Front_End
 	[Activity(Label = "Main", MainLauncher = true, Icon = "@drawable/icon")]
 	public class MainActivity : Activity
 	{
-
-		TextView hold;
-		string color;
-		TextView T1;
-		TextView T2;
-		TextView T3;
-		TextView T4;
-		TextView T5;
-		TextView T6;
-		TextView T7;
-		TextView T8;
-		TextView T9;
-		TextView T10;
-		TextView T11;
-		TextView T12;
-		TextView T13;
-		TextView T14;
-		TextView T15;
-		TextView T16;
-
-
-
 		ImageButton imageB1;
 		ImageButton imageB2;
 		ImageButton imageB3;
@@ -59,11 +37,10 @@ namespace Front_End
 		ImageButton imageB15;
 		ImageButton imageB16;
 
-        ImageButton ivTemp;
+        ImageView ivTemp;
 
         // This variable is used to skip the backend and just use test data.
         bool FakeData = false;
-
 
 		protected override void OnCreate(Bundle bundle)
 		{
@@ -71,27 +48,9 @@ namespace Front_End
 			SetContentView(Resource.Layout.Main);
 
 			// Get UI elements out of the layout
-			hold = FindViewById<TextView>(Resource.Id.result11);
+			//hold = FindViewById<TextView>(Resource.Id.result11);
 
-			T1 = FindViewById<TextView>(Resource.Id.T1);
-			T2 = FindViewById<TextView>(Resource.Id.T2);
-			T3 = FindViewById<TextView>(Resource.Id.T3);
-			T4 = FindViewById<TextView>(Resource.Id.T4);
-			T5 = FindViewById<TextView>(Resource.Id.T5);
-			T6 = FindViewById<TextView>(Resource.Id.T6);
-			T7 = FindViewById<TextView>(Resource.Id.T7);
-			T8 = FindViewById<TextView>(Resource.Id.T8);
-			T9 = FindViewById<TextView>(Resource.Id.T9);
-			T10 = FindViewById<TextView>(Resource.Id.T10);
-			T11 = FindViewById<TextView>(Resource.Id.T11);
-			T12 = FindViewById<TextView>(Resource.Id.T12);
-			T13 = FindViewById<TextView>(Resource.Id.T13);
-			T14 = FindViewById<TextView>(Resource.Id.T14);
-			T15 = FindViewById<TextView>(Resource.Id.T15);
-			T16 = FindViewById<TextView>(Resource.Id.T16);
-
-
-
+            /*
 			imageB1 = FindViewById<ImageButton>(Resource.Id.myButton1);
 			imageB2 = FindViewById<ImageButton>(Resource.Id.myButton2);
 			imageB3 = FindViewById<ImageButton>(Resource.Id.myButton3);
@@ -108,6 +67,7 @@ namespace Front_End
 			imageB14 = FindViewById<ImageButton>(Resource.Id.myButton14);
 			imageB15 = FindViewById<ImageButton>(Resource.Id.myButton15);
 			imageB16 = FindViewById<ImageButton>(Resource.Id.myButton16);
+            */
 
             //var button1 = FindViewById<Button>(Resource.Id.button1);
 			//var button2 = FindViewById<Button>(Resource.Id.button2);
@@ -118,28 +78,11 @@ namespace Front_End
             //button2.LongClick += Activity_LongClick;
 
             // Get the activity buttons from the backend
-            CreateActivityButtons();
+            GetActivities();
+            GetActivityLogs();
 
 
-            var dropZone1 = FindViewById<RelativeLayout>(Resource.Id.dropz);
-			var dropZone2 = FindViewById<RelativeLayout>(Resource.Id.dropz1);
-			var dropZone3 = FindViewById<RelativeLayout>(Resource.Id.dropz2);
-			var dropZone4 = FindViewById<RelativeLayout>(Resource.Id.dropz3);
-			var dropZone5 = FindViewById<RelativeLayout>(Resource.Id.dropz4);
-			var dropZone6 = FindViewById<RelativeLayout>(Resource.Id.dropz5);
-			var dropZone7 = FindViewById<RelativeLayout>(Resource.Id.dropz6);
-			var dropZone8 = FindViewById<RelativeLayout>(Resource.Id.dropz7);
-			var dropZone9 = FindViewById<RelativeLayout>(Resource.Id.dropz8);
-			var dropZone10 = FindViewById<RelativeLayout>(Resource.Id.dropz9);
-			var dropZone11 = FindViewById<RelativeLayout>(Resource.Id.dropz10);
-			var dropZone12 = FindViewById<RelativeLayout>(Resource.Id.dropz11);
-			var dropZone13 = FindViewById<RelativeLayout>(Resource.Id.dropz12);
-			var dropZone14 = FindViewById<RelativeLayout>(Resource.Id.dropz13);
-			var dropZone15 = FindViewById<RelativeLayout>(Resource.Id.dropz14);
-			var dropZone16 = FindViewById<RelativeLayout>(Resource.Id.dropz15);
-
-
-
+            var dropZone = FindViewById<RelativeLayout>(Resource.Id.rlDropzone);
 
 			/*imageB1.LongClick += IMButton1_LongClick;
 			imageB2.LongClick += IMButton2_LongClick;
@@ -158,19 +101,19 @@ namespace Front_End
 			imageB15.LongClick += IMButton15_LongClick;
 			imageB16.LongClick += IMButton16_LongClick;*/
 
-            dropZone1.Drag += DropZone_Drop;
-            dropZone2.Drag += DropZone_Drop;
+            dropZone.Drag += DropZone_Drop;
+            /*dropZone2.Drag += DropZone_Drop;
             dropZone3.Drag += DropZone_Drop;
             dropZone4.Drag += DropZone_Drop;
             dropZone5.Drag += DropZone_Drop;
             dropZone6.Drag += DropZone_Drop;
-            dropZone7.Drag += DropZone_Drop;
+            dropZone7.Drag += DropZone_Drop;*/
 
 
             base.OnCreate(bundle);
 		}
 
-        private async void CreateActivityButtons()
+        private async void GetActivities()
         {
             try
             {
@@ -202,6 +145,44 @@ namespace Front_End
                     LinearLayout llActivities = FindViewById<LinearLayout>(Resource.Id.llActivities);
                     llActivities.AddView(actButton);
                     System.Diagnostics.Debug.WriteLine("This one is " + act.ActivityName);
+                }
+            }
+            catch (System.Net.WebException ex)
+            {
+                if (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    // The user is not logged in. Move to the Login activity.
+                    StartActivity(new Intent(this, typeof(LoginActivity)));
+                }
+                System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
+            }
+        }
+
+        private async void GetActivityLogs()
+        {
+            try
+            {
+                List<ActivityLogModel> activityLogs;
+
+                // Get activities from the backend.
+                if (!FakeData)
+                {
+                    // Get real data.
+                    BackendActivityLog backend = new BackendActivityLog();
+                    activityLogs = await backend.GetByUser();
+                }
+                else
+                {
+                    // Populate the page with fake data.
+                    activityLogs = new List<ActivityLogModel>()
+                    {
+                        new ActivityLogModel() { ActivityLogId = 1, Activity = new ActivityModel() { ActivityId = 1, ActivityName = "Sleeping Fake" }, StartTime = DateTime.Now, EndTime = DateTime.Now.AddHours(1) }
+                    };
+                }
+
+                foreach (ActivityLogModel actLog in activityLogs)
+                {
+                    Console.WriteLine("ActivityLog: " + actLog.Activity.ActivityName + " " + actLog.StartTime.ToString() + " " + actLog.EndTime.ToString());
                 }
             }
             catch (System.Net.WebException ex)
@@ -274,7 +255,12 @@ namespace Front_End
 
                     // Create an ImageView object that can be added to the drop zone as
                     // the button is dragged into it.
-                    ivTemp = new ImageButton(this);
+                    ivTemp = new ImageView(this);
+
+                    // Set the height of the temporary ImageView to 60dp. You have to use pixels, so calculate what 60dp is in pixels
+                    // https://developer.xamarin.com/recipes/android/resources/device_specific/detect_screen_size/
+                    int pixels = (int)((60) * Resources.DisplayMetrics.Density);
+                    ivTemp.LayoutParameters = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, pixels);
 
                     // Assign the image.
                     ivTemp.SetImageResource(Resource.Drawable.blue);
@@ -291,6 +277,20 @@ namespace Front_End
                     // Remove the temporary ImageView when leaving the drop zone.
                     rLayout.RemoveView(ivTemp);
 
+                    break;
+                case DragAction.Location:
+                    // Make the ImageView follow the users finger but snap it to the closest hour.
+                    // An hour is 60dp, so just round to the previous 60dp.
+                    // Convert the Y position in pixels to dp.
+                    int dp = (int)((dragEvent.GetY()) / Resources.DisplayMetrics.Density);
+
+                    // Divide the dp by 60 to determine where to snap the hour.
+                    int position = (int)(Math.Floor((double)(dp / 60)) * 60);
+
+                    // Convert back to pixels.
+                    float px = (position) * Resources.DisplayMetrics.Density;
+
+                    ivTemp.SetY(px);
                     break;
             }
         }
