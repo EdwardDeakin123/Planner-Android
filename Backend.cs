@@ -1,18 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
+using Android.Webkit;
+using Android.Content;
+using Android.Preferences;
 
 namespace Front_End
 {
@@ -29,15 +24,21 @@ namespace Front_End
         protected string _Resource = "";
         protected string _Command = "";
         protected List<BackendParameter> _Parameters;
+        protected Dictionary<string, Cookie> _Cookies;
+        protected CookieContainer _CookieContainer;
 
         //TODO Cleanup parameters are POST or GET requests.
 
         public Backend()
         {
             _Parameters = new List<BackendParameter>();
-        }
+            _Cookies = new Dictionary<string, Cookie>();
+            _CookieContainer = new CookieContainer();
 
-        //TODO Make sure everything is async at some stage to prevent the UI from locking.
+            // Restore the saved cookie.
+            // TODO: Add logic to check for expired cookies.
+            LoadCookie();
+        }
 
         private string GetUrlString()
         {
@@ -76,6 +77,33 @@ namespace Front_End
             return queryString;
         }
 
+        private string GetJSON()
+        {
+            // Create a JSON string that can be passed to the backend.
+            string jsonString = "";
+
+            // Check that parameters is not empty.
+            if (_Parameters.Count() > 0)
+            {
+                // Loop through the parameters and add them to the query string.
+                foreach (BackendParameter param in _Parameters)
+                {
+                    // If this is not the first parameter, make sure to include the and symbol.
+                    if (jsonString != "")
+                    {
+                        jsonString += ", ";
+                    }
+
+                    // Use UrlEncode to make sure there are no invalid characters in the strings.
+                    jsonString += '"' + WebUtility.UrlEncode(param.Key) + '"' + ": " + '"' + WebUtility.UrlEncode(param.Value) + '"';
+                }
+            }
+
+            jsonString = "{ " + jsonString + " }";
+
+            return jsonString;
+        }
+
         public async Task<List<T>> GetRequestListAsync<T>() where T : IBackendType
         {
             // Using Generics so I can have a single function for getting elements of any type from the API.
@@ -95,6 +123,16 @@ namespace Front_End
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
             request.ContentType = "application/json";
             request.Method = "GET";
+
+            // Assign our own cookie container to the request object.
+            request.CookieContainer = _CookieContainer;
+
+            // Add any available Cookies to the request.
+            //foreach (KeyValuePair<string, Cookie> cookie in _Cookies)
+            //{
+            //    System.Diagnostics.Debug.WriteLine("Adding cookie: " + cookie.Value.Name + " " + cookie.Value.Value);
+            //    request.CookieContainer.Add(cookie.Value);
+            //}
 
             // Create a JsonSerializer to convert the stream from the server into an object.
             var serializer = new JsonSerializer();
@@ -134,6 +172,15 @@ namespace Front_End
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
             request.ContentType = "application/json";
             request.Method = "GET";
+            // Assign our own cookie container to the request object.
+            request.CookieContainer = _CookieContainer;
+
+            // Add any available Cookies to the request.
+            //foreach (KeyValuePair<string, Cookie> cookie in _Cookies)
+            //{
+            //    System.Diagnostics.Debug.WriteLine("Adding cookie: " + cookie.Value.Name + " " + cookie.Value.Value);
+            //    request.CookieContainer.Add(cookie.Value);
+            //}
 
             // Create a JsonSerializer to convert the stream from the server into an object.
             var serializer = new JsonSerializer();
@@ -161,33 +208,112 @@ namespace Front_End
             // Function using POST to write to the backend.
             // Get the URL.
             string url = GetUrlString();
-            string queryString = GetQueryString();
+            string jsonString = GetJSON();
 
             // Create a request, set the content type and method.
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+            
+            // Assign our own cookie container to the request object.
+            request.CookieContainer = _CookieContainer;
+
+            // Add any available Cookies to the request.
+            //foreach(KeyValuePair<string, Cookie> cookie in _Cookies)
+            //{
+            //    System.Diagnostics.Debug.WriteLine("Adding cookie: " + cookie.Value.Name + " " + cookie.Value.Value);
+            //    request.CookieContainer.Add(cookie.Value);
+            //}
+
+            // Set a proxy - Used for debugging with Fiddler.
+            WebRequest.DefaultWebProxy = new WebProxy("192.168.0.13", 8888);
+
             request.Method = "POST";
 
             // If the query string is not empty,
-            if (queryString != "")
-            {
+            //if (queryString != "")
+            //{
+                System.Diagnostics.Debug.WriteLine("Post Request JSON string!" + jsonString);
+
+                request.ContentType = "application/json";
+
+                // Write the JSON data to the stream.
+                using(var stream = new StreamWriter(request.GetRequestStream()))
+                {
+                   stream.Write(jsonString);
+                }
+
+
                 // Encode the query string. Found information here:
                 // http://stackoverflow.com/questions/4015324/http-request-with-post
-                var data = Encoding.ASCII.GetBytes(queryString);
-                request.ContentType = "application/x-www-form-urlencoded";
-                request.ContentLength = data.Length;
+                //var data = Encoding.UTF8.GetBytes(queryString);
+                //request.ContentType = "application/x-www-form-urlencoded";
+                //request.ContentLength = data.Length;
 
                 // Write the data to the stream.
-                using(var stream = request.GetRequestStream())
-                {
-                    stream.Write(data, 0, data.Length);
-                }
-            }
+                //using(var stream = request.GetRequestStream())
+                //{
+                //   stream.Write(data, 0, data.Length);
+                //}
+            //}
 
             // Submit the request.
-            using (WebResponse response = await request.GetResponseAsync())
+            using (HttpWebResponse response = (HttpWebResponse)await request.GetResponseAsync())
             {
-                // Not sure if I need to do anything with this response.
+                // Get the response. In the case of a Login request, this will be the
+                // authentication cookie.
+                if (response.Cookies.Count > 0)
+                {
+                    // Add the cookie to the current CookieContainer.
+                    _CookieContainer.Add(response.Cookies);
+
+                    // Save the cookie so it can be retrieved again later.
+                    SaveCookie();
+                }
             }
+        }
+
+        private void LoadCookie()
+        {
+            // Access the SharedPreferences and retrieve the saved cookie.
+            ISharedPreferences sharedPreferences = PreferenceManager.GetDefaultSharedPreferences(Android.App.Application.Context);
+
+            string cookieName = sharedPreferences.GetString("cookieName", "");
+            string cookieDomain = sharedPreferences.GetString("cookieDomain", "");
+            string cookieValue = sharedPreferences.GetString("cookieValue", "");
+            string cookiePath = sharedPreferences.GetString("cookiePath", "");
+
+            if(cookieName != "")
+            {
+                // If the cookieName is not empty, assume the other values were correctly retrieved.
+                // Create a cookie.
+                Cookie newCookie = new Cookie(cookieName, cookieValue, cookiePath, cookieDomain);
+
+                // Add the cookie to the collection.
+                _CookieContainer.Add(newCookie);
+            }
+        }
+
+        private void SaveCookie()
+        {
+            // Access the SharedPreferences and retrieve the saved cookie.
+            ISharedPreferences sharedPreferences = PreferenceManager.GetDefaultSharedPreferences(Android.App.Application.Context);
+            ISharedPreferencesEditor spEditor = sharedPreferences.Edit();
+
+            foreach(Cookie cookie in _CookieContainer.GetCookies(new Uri(GetUrlString())))
+            {
+                System.Diagnostics.Debug.WriteLine("The cookie is : " + cookie.ToString());
+                
+                // Save all of the cookie data into the shared preferences.
+                spEditor.PutString("cookieName", cookie.Name);
+                spEditor.PutString("cookieDomain", cookie.Domain);
+                spEditor.PutString("cookieValue", cookie.Value);
+                spEditor.PutString("cookiePath", cookie.Path);
+
+                // Only want to get the first cookie, so only loop once.
+                break;
+            }
+
+            // Apply the changes.
+            spEditor.Apply();
         }
     }
 }

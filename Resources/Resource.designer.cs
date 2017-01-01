@@ -132,15 +132,6 @@ namespace Front_End
 			// aapt resource value: 0x7f050005
 			public const int btnLogin = 2131034117;
 			
-			// aapt resource value: 0x7f050045
-			public const int button1 = 2131034181;
-			
-			// aapt resource value: 0x7f050046
-			public const int button2 = 2131034182;
-			
-			// aapt resource value: 0x7f050047
-			public const int button3 = 2131034183;
-			
 			// aapt resource value: 0x7f050007
 			public const int dropz = 2131034119;
 			
@@ -189,14 +180,14 @@ namespace Front_End
 			// aapt resource value: 0x7f050028
 			public const int dropz9 = 2131034152;
 			
-			// aapt resource value: 0x7f050044
-			public const int dropzon = 2131034180;
-			
 			// aapt resource value: 0x7f050006
 			public const int dropzone = 2131034118;
 			
 			// aapt resource value: 0x7f050002
 			public const int image2 = 2131034114;
+			
+			// aapt resource value: 0x7f050044
+			public const int llActivities = 2131034180;
 			
 			// aapt resource value: 0x7f050001
 			public const int myButton = 2131034113;

@@ -35,28 +35,6 @@ namespace Front_End
             btnLogin.Click += OnClick_btnLogin;
         }
 
-        private async void BackendGet()
-        {
-            // Use this Try / Catch to get errors connecting to the backend.
-            try
-            {
-                // Test getting activitys from the backend.
-                BackendActivity backend = new BackendActivity();
-                List<ActivityModel> activity = await backend.GetAll();
-
-                System.Diagnostics.Debug.WriteLine("Maybe got an activity...");
-
-                foreach (ActivityModel act in activity)
-                {
-                    System.Diagnostics.Debug.WriteLine("This one is " + act.ActivityName);
-                }
-            }
-            catch(System.Net.WebException ex)
-            {
-                System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
-            }
-        }
-
         public async void OnClick_btnLogin(object sender, EventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("Button clicked!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -87,15 +65,18 @@ namespace Front_End
                 System.Diagnostics.Debug.WriteLine("Creating backend!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 BackendUser backend = new BackendUser();
                 await backend.Login(username, password);
+
+                // If no exception is thrown, start the Main activity.
+                StartActivity(new Intent(this, typeof(MainActivity)));
             }
             catch(WebException ex)
             {
                 System.Diagnostics.Debug.WriteLine("StatusCode is " + ((HttpWebResponse)ex.Response).StatusCode);
                 // Use WebException to get the status code returned from the API.
-                if(((HttpWebResponse)ex.Response).StatusCode != HttpStatusCode.Unauthorized)
+                if(((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Unauthorized)
                 {
                     // User failed to authenticate. Tell them the username or password is incorrect.
-                    
+                    System.Diagnostics.Debug.WriteLine("Incorrect username or password");
                 }
                 else
                 {

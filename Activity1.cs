@@ -47,10 +47,10 @@ namespace Front_End
 
 			//image4 = FindViewById<ImageView>(Resource.Id.);
 
-			var button1 = FindViewById<Button>(Resource.Id.button1);
+			/*var button1 = FindViewById<Button>(Resource.Id.button1);
 			button1.LongClick += Button1_LongClick;
 			var button2 = FindViewById<Button>(Resource.Id.button2);
-			button2.LongClick += Button2_LongClick;
+			button2.LongClick += Button2_LongClick;*/
 			var dropZone1 = FindViewById<RelativeLayout>(Resource.Id.dropz);
 			var dropZone2 = FindViewById<RelativeLayout>(Resource.Id.dropz1);
 			var dropZone3 = FindViewById<RelativeLayout>(Resource.Id.dropz2);
