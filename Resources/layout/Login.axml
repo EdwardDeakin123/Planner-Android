@@ -3,20 +3,54 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <EditText
+    <RelativeLayout
+        android:background="#ff505050"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtUsername"
-        android:hint="Username" />
-    <EditText
-        android:inputType="textPassword"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtUsername"
+            android:hint="Username" />
+        <EditText
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtPassword"
+            android:hint="Password"
+            android:layout_below="@id/txtUsername" />
+        <Button
+            android:text="Login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnLogin"
+            android:layout_below="@id/txtPassword" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="#ff505050"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtPassword"
-        android:hint="Password" />
-    <Button
-        android:text="Login"
+        android:layout_height="400dp">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:text="Create New Accoun"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="15dip" />
+        </ScrollView>
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="#ff949494"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnLogin" />
+        android:layout_height="60dp">
+        <Button
+            android:id="@+id/button2"
+            android:text="Sample Element 2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button1" />
+    </RelativeLayout>
 </LinearLayout>
