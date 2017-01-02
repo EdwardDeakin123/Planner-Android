@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+  <item name="blue_hover" type="color">#4286f4</item>
+  <item name="light_grey" type="color">#ff949494</item>
+</resources>

@@ -30,12 +30,11 @@ namespace Front_End
             return await GetRequestListAsync<ActivityLogModel>();
         }
 
-        public async Task Add(int userId, int activityId, DateTime startTime, DateTime endTime)
+        public async Task Add(int activityId, DateTime startTime, DateTime endTime)
         {
             _Command = "Add";
 
             // Set the parameters and post the Add request.
-            _Parameters.Add(new BackendParameter { Key = "userId", Value = userId.ToString() });
             _Parameters.Add(new BackendParameter { Key = "activityId", Value = activityId.ToString() });
             _Parameters.Add(new BackendParameter { Key = "startTime", Value = startTime.ToString("yyyy-MM-dd HH:mm:ss") });
             _Parameters.Add(new BackendParameter { Key = "endTime", Value = endTime.ToString("yyyy-MM-dd HH:mm:ss") });

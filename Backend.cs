@@ -95,7 +95,7 @@ namespace Front_End
                     }
 
                     // Use UrlEncode to make sure there are no invalid characters in the strings.
-                    jsonString += '"' + WebUtility.UrlEncode(param.Key) + '"' + ": " + '"' + WebUtility.UrlEncode(param.Value) + '"';
+                    jsonString += '"' + param.Key + '"' + ": " + '"' + param.Value + '"';
                 }
             }
 
