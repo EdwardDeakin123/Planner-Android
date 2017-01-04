@@ -15,11 +15,14 @@ namespace Front_End
 	{
         RelativeLayout _RLHover;
         DateTime _ViewDate = DateTime.Now;
+
+        // Global variables used with the demo mode (_FakeData).
         List<ActivityModel> _Activities;
         List<ActivityLogModel> _ActivityLogs;
+        int _ActivityLogId;
 
         // This variable is used to skip the backend and just use test data.
-        bool FakeData = false;
+        bool _FakeData = true;
 
 		protected override void OnCreate(Bundle bundle)
 		{
@@ -27,7 +30,9 @@ namespace Front_End
 			SetContentView(Resource.Layout.Main);
 
             // Using a global variable so we can simulate adding data when using the FakeData switch.
+            _Activities = new List<ActivityModel>();
             _ActivityLogs = new List<ActivityLogModel>();
+            _ActivityLogId = 0;
 
             // Get the activity buttons from the backend
             GetActivities();
@@ -46,10 +51,9 @@ namespace Front_End
             {
                 // Store activities in a global variable so they can be referenced later without requiring another
                 // connection to the backend.
-                List<ActivityModel> _Activities;
 
                 // Get activities from the backend.
-                if (!FakeData)
+                if (!_FakeData)
                 {
                     // Get real data.
                     BackendActivity backend = new BackendActivity();
@@ -98,7 +102,7 @@ namespace Front_End
                 ClearDropzone();
 
                 // Get activities from the backend.
-                if (!FakeData)
+                if (!_FakeData)
                 {
                     // Get real data.
                     BackendActivityLog backend = new BackendActivityLog();
@@ -128,7 +132,7 @@ namespace Front_End
         {
             try
             {
-                if (!FakeData)
+                if (!_FakeData)
                 {
                     // Get real data.
                     BackendActivityLog backend = new BackendActivityLog();
@@ -136,7 +140,12 @@ namespace Front_End
                 }
                 else
                 {
-                    //activityLogs = new List<ActivityLogModel>();
+                    // Create an ActivityLog and add it to the global list but don't push it to the database.
+                    // Get the activity associated with this log.
+                    ActivityModel activity = _Activities.Where(act => act.ActivityId == activityId).FirstOrDefault();
+                    _ActivityLogs.Add(new ActivityLogModel() { ActivityLogId = _ActivityLogId, Activity = activity, StartTime = startTime, EndTime = endTime });
+
+                    _ActivityLogId++;
                 }
             }
             catch (System.Net.WebException ex)
@@ -160,7 +169,6 @@ namespace Front_End
             // Create clip data that will be attached to the drag operation.
             // Get the activityId from the Tag and assign it to the clip data.
             var data = ClipData.NewPlainText("activityId", activityButton.GetTag(Resource.Id.activity_id).ToString());
-            //var data = ClipData.NewPlainText("activityId", "1");
 
             // Start dragging and pass data
             // StartDrag was deprecated in API 24, check which version of Android we're running on and use the appropriate method.
@@ -171,6 +179,29 @@ namespace Front_End
             else
             {
                 activityButton.StartDrag(data, new View.DragShadowBuilder(activityButton), null, 0);
+            }
+        }
+
+        private void ActivityLog_LongClick(object sender, View.LongClickEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("ActivityLog Long Click... Starting Drag...");
+
+            // Get the ActivityLog element (the RelativeLayout that represents the ActivityLog on the planner).
+            RelativeLayout rlActivityLog = (RelativeLayout)sender;
+
+            // Create clip data that will be attached to the drag operation.
+            // Get the activityLogId from the Tag and assign it to the clip data.
+            var data = ClipData.NewPlainText("activityLogId", rlActivityLog.GetTag(Resource.Id.activity_log_id).ToString());
+
+            // Start dragging and pass data
+            // StartDrag was deprecated in API 24, check which version of Android we're running on and use the appropriate method.
+            if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.N)
+            {
+                rlActivityLog.StartDragAndDrop(data, new View.DragShadowBuilder(rlActivityLog), null, 0);
+            }
+            else
+            {
+                rlActivityLog.StartDrag(data, new View.DragShadowBuilder(rlActivityLog), null, 0);
             }
         }
 
@@ -185,7 +216,7 @@ namespace Front_End
             var dragEvent = e.Event;
 
             // Get the dropzone from the sender object.
-            RelativeLayout rLayout = (RelativeLayout)sender;
+            RelativeLayout rlDropzone = (RelativeLayout)sender;
 
             // Perform an action.
             switch (dragEvent.Action)
@@ -206,19 +237,19 @@ namespace Front_End
                     _RLHover.SetBackgroundColor(new Android.Graphics.Color(GetColor(Resource.Color.blue_hover)));
                     _RLHover.LayoutParameters = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, (int)pixels);
 
-                    rLayout.AddView(_RLHover);
+                    rlDropzone.AddView(_RLHover);
                     break;
                 case DragAction.Exited:
                     // Remove the temporary RelativeLayout when leaving the drop zone.
-                    rLayout.RemoveView(_RLHover);
+                    rlDropzone.RemoveView(_RLHover);
                     break;
                 case DragAction.Drop:
                     // Remove the temporary RelativeLayout when the activity is dropped.
-                    rLayout.RemoveView(_RLHover);
+                    rlDropzone.RemoveView(_RLHover);
 
                     // Calculate the hour based on the position of the users finger. An hour is equal to 60dp.
                     // Convert the Y position in pixels to dp.
-                    dp = PixelsToDP(dragEvent.GetY()); //(int)((dragEvent.GetY()) / Resources.DisplayMetrics.Density);
+                    dp = PixelsToDP(dragEvent.GetY());
 
                     // Divide the dp by 60 to determine which hour it is.
                     hour = (int)(Math.Floor((double)(dp / 60)));
@@ -241,13 +272,13 @@ namespace Front_End
                     // Make the ImageView follow the users finger but snap it to the closest hour.
                     // An hour is 60dp, so just round to the previous 60dp.
                     // Convert the Y position in pixels to dp.
-                    dp = PixelsToDP(dragEvent.GetY()); //(int)((dragEvent.GetY()) / Resources.DisplayMetrics.Density);
+                    dp = PixelsToDP(dragEvent.GetY());
 
                     // Divide the dp by 60 to determine which hour it is.
                     hour = (int)(Math.Floor((double)(dp / 60)) * 60);
 
                     // Convert back to pixels.
-                    pixels = DPToPixels(hour); // (hour) * Resources.DisplayMetrics.Density;
+                    pixels = DPToPixels(hour);
 
                     _RLHover.SetY(pixels);
                     break;
@@ -278,8 +309,15 @@ namespace Front_End
             // Set the logs position in the layout
             rlActivityLog.SetY(startPos);
 
-            // Display the activity name.
+            // Display the activity name, start time and end time.
+            //TODO Add start and end time to display.
             tvActivityName.Text = activityLog.Activity.ActivityName;
+
+            // Tag the element with the ActivityLog_Id so it can be retrieved later.
+            rlActivityLog.SetTag(Resource.Id.activity_log_id, activityLog.ActivityLogId);
+
+            // Assign the LongClick event.
+            rlActivityLog.LongClick += ActivityLog_LongClick;
 
             rlActivityLog.AddView(tvActivityName);
             rlDropzone.AddView(rlActivityLog);
