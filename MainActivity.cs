@@ -8,6 +8,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using Front_End.Models;
+using Front_End.Backend;
 
 namespace Front_End
 {
@@ -29,10 +31,8 @@ namespace Front_End
         // List that contains the list of colors associated with each activity ID.
         List<KeyValuePair<int, Color>> _ActivityColors;
 
-        // Create a bunch of constants that can be used as ID's to determine what action
-        // to take when an object is dragged over the drop zone.
-        private const int ACTIVITY_DRAG = 9000;
-        private const int ACTIVITY_LOG_DRAG = 9001;
+        // Set the DP taken up by one hour.
+        private const int HOUR_DP = 60;
 
         // This variable is used to skip the backend and just use test data.
         bool _FakeData = true;
@@ -59,6 +59,7 @@ namespace Front_End
             base.OnCreate(bundle);
 		}
 
+        #region backend
         private async void GetActivities()
         {
             try
@@ -174,7 +175,9 @@ namespace Front_End
                 System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
             }
         }
+        #endregion
 
+        #region event handlers
         private void Activity_LongClick(object sender, View.LongClickEventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("Activity Long Click... Starting Drag...");
@@ -183,11 +186,8 @@ namespace Front_End
             Button activityButton = (Button)sender;
 
             // Create clip data that will be attached to the drag operation.
-            // Identify this clip data with the ACTIVITY_DRAG constant. This allows us to identify the action to take.
-            var data = ClipData.NewPlainText("actionType", ACTIVITY_DRAG.ToString());
-
             // Get the activityId from the Tag and assign it to the clip data.
-            data.AddItem(new ClipData.Item(activityButton.GetTag(Resource.Id.activity_id).ToString()));
+            var data = ClipData.NewPlainText("activityId", activityButton.GetTag(Resource.Id.activity_id).ToString());
 
             // Start dragging and pass data
             // StartDrag was deprecated in API 24, check which version of Android we're running on and use the appropriate method.
@@ -214,7 +214,7 @@ namespace Front_End
                     e.Handled = true;
                     break;
                 case DragAction.Entered:
-                    PlannerPreview_Create(60);
+                    PlannerPreview_Create(HOUR_DP);
                     break;
                 case DragAction.Exited:
                     // Remove the temporary RelativeLayout when leaving the drop zone.
@@ -228,7 +228,7 @@ namespace Front_End
                     int hour = CalculateHourFromPosition(dragEvent.GetY());
 
                     // Get the activity ID from the clip data.
-                    int activityId = int.Parse(dragEvent.ClipData.GetItemAt(1).Text);
+                    int activityId = int.Parse(dragEvent.ClipData.GetItemAt(0).Text);
 
                     // Calculate the start and end times and create DateTime objects.
                     // End time is the same as start time plus one hour.
@@ -248,16 +248,13 @@ namespace Front_End
             }
         }
 
-        private int CalculateHourFromPosition(float yPosition)
+        private void ActivityLog_OnClick(object sender, EventArgs e)
         {
-            // This method takes a position on the screen in pixels and calculates what the hour would be on the planner.
-            // Each hour uses 60dp of screen space which makes it trivial to calculate.
-            int dp = PixelsToDP(yPosition);
 
-            // Divide the dp by 60 to determine which hour it is.
-            return (int)(Math.Floor((double)(dp / 60)));
         }
+        #endregion
 
+        #region planner
         private void PlannerPreview_Create(int size)
         {
             // This method creates a RelativeLayout that is meant to show the user where a new activity log will
@@ -289,7 +286,7 @@ namespace Front_End
             int dp = PixelsToDP(yPosition);
 
             // Divide the dp by 60 to determine which hour it is.
-            int hour = (int)(Math.Floor((double)(dp / 60)) * 60);
+            int hour = (int)(Math.Floor((double)(dp / HOUR_DP)) * HOUR_DP);
 
             // Convert back to pixels.
             float pixels = DPToPixels(hour);
@@ -308,8 +305,10 @@ namespace Front_End
             int hours = (int)activityLog.EndTime.Subtract(activityLog.StartTime).TotalHours;
 
             // Get the start position and height in pixels.
-            float startPos = DPToPixels(startHour * 60);
-            float height = DPToPixels(hours * 60);
+            float startPos = DPToPixels(startHour * HOUR_DP);
+
+            // Remove 1 DP from the end of the height so it doesn't overlap with any items below it.
+            float height = DPToPixels((hours * HOUR_DP) - 1);
 
             // Get the start and end times as strings.
             string startTime = activityLog.StartTime.ToString("HH:mm");
@@ -333,6 +332,9 @@ namespace Front_End
 
             // Set the logs position in the layout
             vActivityLog.SetY(startPos);
+
+            // Add the OnClick event listener.
+            vActivityLog.Click += ActivityLog_OnClick;
 
             _RLDropzone.AddView(vActivityLog);
 
@@ -360,7 +362,7 @@ namespace Front_End
                 float endChildY = startChildY + childView.Height;
 
                 if(startChildY >= startPos && startChildY <= (startPos + height) ||
-                    endChildY >= startPos && endChildY <= (startPos + height))
+                    endChildY > startPos && endChildY <= (startPos + height))
                 {
                     // These elements are next to each other.
                     // Get the layout parameters of the current childView.
@@ -402,7 +404,9 @@ namespace Front_End
                 alParameters.AddRule(LayoutRules.AlignParentRight);
             }
         }
+        #endregion
 
+        #region utility
         private Color GetActivityColor(int activityId)
         {
             // This method will return a color resource ID. This is used to keep the colors consistent between each activity type
@@ -455,5 +459,17 @@ namespace Front_End
             // https://developer.xamarin.com/recipes/android/resources/device_specific/detect_screen_size/
             return (dp) * Resources.DisplayMetrics.Density;
         }
+
+        private int CalculateHourFromPosition(float yPosition)
+        {
+            // This method takes a position on the screen in pixels and calculates what the hour would be on the planner.
+            // Each hour uses 60dp of screen space which makes it trivial to calculate.
+            int dp = PixelsToDP(yPosition);
+
+            // Divide the dp by 60 to determine which hour it is.
+            return (int)(Math.Floor((double)(dp / HOUR_DP)));
+        }
+        #endregion
     }
+
 }

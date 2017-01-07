@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:background="#ff505050"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <TextView
+            android:text="Create New Account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dip"
+            android:gravity="center" />
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/NewName"
+            android:hint="Enter First Name"
+            android:gravity="center" />
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/NewLastName"
+            android:hint="Enter Last Name"
+            android:gravity="center" />
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/NewUserName"
+            android:hint="Enter a User Name"
+            android:gravity="center" />
+        <Space
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/NewPassword"
+            android:hint="Enter A Password"
+            android:gravity="center" />
+    </LinearLayout>
+    <RelativeLayout
+        android:background="#ff949494"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_weight="1">
+        <Button
+            android:id="@+id/button2"
+            android:text="Sample Element 2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</LinearLayout>

@@ -140,17 +140,17 @@ namespace Front_End
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f08000b
-			public const int NewLastName = 2131230731;
+			// aapt resource value: 0x7f080003
+			public const int NewLastName = 2131230723;
 			
-			// aapt resource value: 0x7f08000a
-			public const int NewName = 2131230730;
+			// aapt resource value: 0x7f080002
+			public const int NewName = 2131230722;
 			
-			// aapt resource value: 0x7f08000d
-			public const int NewPassword = 2131230733;
+			// aapt resource value: 0x7f080005
+			public const int NewPassword = 2131230725;
 			
-			// aapt resource value: 0x7f08000c
-			public const int NewUserName = 2131230732;
+			// aapt resource value: 0x7f080004
+			public const int NewUserName = 2131230724;
 			
 			// aapt resource value: 0x7f080000
 			public const int activity_id = 2131230720;
@@ -158,23 +158,23 @@ namespace Front_End
 			// aapt resource value: 0x7f080001
 			public const int activity_log_id = 2131230721;
 			
-			// aapt resource value: 0x7f080009
-			public const int btnLogin = 2131230729;
+			// aapt resource value: 0x7f08000d
+			public const int btnLogin = 2131230733;
 			
 			// aapt resource value: 0x7f08000e
 			public const int button2 = 2131230734;
 			
-			// aapt resource value: 0x7f080006
-			public const int image2 = 2131230726;
+			// aapt resource value: 0x7f08000a
+			public const int image2 = 2131230730;
 			
 			// aapt resource value: 0x7f08002a
 			public const int llActivities = 2131230762;
 			
-			// aapt resource value: 0x7f080005
-			public const int myButton = 2131230725;
+			// aapt resource value: 0x7f080009
+			public const int myButton = 2131230729;
 			
-			// aapt resource value: 0x7f080004
-			public const int ratingBar1 = 2131230724;
+			// aapt resource value: 0x7f080008
+			public const int ratingBar1 = 2131230728;
 			
 			// aapt resource value: 0x7f080029
 			public const int rlDropzone = 2131230761;
@@ -257,17 +257,17 @@ namespace Front_End
 			// aapt resource value: 0x7f080028
 			public const int tv2300 = 2131230760;
 			
-			// aapt resource value: 0x7f080002
-			public const int tvActivityName = 2131230722;
-			
-			// aapt resource value: 0x7f080003
-			public const int tvStartEndTimes = 2131230723;
-			
-			// aapt resource value: 0x7f080008
-			public const int txtPassword = 2131230728;
+			// aapt resource value: 0x7f080006
+			public const int tvActivityName = 2131230726;
 			
 			// aapt resource value: 0x7f080007
-			public const int txtUsername = 2131230727;
+			public const int tvStartEndTimes = 2131230727;
+			
+			// aapt resource value: 0x7f08000c
+			public const int txtPassword = 2131230732;
+			
+			// aapt resource value: 0x7f08000b
+			public const int txtUsername = 2131230731;
 			
 			static Id()
 			{
@@ -283,16 +283,22 @@ namespace Front_End
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int ActivityLogEvent = 2130903040;
+			public const int ActivityLogEdit = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int Layout1 = 2130903041;
+			public const int ActivityLogEvent = 2130903041;
 			
 			// aapt resource value: 0x7f030002
-			public const int Login = 2130903042;
+			public const int Layout1 = 2130903042;
 			
 			// aapt resource value: 0x7f030003
-			public const int Main = 2130903043;
+			public const int Login = 2130903043;
+			
+			// aapt resource value: 0x7f030004
+			public const int Main = 2130903044;
+			
+			// aapt resource value: 0x7f030005
+			public const int Register = 2130903045;
 			
 			static Layout()
 			{
