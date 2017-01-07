@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal">
-<!-- Daily view here.-->
+    <!-- Daily view here.-->
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -13,6 +13,32 @@
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
+          <!-- Draw the horizontal dividers. -->
+          <View style="@style/horizontal_divider" android:layout_marginTop="60dp" />
+          <View style="@style/horizontal_divider" android:layout_marginTop="120dp" />
+          <View style="@style/horizontal_divider" android:layout_marginTop="180dp" />
+          <View style="@style/horizontal_divider" android:layout_marginTop="240dp" />
+          <View style="@style/horizontal_divider" android:layout_marginTop="300dp" />
+          <View style="@style/horizontal_divider" android:layout_marginTop="360dp" />
+          <View style="@style/horizontal_divider" android:layout_marginTop="420dp" />
+          <View style="@style/horizontal_divider" android:layout_marginTop="480dp" />
+          <View style="@style/horizontal_divider" android:layout_marginTop="540dp" />
+          <View style="@style/horizontal_divider" android:layout_marginTop="600dp" />
+          <View style="@style/horizontal_divider" android:layout_marginTop="660dp" />
+          <View style="@style/horizontal_divider" android:layout_marginTop="720dp" />
+          <View style="@style/horizontal_divider" android:layout_marginTop="780dp" />
+          <View style="@style/horizontal_divider" android:layout_marginTop="840dp" />
+          <View style="@style/horizontal_divider" android:layout_marginTop="900dp" />
+          <View style="@style/horizontal_divider" android:layout_marginTop="960dp" />
+          <View style="@style/horizontal_divider" android:layout_marginTop="1020dp" />
+          <View style="@style/horizontal_divider" android:layout_marginTop="1080dp" />
+          <View style="@style/horizontal_divider" android:layout_marginTop="1140dp" />
+          <View style="@style/horizontal_divider" android:layout_marginTop="1200dp" />
+          <View style="@style/horizontal_divider" android:layout_marginTop="1260dp" />
+          <View style="@style/horizontal_divider" android:layout_marginTop="1320dp" />
+          <View style="@style/horizontal_divider" android:layout_marginTop="1380dp" />
+         
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -213,7 +239,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="1440dp"
                 android:id="@+id/rlDropzone"
-                android:layout_toRightOf="@id/rlTimeMarkers" />
+                android:layout_toRightOf="@id/rlTimeMarkers" >
+          </RelativeLayout>
         </RelativeLayout>
     </ScrollView>
     <LinearLayout

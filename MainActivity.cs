@@ -1,5 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
+using Android.Graphics;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
@@ -13,13 +14,25 @@ namespace Front_End
     [Activity(Label = "Main", MainLauncher = true, Icon = "@drawable/icon")]
 	public class MainActivity : Activity
 	{
+        // Layout elements.
         RelativeLayout _RLHover;
+        RelativeLayout _RLDropzone;
+
+        // The date of the current view.
         DateTime _ViewDate = DateTime.Now;
 
         // Global variables used with the demo mode (_FakeData).
         List<ActivityModel> _Activities;
         List<ActivityLogModel> _ActivityLogs;
         int _ActivityLogId;
+
+        // List that contains the list of colors associated with each activity ID.
+        List<KeyValuePair<int, Color>> _ActivityColors;
+
+        // Create a bunch of constants that can be used as ID's to determine what action
+        // to take when an object is dragged over the drop zone.
+        private const int ACTIVITY_DRAG = 9000;
+        private const int ACTIVITY_LOG_DRAG = 9001;
 
         // This variable is used to skip the backend and just use test data.
         bool _FakeData = true;
@@ -33,14 +46,15 @@ namespace Front_End
             _Activities = new List<ActivityModel>();
             _ActivityLogs = new List<ActivityLogModel>();
             _ActivityLogId = 0;
+            _ActivityColors = new List<KeyValuePair<int, Color>>();
 
             // Get the activity buttons from the backend
             GetActivities();
             GetActivityLogs();
 
             // Get the dropzone and attach a drag event listener.
-            RelativeLayout dropZone = FindViewById<RelativeLayout>(Resource.Id.rlDropzone);
-            dropZone.Drag += DropZone_Drop;
+            _RLDropzone = FindViewById<RelativeLayout>(Resource.Id.rlDropzone);
+            _RLDropzone.Drag += DropZone_Drag;
 
             base.OnCreate(bundle);
 		}
@@ -65,7 +79,9 @@ namespace Front_End
                     _Activities = new List<ActivityModel>()
                     {
                         new ActivityModel() { ActivityId = 1, ActivityName = "Fake Running" },
-                        new ActivityModel() { ActivityId = 2, ActivityName = "Fake Sleeping" }
+                        new ActivityModel() { ActivityId = 2, ActivityName = "Fake Sleeping" },
+                        new ActivityModel() { ActivityId = 3, ActivityName = "Fake Jogging" },
+                        new ActivityModel() { ActivityId = 4, ActivityName = "Fake Walking" }
                     };
                 }
 
@@ -167,8 +183,11 @@ namespace Front_End
             Button activityButton = (Button)sender;
 
             // Create clip data that will be attached to the drag operation.
+            // Identify this clip data with the ACTIVITY_DRAG constant. This allows us to identify the action to take.
+            var data = ClipData.NewPlainText("actionType", ACTIVITY_DRAG.ToString());
+
             // Get the activityId from the Tag and assign it to the clip data.
-            var data = ClipData.NewPlainText("activityId", activityButton.GetTag(Resource.Id.activity_id).ToString());
+            data.AddItem(new ClipData.Item(activityButton.GetTag(Resource.Id.activity_id).ToString()));
 
             // Start dragging and pass data
             // StartDrag was deprecated in API 24, check which version of Android we're running on and use the appropriate method.
@@ -182,41 +201,10 @@ namespace Front_End
             }
         }
 
-        private void ActivityLog_LongClick(object sender, View.LongClickEventArgs e)
+        private void DropZone_Drag(object sender, View.DragEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("ActivityLog Long Click... Starting Drag...");
-
-            // Get the ActivityLog element (the RelativeLayout that represents the ActivityLog on the planner).
-            RelativeLayout rlActivityLog = (RelativeLayout)sender;
-
-            // Create clip data that will be attached to the drag operation.
-            // Get the activityLogId from the Tag and assign it to the clip data.
-            var data = ClipData.NewPlainText("activityLogId", rlActivityLog.GetTag(Resource.Id.activity_log_id).ToString());
-
-            // Start dragging and pass data
-            // StartDrag was deprecated in API 24, check which version of Android we're running on and use the appropriate method.
-            if (Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.N)
-            {
-                rlActivityLog.StartDragAndDrop(data, new View.DragShadowBuilder(rlActivityLog), null, 0);
-            }
-            else
-            {
-                rlActivityLog.StartDrag(data, new View.DragShadowBuilder(rlActivityLog), null, 0);
-            }
-        }
-
-        private void DropZone_Drop(object sender, View.DragEventArgs e)
-        {
-            //System.Diagnostics.Debug.WriteLine("Started dropping...");
-            float pixels;
-            int dp;
-            int hour;
-
             // Get the event from the sender object.
             var dragEvent = e.Event;
-
-            // Get the dropzone from the sender object.
-            RelativeLayout rlDropzone = (RelativeLayout)sender;
 
             // Perform an action.
             switch (dragEvent.Action)
@@ -226,36 +214,21 @@ namespace Front_End
                     e.Handled = true;
                     break;
                 case DragAction.Entered:
-                    // Create a RelativeLayout object that can be added to the drop zone as
-                    // the button is dragged into it.
-                    _RLHover = new RelativeLayout(this);
-
-                    // Set the height of the temporary ImageView to 60dp. You have to use pixels, so calculate what 60dp is in pixels
-                    // https://developer.xamarin.com/recipes/android/resources/device_specific/detect_screen_size/
-                    pixels = DPToPixels(60); //(60) * Resources.DisplayMetrics.Density;
-
-                    _RLHover.SetBackgroundColor(new Android.Graphics.Color(GetColor(Resource.Color.blue_hover)));
-                    _RLHover.LayoutParameters = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, (int)pixels);
-
-                    rlDropzone.AddView(_RLHover);
+                    PlannerPreview_Create(60);
                     break;
                 case DragAction.Exited:
                     // Remove the temporary RelativeLayout when leaving the drop zone.
-                    rlDropzone.RemoveView(_RLHover);
+                    PlannerPreview_Remove();
                     break;
                 case DragAction.Drop:
-                    // Remove the temporary RelativeLayout when the activity is dropped.
-                    rlDropzone.RemoveView(_RLHover);
+                    // Remove the temporary RelativeLayout when the activity is dropped onto the planner.
+                    PlannerPreview_Remove();
 
-                    // Calculate the hour based on the position of the users finger. An hour is equal to 60dp.
-                    // Convert the Y position in pixels to dp.
-                    dp = PixelsToDP(dragEvent.GetY());
-
-                    // Divide the dp by 60 to determine which hour it is.
-                    hour = (int)(Math.Floor((double)(dp / 60)));
+                    // Work out which hour the activity was dragged to in the UI.
+                    int hour = CalculateHourFromPosition(dragEvent.GetY());
 
                     // Get the activity ID from the clip data.
-                    int activityId = int.Parse(dragEvent.ClipData.GetItemAt(0).Text);
+                    int activityId = int.Parse(dragEvent.ClipData.GetItemAt(1).Text);
 
                     // Calculate the start and end times and create DateTime objects.
                     // End time is the same as start time plus one hour.
@@ -269,20 +242,60 @@ namespace Front_End
                     GetActivityLogs();
                     break;
                 case DragAction.Location:
-                    // Make the ImageView follow the users finger but snap it to the closest hour.
-                    // An hour is 60dp, so just round to the previous 60dp.
-                    // Convert the Y position in pixels to dp.
-                    dp = PixelsToDP(dragEvent.GetY());
-
-                    // Divide the dp by 60 to determine which hour it is.
-                    hour = (int)(Math.Floor((double)(dp / 60)) * 60);
-
-                    // Convert back to pixels.
-                    pixels = DPToPixels(hour);
-
-                    _RLHover.SetY(pixels);
+                    // The user has moved their finger. Move the preview.
+                    PlannerPreview_Move(_RLHover, dragEvent.GetY());
                     break;
             }
+        }
+
+        private int CalculateHourFromPosition(float yPosition)
+        {
+            // This method takes a position on the screen in pixels and calculates what the hour would be on the planner.
+            // Each hour uses 60dp of screen space which makes it trivial to calculate.
+            int dp = PixelsToDP(yPosition);
+
+            // Divide the dp by 60 to determine which hour it is.
+            return (int)(Math.Floor((double)(dp / 60)));
+        }
+
+        private void PlannerPreview_Create(int size)
+        {
+            // This method creates a RelativeLayout that is meant to show the user where a new activity log will
+            // be created if they drop an activity on the planner.
+            _RLHover = new RelativeLayout(this);
+
+            // Set the height of the temporary ImageView to 60dp. You have to use pixels, so calculate what 60dp is in pixels
+            // https://developer.xamarin.com/recipes/android/resources/device_specific/detect_screen_size/
+            float pixels = DPToPixels(size);
+
+            _RLHover.SetBackgroundColor(new Android.Graphics.Color(GetColor(Resource.Color.blue_hover)));
+            _RLHover.LayoutParameters = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, (int)pixels);
+
+            _RLDropzone.AddView(_RLHover);
+        }
+
+        private void PlannerPreview_Remove()
+        {
+            // Remove the preview RelativeLayout from the drop zone.
+            _RLDropzone.RemoveView(_RLHover);
+        }
+
+        private void PlannerPreview_Move(View view, float yPosition)
+        {
+            // This method positions a temporary RelativeLayout in the planner to show the user
+            // where the activity log will be added. It snaps to the nearest hour on the planner.
+            // An hour is 60dp, so just round to the previous 60dp.
+            // Convert the Y position in pixels to dp.
+            int dp = PixelsToDP(yPosition);
+
+            // Divide the dp by 60 to determine which hour it is.
+            int hour = (int)(Math.Floor((double)(dp / 60)) * 60);
+
+            // Convert back to pixels.
+            float pixels = DPToPixels(hour);
+
+            // Move the RelativeLayout's position.
+            view.SetY(pixels);
         }
 
         private void AddActivityLogToCalendar(ActivityLogModel activityLog)
@@ -298,32 +311,128 @@ namespace Front_End
             float startPos = DPToPixels(startHour * 60);
             float height = DPToPixels(hours * 60);
 
-            // Create a RelativeLayout the will represent the activity log in the planner.
-            RelativeLayout rlDropzone = FindViewById<RelativeLayout>(Resource.Id.rlDropzone);
-            RelativeLayout rlActivityLog = new RelativeLayout(this);
-            TextView tvActivityName = new TextView(this);
+            // Get the start and end times as strings.
+            string startTime = activityLog.StartTime.ToString("HH:mm");
+            string endTime = activityLog.EndTime.ToString("HH:mm");
 
-            rlActivityLog.SetBackgroundColor(new Android.Graphics.Color(GetColor(Resource.Color.blue_hover)));
-            rlActivityLog.LayoutParameters = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, (int)height);
+            // Create the ActivityLog view and set the name and times in the TextView
+            View vActivityLog = LayoutInflater.Inflate(Resource.Layout.ActivityLogEvent, null);
+            vActivityLog.FindViewById<TextView>(Resource.Id.tvActivityName).Text = activityLog.Activity.ActivityName;
+            vActivityLog.FindViewById<TextView>(Resource.Id.tvStartEndTimes).Text = startTime + " - " + endTime;
+
+            // Get the color for thie activity.
+            vActivityLog.SetBackgroundColor(GetActivityColor(activityLog.Activity.ActivityId));
+
+            RelativeLayout.LayoutParams rlParameters = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, (int)height);
+            rlParameters.LeftMargin = 10;
+            rlParameters.RightMargin = 10;
+            vActivityLog.LayoutParameters = rlParameters;
+
+            // Assign an ID to the newly created activity log view.
+            vActivityLog.Id = View.GenerateViewId();
 
             // Set the logs position in the layout
-            rlActivityLog.SetY(startPos);
+            vActivityLog.SetY(startPos);
 
-            // Display the activity name, start time and end time.
-            //TODO Add start and end time to display.
-            tvActivityName.Text = activityLog.Activity.ActivityName;
+            _RLDropzone.AddView(vActivityLog);
 
-            // Tag the element with the ActivityLog_Id so it can be retrieved later.
-            rlActivityLog.SetTag(Resource.Id.activity_log_id, activityLog.ActivityLogId);
+            // Get the number of children elements in the Dropzone.
+            // This is used to find any views that are next to this one and position them correctly.
+            // Based on this stackoverflow post: http://stackoverflow.com/questions/6615723/getting-child-elements-from-linearlayout
+            int childCount = _RLDropzone.ChildCount;
+            RelativeLayout childView;
+            int adjacentLogs = 0;
+            int lastId = 0;
 
-            // Assign the LongClick event.
-            rlActivityLog.LongClick += ActivityLog_LongClick;
+            for(int i = 0; i < childCount; i++)
+            {
+                // Get the child view from the dropzone.
+                childView = (RelativeLayout)_RLDropzone.GetChildAt(i);
 
-            rlActivityLog.AddView(tvActivityName);
-            rlDropzone.AddView(rlActivityLog);
+                if(childView.Id == vActivityLog.Id)
+                {
+                    // This is the ActivityLog view, skip it.
+                    continue;
+                }
 
-            System.Diagnostics.Debug.WriteLine("This log starts at " + startHour + " hours");
-            System.Diagnostics.Debug.WriteLine("This log goes for " + hours + " hours");
+                // Check to see if the new view will be positioned next to this one.
+                float startChildY = childView.GetY();
+                float endChildY = startChildY + childView.Height;
+
+                if(startChildY >= startPos && startChildY <= (startPos + height) ||
+                    endChildY >= startPos && endChildY <= (startPos + height))
+                {
+                    // These elements are next to each other.
+                    // Get the layout parameters of the current childView.
+                    RelativeLayout.LayoutParams parameters = (RelativeLayout.LayoutParams)childView.LayoutParameters;
+
+                    // Disable any alignment rules on the view.
+                    parameters.RemoveRule(LayoutRules.AlignParentLeft);
+                    parameters.RemoveRule(LayoutRules.AlignParentRight);
+                    parameters.RemoveRule(LayoutRules.RightOf);
+
+                    if (adjacentLogs == 0)
+                    {
+                        // If this is the first adjacent log, set it to align to the left side of the parent view.
+                        parameters.AddRule(LayoutRules.AlignParentLeft);
+                    }
+                    else
+                    {
+                        // Assign this view to be to the right of the previous one.
+                        parameters.AddRule(LayoutRules.RightOf, lastId);
+                    }
+
+                    // Keep a record of this ID so the next view can be placed next to it.
+                    lastId = childView.Id;
+                    adjacentLogs++;
+                }
+            }
+
+            // Assign this newly added activityLog to the right of the last one and tell it to expand to the parent elements right.
+            RelativeLayout.LayoutParams alParameters = (RelativeLayout.LayoutParams)vActivityLog.LayoutParameters;
+            if (adjacentLogs == 0)
+            {
+                // If there are no logs next to this one, make it use all the space.
+                alParameters.AddRule(LayoutRules.AlignParentLeft);
+                alParameters.AddRule(LayoutRules.AlignParentRight);
+            }
+            else
+            {
+                alParameters.AddRule(LayoutRules.RightOf, lastId);
+                alParameters.AddRule(LayoutRules.AlignParentRight);
+            }
+        }
+
+        private Color GetActivityColor(int activityId)
+        {
+            // This method will return a color resource ID. This is used to keep the colors consistent between each activity type
+            // on the planner.
+            Color activityColor = default(Color);
+
+            // Check if this activity id has been assigned a color in the past.
+            foreach(KeyValuePair<int, Color> actColor in _ActivityColors)
+            {
+                if(actColor.Key == activityId)
+                {
+                    // If this activity has already been assigned a color, return it.
+                    return actColor.Value;
+                }
+            }
+
+            // If no saved color was found, get the next available color from the color array.
+            // Get the color array from colors.xml
+            // Managing of typed arrays: https://developer.android.com/guide/topics/resources/more-resources.html#TypedArray
+            var colorArray = Resources.ObtainTypedArray(Resource.Array.activitylog_colors);
+
+            // Divide the number of assigned colors by the number of possible colors and keep a record of the remainder.
+            // There are (at the moment) only 6 colors, this should mean that if all colors are assigned, it will start again and reuse colors.
+            int remainder = _ActivityColors.Count % colorArray.Length();
+
+            // Get the color from the color array
+            activityColor = colorArray.GetColor(remainder, 0);
+            _ActivityColors.Add(new KeyValuePair<int, Color>(activityId, activityColor));
+
+            return activityColor;
         }
 
         private void ClearDropzone()

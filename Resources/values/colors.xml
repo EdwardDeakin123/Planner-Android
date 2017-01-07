@@ -2,4 +2,25 @@
 <resources>
   <item name="blue_hover" type="color">#4286f4</item>
   <item name="light_grey" type="color">#ff949494</item>
+  <item name="planner_activitylog_font" type="color">#000000</item>
+  <item name="planner_divider" type="color">#000000</item>
+
+
+  <item name="pale_blue" type="color">#adccff</item>
+  <item name="pale_yellow" type="color">#ffff91</item>
+  <item name="pale_red" type="color">#ff9191</item>
+  <item name="pale_green" type="color">#9fff91</item>
+  <item name="blue" type="color">#6675ff</item>
+  <item name="grey" type="color">#c6c6c6</item>
+
+
+
+  <array name="activitylog_colors">
+    <item>@color/pale_blue</item>
+    <item>@color/pale_yellow</item>
+    <item>@color/pale_red</item>
+    <item>@color/pale_green</item>
+    <item>@color/blue</item>
+    <item>@color/grey</item>
+  </array>
 </resources>
