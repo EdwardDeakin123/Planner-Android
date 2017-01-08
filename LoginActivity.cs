@@ -14,7 +14,7 @@ using Front_End.Backend;
 
 namespace Front_End
 {
-    [Activity(Label = "LoginActivity", Icon = "@drawable/icon")]
+    [Activity(Label = "Login", Icon = "@drawable/icon")]
     public class LoginActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -26,34 +26,29 @@ namespace Front_End
             // Set the login layout.
             SetContentView(Resource.Layout.Login);
 
-            //TODO Remove all of this unnecessary code.
-            // Attempt to get the list of activities from the backend.
-            //System.Diagnostics.Debug.WriteLine("Attempting to get an activity.");
-            //BackendGet();
-
             // Attach the onclick listener to the login button.
-            Button btnLogin = FindViewById<Button>(Resource.Id.btnLogin);
-            btnLogin.Click += OnClick_btnLogin;
+            FindViewById<Button>(Resource.Id.btnLogin).Click += Login_OnClick;
+            FindViewById<Button>(Resource.Id.btnCreateAccount).Click += Register_OnClick;
         }
 
-        public async void OnClick_btnLogin(object sender, EventArgs e)
+        #region event handlers
+        private async void Login_OnClick(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Button clicked!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             // Get the TextView's the contain the username and password.
             TextView usernameTxt = FindViewById<TextView>(Resource.Id.txtUsername);
             TextView passwordTxt = FindViewById<TextView>(Resource.Id.txtPassword);
 
             // Extract the text.
-            string username = usernameTxt.Text;
-            string password = passwordTxt.Text;
+            string username = usernameTxt.Text.Trim();
+            string password = passwordTxt.Text.Trim();
 
-            if(username.Trim() == "")
+            if(username == "")
             {
                 // Username is empty, report an error here.
                 return;
             }
 
-            if(password.Trim() == "")
+            if(password == "")
             {
                 // Password is empty, report an error here.
                 return;
@@ -71,7 +66,6 @@ namespace Front_End
             }
             catch(WebException ex)
             {
-                System.Diagnostics.Debug.WriteLine("StatusCode is " + ((HttpWebResponse)ex.Response).StatusCode);
                 // Use WebException to get the status code returned from the API.
                 if(((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Unauthorized)
                 {
@@ -86,5 +80,11 @@ namespace Front_End
                 }
             }
         }
+
+        private void Register_OnClick(object sender, EventArgs e)
+        {
+            StartActivity(new Intent(this, typeof(RegisterActivity)));
+        }
+        #endregion
     }
 }

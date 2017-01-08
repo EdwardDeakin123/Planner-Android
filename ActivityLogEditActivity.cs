@@ -15,7 +15,7 @@ using System.Net;
 
 namespace Front_End
 {
-    [Activity(Label = "ActivityLogEditActivity")]
+    [Activity(Label = "Edit Activity Log")]
     public class ActivityLogEditActivity : Activity
     {
         private ActivityLogModel _ActivityLog;

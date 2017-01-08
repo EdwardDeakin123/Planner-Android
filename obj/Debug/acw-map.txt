@@ -10,3 +10,7 @@ Front_End.MainActivity, Front_End;md5153da0d95fed3d9e233dacc37b9c3504.MainActivi
 Front_End.MainActivity, Front_End, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5153da0d95fed3d9e233dacc37b9c3504.MainActivity
 Front_End.MainActivity;md5153da0d95fed3d9e233dacc37b9c3504.MainActivity
 front_end.MainActivity;md5153da0d95fed3d9e233dacc37b9c3504.MainActivity
+Front_End.RegisterActivity, Front_End;md5153da0d95fed3d9e233dacc37b9c3504.RegisterActivity
+Front_End.RegisterActivity, Front_End, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5153da0d95fed3d9e233dacc37b9c3504.RegisterActivity
+Front_End.RegisterActivity;md5153da0d95fed3d9e233dacc37b9c3504.RegisterActivity
+front_end.RegisterActivity;md5153da0d95fed3d9e233dacc37b9c3504.RegisterActivity

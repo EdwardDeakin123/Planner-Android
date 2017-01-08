@@ -59,6 +59,7 @@
     <Compile Include="Backend\IBackendType.cs" />
     <Compile Include="LoginActivity.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="RegisterActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\UserModel.cs" />
@@ -93,7 +94,6 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\Icon.png" />
     <AndroidResource Include="Resources\drawable\red.png" />
     <AndroidResource Include="Resources\drawable\blue.png" />
-    <AndroidResource Include="Resources\layout\Layout1.axml" />
     <AndroidResource Include="Resources\drawable\grey.png" />
   </ItemGroup>
   <ItemGroup>
