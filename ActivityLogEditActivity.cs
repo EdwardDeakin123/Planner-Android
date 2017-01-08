@@ -12,6 +12,7 @@ using Android.Widget;
 using Front_End.Backend;
 using Front_End.Models;
 using System.Net;
+using Front_End.Exceptions;
 
 namespace Front_End
 {
