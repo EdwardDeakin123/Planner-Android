@@ -152,47 +152,47 @@ namespace Front_End
 			// aapt resource value: 0x7f080001
 			public const int activity_log_id = 2131230721;
 			
-			// aapt resource value: 0x7f08000b
-			public const int btnCreateAccount = 2131230731;
+			// aapt resource value: 0x7f08000c
+			public const int btnCreateAccount = 2131230732;
 			
 			// aapt resource value: 0x7f080006
 			public const int btnDelete = 2131230726;
 			
-			// aapt resource value: 0x7f08000a
-			public const int btnLogin = 2131230730;
+			// aapt resource value: 0x7f08000b
+			public const int btnLogin = 2131230731;
 			
 			// aapt resource value: 0x7f080005
 			public const int btnSave = 2131230725;
 			
-			// aapt resource value: 0x7f08002b
-			public const int etFirstName = 2131230763;
-			
 			// aapt resource value: 0x7f08002c
-			public const int etLastName = 2131230764;
-			
-			// aapt resource value: 0x7f08002e
-			public const int etPassword = 2131230766;
+			public const int etFirstName = 2131230764;
 			
 			// aapt resource value: 0x7f08002d
-			public const int etUsername = 2131230765;
+			public const int etLastName = 2131230765;
 			
-			// aapt resource value: 0x7f08000e
-			public const int ibNextDate = 2131230734;
+			// aapt resource value: 0x7f08002f
+			public const int etPassword = 2131230767;
 			
-			// aapt resource value: 0x7f08000c
-			public const int ibPrevDate = 2131230732;
-			
-			// aapt resource value: 0x7f08002a
-			public const int llActivities = 2131230762;
-			
-			// aapt resource value: 0x7f080029
-			public const int rlDropzone = 2131230761;
-			
-			// aapt resource value: 0x7f080010
-			public const int rlTimeMarkers = 2131230736;
+			// aapt resource value: 0x7f08002e
+			public const int etUsername = 2131230766;
 			
 			// aapt resource value: 0x7f08000f
-			public const int svCalendar = 2131230735;
+			public const int ibNextDate = 2131230735;
+			
+			// aapt resource value: 0x7f08000d
+			public const int ibPrevDate = 2131230733;
+			
+			// aapt resource value: 0x7f08002b
+			public const int llActivities = 2131230763;
+			
+			// aapt resource value: 0x7f08002a
+			public const int rlDropzone = 2131230762;
+			
+			// aapt resource value: 0x7f080011
+			public const int rlTimeMarkers = 2131230737;
+			
+			// aapt resource value: 0x7f080010
+			public const int svCalendar = 2131230736;
 			
 			// aapt resource value: 0x7f080004
 			public const int tpEndTime = 2131230724;
@@ -200,83 +200,86 @@ namespace Front_End
 			// aapt resource value: 0x7f080003
 			public const int tpStartTime = 2131230723;
 			
-			// aapt resource value: 0x7f080011
-			public const int tv0000 = 2131230737;
-			
 			// aapt resource value: 0x7f080012
-			public const int tv0100 = 2131230738;
+			public const int tv0000 = 2131230738;
 			
 			// aapt resource value: 0x7f080013
-			public const int tv0200 = 2131230739;
+			public const int tv0100 = 2131230739;
 			
 			// aapt resource value: 0x7f080014
-			public const int tv0300 = 2131230740;
+			public const int tv0200 = 2131230740;
 			
 			// aapt resource value: 0x7f080015
-			public const int tv0400 = 2131230741;
+			public const int tv0300 = 2131230741;
 			
 			// aapt resource value: 0x7f080016
-			public const int tv0500 = 2131230742;
+			public const int tv0400 = 2131230742;
 			
 			// aapt resource value: 0x7f080017
-			public const int tv0600 = 2131230743;
+			public const int tv0500 = 2131230743;
 			
 			// aapt resource value: 0x7f080018
-			public const int tv0700 = 2131230744;
+			public const int tv0600 = 2131230744;
 			
 			// aapt resource value: 0x7f080019
-			public const int tv0800 = 2131230745;
+			public const int tv0700 = 2131230745;
 			
 			// aapt resource value: 0x7f08001a
-			public const int tv0900 = 2131230746;
+			public const int tv0800 = 2131230746;
 			
 			// aapt resource value: 0x7f08001b
-			public const int tv1000 = 2131230747;
+			public const int tv0900 = 2131230747;
 			
 			// aapt resource value: 0x7f08001c
-			public const int tv1100 = 2131230748;
+			public const int tv1000 = 2131230748;
 			
 			// aapt resource value: 0x7f08001d
-			public const int tv1200 = 2131230749;
+			public const int tv1100 = 2131230749;
 			
 			// aapt resource value: 0x7f08001e
-			public const int tv1300 = 2131230750;
+			public const int tv1200 = 2131230750;
 			
 			// aapt resource value: 0x7f08001f
-			public const int tv1400 = 2131230751;
+			public const int tv1300 = 2131230751;
 			
 			// aapt resource value: 0x7f080020
-			public const int tv1500 = 2131230752;
+			public const int tv1400 = 2131230752;
 			
 			// aapt resource value: 0x7f080021
-			public const int tv1600 = 2131230753;
+			public const int tv1500 = 2131230753;
 			
 			// aapt resource value: 0x7f080022
-			public const int tv1700 = 2131230754;
+			public const int tv1600 = 2131230754;
 			
 			// aapt resource value: 0x7f080023
-			public const int tv1800 = 2131230755;
+			public const int tv1700 = 2131230755;
 			
 			// aapt resource value: 0x7f080024
-			public const int tv1900 = 2131230756;
+			public const int tv1800 = 2131230756;
 			
 			// aapt resource value: 0x7f080025
-			public const int tv2000 = 2131230757;
+			public const int tv1900 = 2131230757;
 			
 			// aapt resource value: 0x7f080026
-			public const int tv2100 = 2131230758;
+			public const int tv2000 = 2131230758;
 			
 			// aapt resource value: 0x7f080027
-			public const int tv2200 = 2131230759;
+			public const int tv2100 = 2131230759;
 			
 			// aapt resource value: 0x7f080028
-			public const int tv2300 = 2131230760;
+			public const int tv2200 = 2131230760;
+			
+			// aapt resource value: 0x7f080029
+			public const int tv2300 = 2131230761;
 			
 			// aapt resource value: 0x7f080002
 			public const int tvActivityName = 2131230722;
 			
-			// aapt resource value: 0x7f08000d
-			public const int tvDate = 2131230733;
+			// aapt resource value: 0x7f08000e
+			public const int tvDate = 2131230734;
+			
+			// aapt resource value: 0x7f08000a
+			public const int tvErrors = 2131230730;
 			
 			// aapt resource value: 0x7f080007
 			public const int tvStartEndTimes = 2131230727;
@@ -340,8 +343,8 @@ namespace Front_End
 			// aapt resource value: 0x7f060005
 			public const int delete = 2131099653;
 			
-			// aapt resource value: 0x7f06000c
-			public const int end_time = 2131099660;
+			// aapt resource value: 0x7f060011
+			public const int end_time = 2131099665;
 			
 			// aapt resource value: 0x7f060006
 			public const int first_name = 2131099654;
@@ -355,8 +358,20 @@ namespace Front_End
 			// aapt resource value: 0x7f06000a
 			public const int login = 2131099658;
 			
+			// aapt resource value: 0x7f06000d
+			public const int login_incorrect = 2131099661;
+			
+			// aapt resource value: 0x7f06000c
+			public const int login_required_fields = 2131099660;
+			
 			// aapt resource value: 0x7f060009
 			public const int password = 2131099657;
+			
+			// aapt resource value: 0x7f06000f
+			public const int register_required_fields = 2131099663;
+			
+			// aapt resource value: 0x7f060010
+			public const int register_username_taken = 2131099664;
 			
 			// aapt resource value: 0x7f060004
 			public const int save = 2131099652;
@@ -364,77 +379,80 @@ namespace Front_End
 			// aapt resource value: 0x7f060002
 			public const int start_time = 2131099650;
 			
-			// aapt resource value: 0x7f06000d
-			public const int t0000hrs = 2131099661;
-			
-			// aapt resource value: 0x7f06000e
-			public const int t0100hrs = 2131099662;
-			
-			// aapt resource value: 0x7f06000f
-			public const int t0200hrs = 2131099663;
-			
-			// aapt resource value: 0x7f060010
-			public const int t0300hrs = 2131099664;
-			
-			// aapt resource value: 0x7f060011
-			public const int t0400hrs = 2131099665;
-			
 			// aapt resource value: 0x7f060012
-			public const int t0500hrs = 2131099666;
+			public const int t0000hrs = 2131099666;
 			
 			// aapt resource value: 0x7f060013
-			public const int t0600hrs = 2131099667;
+			public const int t0100hrs = 2131099667;
 			
 			// aapt resource value: 0x7f060014
-			public const int t0700hrs = 2131099668;
+			public const int t0200hrs = 2131099668;
 			
 			// aapt resource value: 0x7f060015
-			public const int t0800hrs = 2131099669;
+			public const int t0300hrs = 2131099669;
 			
 			// aapt resource value: 0x7f060016
-			public const int t0900hrs = 2131099670;
+			public const int t0400hrs = 2131099670;
 			
 			// aapt resource value: 0x7f060017
-			public const int t1000hrs = 2131099671;
+			public const int t0500hrs = 2131099671;
 			
 			// aapt resource value: 0x7f060018
-			public const int t1100hrs = 2131099672;
+			public const int t0600hrs = 2131099672;
 			
 			// aapt resource value: 0x7f060019
-			public const int t1200hrs = 2131099673;
+			public const int t0700hrs = 2131099673;
 			
 			// aapt resource value: 0x7f06001a
-			public const int t1300hrs = 2131099674;
+			public const int t0800hrs = 2131099674;
 			
 			// aapt resource value: 0x7f06001b
-			public const int t1400hrs = 2131099675;
+			public const int t0900hrs = 2131099675;
 			
 			// aapt resource value: 0x7f06001c
-			public const int t1500hrs = 2131099676;
+			public const int t1000hrs = 2131099676;
 			
 			// aapt resource value: 0x7f06001d
-			public const int t1600hrs = 2131099677;
+			public const int t1100hrs = 2131099677;
 			
 			// aapt resource value: 0x7f06001e
-			public const int t1700hrs = 2131099678;
+			public const int t1200hrs = 2131099678;
 			
 			// aapt resource value: 0x7f06001f
-			public const int t1800hrs = 2131099679;
+			public const int t1300hrs = 2131099679;
 			
 			// aapt resource value: 0x7f060020
-			public const int t1900hrs = 2131099680;
+			public const int t1400hrs = 2131099680;
 			
 			// aapt resource value: 0x7f060021
-			public const int t2000hrs = 2131099681;
+			public const int t1500hrs = 2131099681;
 			
 			// aapt resource value: 0x7f060022
-			public const int t2100hrs = 2131099682;
+			public const int t1600hrs = 2131099682;
 			
 			// aapt resource value: 0x7f060023
-			public const int t2200hrs = 2131099683;
+			public const int t1700hrs = 2131099683;
 			
 			// aapt resource value: 0x7f060024
-			public const int t2300hrs = 2131099684;
+			public const int t1800hrs = 2131099684;
+			
+			// aapt resource value: 0x7f060025
+			public const int t1900hrs = 2131099685;
+			
+			// aapt resource value: 0x7f060026
+			public const int t2000hrs = 2131099686;
+			
+			// aapt resource value: 0x7f060027
+			public const int t2100hrs = 2131099687;
+			
+			// aapt resource value: 0x7f060028
+			public const int t2200hrs = 2131099688;
+			
+			// aapt resource value: 0x7f060029
+			public const int t2300hrs = 2131099689;
+			
+			// aapt resource value: 0x7f06000e
+			public const int unknown_error = 2131099662;
 			
 			// aapt resource value: 0x7f060008
 			public const int username = 2131099656;

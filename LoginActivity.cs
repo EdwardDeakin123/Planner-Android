@@ -42,15 +42,9 @@ namespace Front_End
             string username = usernameTxt.Text.Trim();
             string password = passwordTxt.Text.Trim();
 
-            if(username == "")
+            if(username == "" || password == "")
             {
-                // Username is empty, report an error here.
-                return;
-            }
-
-            if(password == "")
-            {
-                // Password is empty, report an error here.
+                FindViewById<TextView>(Resource.Id.tvErrors).Text = GetString(Resource.String.login_required_fields);
                 return;
             }
 
@@ -70,13 +64,12 @@ namespace Front_End
                 if(((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Unauthorized)
                 {
                     // User failed to authenticate. Tell them the username or password is incorrect.
-                    System.Diagnostics.Debug.WriteLine("Incorrect username or password");
+                    FindViewById<TextView>(Resource.Id.tvErrors).Text = GetString(Resource.String.login_incorrect);
                 }
                 else
                 {
-                    // TODO maybe remove this.
-                    // Rethrow the error if we don't match it, just to see what it is.
-                    throw;
+                    // Some other error was thrown.
+                    FindViewById<TextView>(Resource.Id.tvErrors).Text = GetString(Resource.String.unknown_error);
                 }
             }
         }

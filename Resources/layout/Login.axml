@@ -3,7 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
@@ -19,23 +20,29 @@
             android:id="@+id/txtPassword"
             android:hint="@string/password"
             android:layout_below="@id/txtUsername" />
-    </RelativeLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:id="@+id/tvErrors" />
+    </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
         android:background="@color/light_grey"
         android:layout_width="match_parent"
         android:layout_height="60dp">
-      <Button
-          android:text="@string/login"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:id="@+id/btnLogin"
-          android:layout_weight="1" />
+        <Button
+            android:text="@string/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnLogin"
+            android:layout_weight="1" />
         <Button
             android:id="@+id/btnCreateAccount"
             android:text="@string/create_account"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
     </LinearLayout>
 </LinearLayout>

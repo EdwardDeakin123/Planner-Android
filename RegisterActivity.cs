@@ -30,27 +30,10 @@ namespace Front_End
             string username = FindViewById<EditText>(Resource.Id.etUsername).Text;
             string password = FindViewById<EditText>(Resource.Id.etPassword).Text;
 
-            if (firstname == "")
+            if (firstname == "" || lastname == "" || username == "" || password == "")
             {
-                // First name is empty, report an error here.
-                return;
-            }
-
-            if (lastname == "")
-            {
-                // Last name is empty, report an error here.
-                return;
-            }
-
-            if (username == "")
-            {
-                // Username is empty, report an error here.
-                return;
-            }
-
-            if (password == "")
-            {
-                // Password is empty, report an error here.
+                // At least one field is empty.
+                FindViewById<TextView>(Resource.Id.tvErrors).Text = GetString(Resource.String.register_required_fields);
                 return;
             }
 
@@ -69,18 +52,16 @@ namespace Front_End
                 if (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Forbidden)
                 {
                     // One of the fields is empty.
-                    System.Diagnostics.Debug.WriteLine("Empty fields.");
+                    FindViewById<TextView>(Resource.Id.tvErrors).Text = GetString(Resource.String.register_required_fields);
                 }
                 else if (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Conflict)
                 {
                     // Username is taken.
-                    System.Diagnostics.Debug.WriteLine("Username is in use.");
+                    FindViewById<TextView>(Resource.Id.tvErrors).Text = GetString(Resource.String.register_username_taken);
                 }
                 else
                 {
-                    // TODO maybe remove this.
-                    // Rethrow the error if we don't match it, just to see what it is.
-                    throw;
+                    FindViewById<TextView>(Resource.Id.tvErrors).Text = GetString(Resource.String.unknown_error);
                 }
             }
         }
