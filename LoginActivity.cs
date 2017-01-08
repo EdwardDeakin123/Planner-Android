@@ -72,6 +72,17 @@ namespace Front_End
                     FindViewById<TextView>(Resource.Id.tvErrors).Text = GetString(Resource.String.unknown_error);
                 }
             }
+            catch (TimeoutException)
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                builder.SetMessage(GetString(Resource.String.unable_to_connect));
+                builder.SetTitle(GetString(Resource.String.timeout));
+
+                AlertDialog dialog = builder.Create();
+                dialog.Create();
+                dialog.Show();
+            }
         }
 
         private void Register_OnClick(object sender, EventArgs e)

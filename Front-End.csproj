@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivityLogEditActivity.cs" />
+    <Compile Include="Exceptions\TimeoutException.cs" />
     <Compile Include="Models\ActivityLogModel.cs" />
     <Compile Include="Models\ActivityModel.cs" />
     <Compile Include="Backend\Backend.cs" />

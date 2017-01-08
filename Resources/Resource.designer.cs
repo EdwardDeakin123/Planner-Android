@@ -343,8 +343,8 @@ namespace Front_End
 			// aapt resource value: 0x7f060005
 			public const int delete = 2131099653;
 			
-			// aapt resource value: 0x7f060011
-			public const int end_time = 2131099665;
+			// aapt resource value: 0x7f060014
+			public const int end_time = 2131099668;
 			
 			// aapt resource value: 0x7f060006
 			public const int first_name = 2131099654;
@@ -373,83 +373,92 @@ namespace Front_End
 			// aapt resource value: 0x7f060010
 			public const int register_username_taken = 2131099664;
 			
+			// aapt resource value: 0x7f060013
+			public const int retry = 2131099667;
+			
 			// aapt resource value: 0x7f060004
 			public const int save = 2131099652;
 			
 			// aapt resource value: 0x7f060002
 			public const int start_time = 2131099650;
 			
-			// aapt resource value: 0x7f060012
-			public const int t0000hrs = 2131099666;
-			
-			// aapt resource value: 0x7f060013
-			public const int t0100hrs = 2131099667;
-			
-			// aapt resource value: 0x7f060014
-			public const int t0200hrs = 2131099668;
-			
 			// aapt resource value: 0x7f060015
-			public const int t0300hrs = 2131099669;
+			public const int t0000hrs = 2131099669;
 			
 			// aapt resource value: 0x7f060016
-			public const int t0400hrs = 2131099670;
+			public const int t0100hrs = 2131099670;
 			
 			// aapt resource value: 0x7f060017
-			public const int t0500hrs = 2131099671;
+			public const int t0200hrs = 2131099671;
 			
 			// aapt resource value: 0x7f060018
-			public const int t0600hrs = 2131099672;
+			public const int t0300hrs = 2131099672;
 			
 			// aapt resource value: 0x7f060019
-			public const int t0700hrs = 2131099673;
+			public const int t0400hrs = 2131099673;
 			
 			// aapt resource value: 0x7f06001a
-			public const int t0800hrs = 2131099674;
+			public const int t0500hrs = 2131099674;
 			
 			// aapt resource value: 0x7f06001b
-			public const int t0900hrs = 2131099675;
+			public const int t0600hrs = 2131099675;
 			
 			// aapt resource value: 0x7f06001c
-			public const int t1000hrs = 2131099676;
+			public const int t0700hrs = 2131099676;
 			
 			// aapt resource value: 0x7f06001d
-			public const int t1100hrs = 2131099677;
+			public const int t0800hrs = 2131099677;
 			
 			// aapt resource value: 0x7f06001e
-			public const int t1200hrs = 2131099678;
+			public const int t0900hrs = 2131099678;
 			
 			// aapt resource value: 0x7f06001f
-			public const int t1300hrs = 2131099679;
+			public const int t1000hrs = 2131099679;
 			
 			// aapt resource value: 0x7f060020
-			public const int t1400hrs = 2131099680;
+			public const int t1100hrs = 2131099680;
 			
 			// aapt resource value: 0x7f060021
-			public const int t1500hrs = 2131099681;
+			public const int t1200hrs = 2131099681;
 			
 			// aapt resource value: 0x7f060022
-			public const int t1600hrs = 2131099682;
+			public const int t1300hrs = 2131099682;
 			
 			// aapt resource value: 0x7f060023
-			public const int t1700hrs = 2131099683;
+			public const int t1400hrs = 2131099683;
 			
 			// aapt resource value: 0x7f060024
-			public const int t1800hrs = 2131099684;
+			public const int t1500hrs = 2131099684;
 			
 			// aapt resource value: 0x7f060025
-			public const int t1900hrs = 2131099685;
+			public const int t1600hrs = 2131099685;
 			
 			// aapt resource value: 0x7f060026
-			public const int t2000hrs = 2131099686;
+			public const int t1700hrs = 2131099686;
 			
 			// aapt resource value: 0x7f060027
-			public const int t2100hrs = 2131099687;
+			public const int t1800hrs = 2131099687;
 			
 			// aapt resource value: 0x7f060028
-			public const int t2200hrs = 2131099688;
+			public const int t1900hrs = 2131099688;
 			
 			// aapt resource value: 0x7f060029
-			public const int t2300hrs = 2131099689;
+			public const int t2000hrs = 2131099689;
+			
+			// aapt resource value: 0x7f06002a
+			public const int t2100hrs = 2131099690;
+			
+			// aapt resource value: 0x7f06002b
+			public const int t2200hrs = 2131099691;
+			
+			// aapt resource value: 0x7f06002c
+			public const int t2300hrs = 2131099692;
+			
+			// aapt resource value: 0x7f060011
+			public const int timeout = 2131099665;
+			
+			// aapt resource value: 0x7f060012
+			public const int unable_to_connect = 2131099666;
 			
 			// aapt resource value: 0x7f06000e
 			public const int unknown_error = 2131099662;

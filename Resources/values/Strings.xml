@@ -17,6 +17,9 @@
   <string name="unknown_error">An unknown error occurred</string>
   <string name="register_required_fields">All fields must be filled to proceed</string>
   <string name="register_username_taken">That username is already in use</string>
+  <string name="timeout">Timeout</string>
+  <string name="unable_to_connect">Unable to connect to the backend</string>
+  <string name="retry">Retry</string>
   <string name="end_time">End Time</string>
   <string name="t0000hrs">12:00am</string>
   <string name="t0100hrs">1:00am</string>

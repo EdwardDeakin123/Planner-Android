@@ -68,6 +68,17 @@ namespace Front_End
                 }
                 System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
             }
+            catch (TimeoutException)
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                builder.SetMessage(GetString(Resource.String.unable_to_connect));
+                builder.SetTitle(GetString(Resource.String.timeout));
+
+                AlertDialog dialog = builder.Create();
+                dialog.Create();
+                dialog.Show();
+            }
         }
         #endregion
 

@@ -2,7 +2,7 @@
 <xs:schema xmlns:android="http://schemas.android.com/apk/res/android" attributeFormDefault="qualified" elementFormDefault="unqualified" targetNamespace="http://schemas.android.com/apk/res/android" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>v23</xs:documentation>
-    <xs:documentation>8/01/2017 10:12:31 PM</xs:documentation>
+    <xs:documentation>8/01/2017 11:12:39 PM</xs:documentation>
   </xs:annotation>
   <xs:attribute name="accessibilityLiveRegion">
     <xs:annotation>
@@ -3773,6 +3773,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -3799,6 +3800,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -3854,6 +3857,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -3880,6 +3884,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -4519,6 +4525,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -4545,6 +4552,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -5104,6 +5113,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -5130,6 +5140,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -6269,6 +6281,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -6295,6 +6308,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -6609,6 +6624,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -6635,6 +6651,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -11548,6 +11566,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -11574,6 +11593,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -11629,6 +11650,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -11655,6 +11677,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -12266,6 +12290,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -12292,6 +12317,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -12347,6 +12374,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -12373,6 +12401,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -12428,6 +12458,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -12454,6 +12485,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -17706,6 +17739,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -17732,6 +17766,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -18268,6 +18304,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -18294,6 +18331,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -19562,6 +19601,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -19588,6 +19628,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -22125,6 +22167,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -22151,6 +22194,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -22363,6 +22408,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -22389,6 +22435,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -22658,6 +22706,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -22684,6 +22733,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -23409,6 +23460,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -23435,6 +23487,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -25445,6 +25499,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -25471,6 +25526,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -27482,6 +27539,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -27508,6 +27566,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -28550,6 +28610,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -28576,6 +28637,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -32109,6 +32172,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -32135,6 +32199,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -33460,6 +33526,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -33486,6 +33553,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -34683,6 +34752,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -34709,6 +34779,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -36443,6 +36515,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -36469,6 +36542,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -36524,6 +36599,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -36550,6 +36626,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -39801,6 +39879,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -39827,6 +39906,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -39882,6 +39963,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -39908,6 +39990,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -42100,6 +42184,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -42126,6 +42211,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -42294,6 +42381,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -42320,6 +42408,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -43498,6 +43588,7 @@
             <xs:enumeration value="@string/password" />
             <xs:enumeration value="@string/register_required_fields" />
             <xs:enumeration value="@string/register_username_taken" />
+            <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
@@ -43524,6 +43615,8 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/timeout" />
+            <xs:enumeration value="@string/unable_to_connect" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />

@@ -27,6 +27,9 @@ namespace Front_End.Backend
         protected Dictionary<string, Cookie> _Cookies;
         protected CookieContainer _CookieContainer;
 
+        // Define the timeout for the requests.
+        protected const int TIMEOUT = 1;
+
         //TODO Cleanup parameters are POST or GET requests.
 
         public Backend()
@@ -43,9 +46,6 @@ namespace Front_End.Backend
         private string GetUrlString()
         {
             // Build the URL from the global variables and query string.
-            // TODO Catch any exceptions that may be thrown here.
-            // TODO Perhaps rework the way the URL is built. Maybe use a string builder.
-            // TODO Remove debug logging here.
             string url = _Protocol + "://" + _Server + ":" + _Port + "/api/" + _Resource + "/" + _Command;
 
             System.Diagnostics.Debug.WriteLine("The URL is : " + url);
@@ -104,6 +104,23 @@ namespace Front_End.Backend
             return jsonString;
         }
 
+        private Task<HttpWebResponse> TaskWithTimeout(Task<WebResponse> task, int duration)
+        {
+            // Implement a timeout feature to be used with GetResponseAsync which doesn't throw an exception on timeout.
+            // Code modified from: http://stackoverflow.com/questions/13838088/how-to-define-a-more-aggressive-timeout-for-httpwebrequest
+            return Task.Factory.StartNew(() =>
+            {
+                bool b = task.Wait(duration);
+                if (b)
+                {
+                    return (HttpWebResponse)task.Result;
+                }
+
+                // Timeout reached, throw an exception.
+                throw new TimeoutException("Reached timeout while trying to communicate with the backend");
+            });
+        }
+
         public async Task<List<T>> GetRequestListAsync<T>() where T : IBackendType
         {
             // Using Generics so I can have a single function for getting elements of any type from the API.
@@ -121,6 +138,7 @@ namespace Front_End.Backend
 
             // Create a request, set the content type and method.
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+            request.Timeout = TIMEOUT;
             request.ContentType = "application/json";
             request.Method = "GET";
 
@@ -131,7 +149,7 @@ namespace Front_End.Backend
             var serializer = new JsonSerializer();
 
             // Send the request asynchronously.
-            using (WebResponse response = await request.GetResponseAsync())
+            using (WebResponse response = await TaskWithTimeout(request.GetResponseAsync(), TIMEOUT))
             {
                 // Get a stream of the HTTP response.
                 using (Stream stream = response.GetResponseStream())
@@ -163,6 +181,7 @@ namespace Front_End.Backend
 
             // Create a request, set the content type and method.
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+            request.Timeout = TIMEOUT;
             request.ContentType = "application/json";
             request.Method = "GET";
             // Assign our own cookie container to the request object.
@@ -172,7 +191,7 @@ namespace Front_End.Backend
             var serializer = new JsonSerializer();
 
             // Send the request asynchronously.
-            using(WebResponse response = await request.GetResponseAsync())
+            using(WebResponse response = await TaskWithTimeout(request.GetResponseAsync(), TIMEOUT))
             {
                 // Get a stream of the HTTP response.
                 using(Stream stream = response.GetResponseStream())
@@ -198,7 +217,8 @@ namespace Front_End.Backend
 
             // Create a request, set the content type and method.
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
-            
+            request.Timeout = TIMEOUT;
+
             // Assign our own cookie container to the request object.
             request.CookieContainer = _CookieContainer;
 
@@ -217,7 +237,7 @@ namespace Front_End.Backend
             }
 
             // Submit the request.
-            using (HttpWebResponse response = (HttpWebResponse)await request.GetResponseAsync())
+            using (HttpWebResponse response = (HttpWebResponse)await TaskWithTimeout(request.GetResponseAsync(), TIMEOUT))
             {
                 // Get the response. In the case of a Login request, this will be the
                 // authentication cookie.
@@ -241,6 +261,7 @@ namespace Front_End.Backend
 
             // Create a request, set the content type and method.
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+            request.Timeout = TIMEOUT;
 
             // Assign our own cookie container to the request object.
             request.CookieContainer = _CookieContainer;
@@ -260,7 +281,7 @@ namespace Front_End.Backend
             }
 
             // Submit the request.
-            await request.GetResponseAsync();
+            await TaskWithTimeout(request.GetResponseAsync(), TIMEOUT);
         }
 
         public async Task DeleteRequestAsync()
@@ -278,6 +299,7 @@ namespace Front_End.Backend
 
             // Create a request, set the content type and method.
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+            request.Timeout = TIMEOUT;
             request.ContentType = "application/json";
             request.Method = "DELETE";
 
@@ -285,7 +307,7 @@ namespace Front_End.Backend
             request.CookieContainer = _CookieContainer;
 
             // Send the request asynchronously.
-            await request.GetResponseAsync();
+            await TaskWithTimeout(request.GetResponseAsync(), TIMEOUT);
         }
 
 

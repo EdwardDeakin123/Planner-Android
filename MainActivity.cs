@@ -114,19 +114,29 @@ namespace Front_End
                     actButton.SetTag(Resource.Id.activity_id, act.ActivityId);
                     actButton.LongClick += Activity_LongClick;
 
-                    LinearLayout llActivities = FindViewById<LinearLayout>(Resource.Id.llActivities);
-                    llActivities.AddView(actButton);
-                    System.Diagnostics.Debug.WriteLine("This one is " + act.ActivityName);
+                    FindViewById<LinearLayout>(Resource.Id.llActivities).AddView(actButton);
                 }
             }
-            catch (System.Net.WebException ex)
+            catch (WebException ex)
             {
                 if (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Unauthorized)
                 {
                     // The user is not logged in. Move to the Login activity.
                     StartActivity(new Intent(this, typeof(LoginActivity)));
                 }
+
                 System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
+            }
+            catch (TimeoutException)
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                builder.SetMessage(GetString(Resource.String.unable_to_connect));
+                builder.SetTitle(GetString(Resource.String.timeout));
+
+                AlertDialog dialog = builder.Create();
+                dialog.Create();
+                dialog.Show();
             }
         }
 
@@ -152,7 +162,7 @@ namespace Front_End
                     AddActivityLogToCalendar(actLog);
                 }
             }
-            catch (System.Net.WebException ex)
+            catch (WebException ex)
             {
                 if (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Unauthorized)
                 {
@@ -160,6 +170,17 @@ namespace Front_End
                     StartActivity(new Intent(this, typeof(LoginActivity)));
                 }
                 System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
+            }
+            catch (TimeoutException)
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                builder.SetMessage(GetString(Resource.String.unable_to_connect));
+                builder.SetTitle(GetString(Resource.String.timeout));
+
+                AlertDialog dialog = builder.Create();
+                dialog.Create();
+                dialog.Show();
             }
         }
 
@@ -191,6 +212,17 @@ namespace Front_End
                     StartActivity(new Intent(this, typeof(LoginActivity)));
                 }
                 System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
+            }
+            catch (TimeoutException)
+            {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                builder.SetMessage(GetString(Resource.String.unable_to_connect));
+                builder.SetTitle(GetString(Resource.String.timeout));
+
+                AlertDialog dialog = builder.Create();
+                dialog.Create();
+                dialog.Show();
             }
         }
         #endregion
