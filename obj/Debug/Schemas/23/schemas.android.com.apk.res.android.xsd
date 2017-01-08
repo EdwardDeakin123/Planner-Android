@@ -2,7 +2,7 @@
 <xs:schema xmlns:android="http://schemas.android.com/apk/res/android" attributeFormDefault="qualified" elementFormDefault="unqualified" targetNamespace="http://schemas.android.com/apk/res/android" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>v23</xs:documentation>
-    <xs:documentation>7/01/2017 6:55:10 PM</xs:documentation>
+    <xs:documentation>8/01/2017 8:30:51 PM</xs:documentation>
   </xs:annotation>
   <xs:attribute name="accessibilityLiveRegion">
     <xs:annotation>
@@ -803,9 +803,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -1452,9 +1454,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -2160,9 +2164,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -2548,9 +2554,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -2867,9 +2875,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -3506,9 +3516,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -3747,8 +3759,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -3773,6 +3793,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -3812,8 +3833,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -3838,6 +3867,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -3877,9 +3907,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -4216,9 +4248,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -4457,8 +4491,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -4483,6 +4525,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -4522,9 +4565,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -4781,9 +4826,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -5022,8 +5069,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -5048,6 +5103,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -5382,9 +5438,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -5825,9 +5883,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -6167,8 +6227,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -6193,6 +6261,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -6248,9 +6317,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -6489,8 +6560,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -6515,6 +6594,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -6726,9 +6806,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -7055,9 +7137,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -7384,9 +7468,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -7753,9 +7839,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -8082,9 +8170,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -8531,9 +8621,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -8906,9 +8998,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -9199,9 +9293,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -9640,9 +9736,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -10055,9 +10153,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -10588,9 +10688,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -11069,9 +11171,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -11388,8 +11492,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -11414,6 +11526,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -11453,8 +11566,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -11479,6 +11600,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -11568,9 +11690,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -12072,8 +12196,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -12098,6 +12230,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -12137,8 +12270,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -12163,6 +12304,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -12202,8 +12344,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -12228,6 +12378,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -12267,9 +12418,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -12508,9 +12661,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -12749,9 +12904,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -12990,9 +13147,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -13231,9 +13390,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -13472,9 +13633,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -13713,9 +13876,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -13954,9 +14119,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -14399,9 +14566,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -14667,9 +14836,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -14908,9 +15079,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -15149,9 +15322,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -15390,9 +15565,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -15671,9 +15848,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -15922,9 +16101,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -16241,9 +16422,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -16522,9 +16705,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -16864,9 +17049,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -17105,9 +17292,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -17426,8 +17615,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -17452,6 +17649,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -17591,8 +17789,13 @@
             <xs:enumeration value="@+id/checkBox1" />
             <xs:enumeration value="@id/activity_id" />
             <xs:enumeration value="@id/activity_log_id" />
+            <xs:enumeration value="@id/btnCreateAccount" />
+            <xs:enumeration value="@id/btnDelete" />
             <xs:enumeration value="@id/btnLogin" />
+            <xs:enumeration value="@id/btnSave" />
             <xs:enumeration value="@id/button2" />
+            <xs:enumeration value="@id/ibNextDate" />
+            <xs:enumeration value="@id/ibPrevDate" />
             <xs:enumeration value="@id/image2" />
             <xs:enumeration value="@id/llActivities" />
             <xs:enumeration value="@id/myButton" />
@@ -17604,6 +17807,8 @@
             <xs:enumeration value="@id/rlDropzone" />
             <xs:enumeration value="@id/rlTimeMarkers" />
             <xs:enumeration value="@id/svCalendar" />
+            <xs:enumeration value="@id/tpEndTime" />
+            <xs:enumeration value="@id/tpStartTime" />
             <xs:enumeration value="@id/tv0000" />
             <xs:enumeration value="@id/tv0100" />
             <xs:enumeration value="@id/tv0200" />
@@ -17629,6 +17834,7 @@
             <xs:enumeration value="@id/tv2200" />
             <xs:enumeration value="@id/tv2300" />
             <xs:enumeration value="@id/tvActivityName" />
+            <xs:enumeration value="@id/tvDate" />
             <xs:enumeration value="@id/tvStartEndTimes" />
             <xs:enumeration value="@id/txtPassword" />
             <xs:enumeration value="@id/txtUsername" />
@@ -17706,9 +17912,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -17965,8 +18173,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -17991,6 +18207,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -18081,9 +18298,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -18417,9 +18636,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -18996,9 +19217,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -19237,8 +19460,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -19263,6 +19494,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -19347,9 +19579,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -19748,9 +19982,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -20109,9 +20345,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -20366,9 +20604,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -21068,9 +21308,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -21441,9 +21683,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -21772,8 +22016,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -21798,6 +22050,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -21994,8 +22247,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -22020,6 +22281,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -22273,8 +22535,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -22299,6 +22569,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -22510,9 +22781,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -22763,9 +23036,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -23004,8 +23279,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -23030,6 +23313,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -23069,9 +23353,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -23350,9 +23636,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -23591,9 +23879,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -23832,9 +24122,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -24073,9 +24365,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -24314,9 +24608,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -25012,8 +25308,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -25038,6 +25342,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -25092,9 +25397,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -25360,9 +25667,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -25689,9 +25998,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -26411,9 +26722,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -26770,9 +27083,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -27023,8 +27338,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -27049,6 +27372,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -27226,9 +27550,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -27587,9 +27913,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -27828,9 +28156,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -28069,8 +28399,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -28095,6 +28433,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -28647,9 +28986,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -28888,9 +29229,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -29129,9 +29472,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -29370,9 +29715,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -29791,9 +30138,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -30032,9 +30381,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -30451,9 +30802,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -30702,9 +31055,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -31021,9 +31376,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -31594,8 +31951,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -31620,6 +31985,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -31749,9 +32115,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -32293,9 +32661,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -32670,9 +33040,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -32923,8 +33295,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -32949,6 +33329,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -33887,9 +34268,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -34128,8 +34511,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -34154,6 +34545,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -34193,9 +34585,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -34535,9 +34929,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -34856,9 +35252,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -35097,9 +35495,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -35378,9 +35778,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -35619,9 +36021,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -35860,8 +36264,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -35886,6 +36298,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -35925,8 +36338,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -35951,6 +36372,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -36055,9 +36477,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -36306,9 +36730,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -36635,9 +37061,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -36964,9 +37392,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -37293,9 +37723,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -37612,9 +38044,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -37879,9 +38313,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -38120,9 +38556,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -38361,9 +38799,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -38602,9 +39042,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -38843,9 +39285,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -39164,8 +39608,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -39190,6 +39642,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -39229,8 +39682,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -39255,6 +39716,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -39306,9 +39768,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -39547,9 +40011,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -39788,9 +40254,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -40967,9 +41435,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -41423,8 +41893,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -41449,6 +41927,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -41601,8 +42080,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -41627,6 +42114,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -41866,9 +42354,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -42288,9 +42778,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -42785,8 +43277,16 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/create_account" />
+            <xs:enumeration value="@string/delete" />
+            <xs:enumeration value="@string/end_time" />
             <xs:enumeration value="@string/hello" />
+            <xs:enumeration value="@string/login" />
+            <xs:enumeration value="@string/password" />
+            <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
             <xs:enumeration value="@string/t0200hrs" />
@@ -42811,6 +43311,7 @@
             <xs:enumeration value="@string/t2100hrs" />
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
+            <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -43098,9 +43599,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -43565,9 +44068,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -43822,9 +44327,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -44063,9 +44570,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -44314,9 +44823,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -44643,9 +45154,11 @@
             <xs:enumeration value="@color/pale_yellow" />
             <xs:enumeration value="@color/planner_activitylog_font" />
             <xs:enumeration value="@color/planner_divider" />
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -45014,9 +45527,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />
@@ -45255,9 +45770,11 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@drawable/back" />
             <xs:enumeration value="@drawable/blue" />
             <xs:enumeration value="@drawable/bluedown" />
             <xs:enumeration value="@drawable/blueup" />
+            <xs:enumeration value="@drawable/forward" />
             <xs:enumeration value="@drawable/grey" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/red" />

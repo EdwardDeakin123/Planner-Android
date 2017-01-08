@@ -4,9 +4,10 @@
   <uses-sdk android:minSdkVersion="21" />
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-  <application android:label="Front_End" android:name="android.app.Application" android:allowBackup="true" android:icon="@drawable/icon" android:debuggable="true">
+  <application android:label="Front_End" android:name="android.app.Application" android:allowBackup="true" android:debuggable="true">
+    <activity android:label="ActivityLogEditActivity" android:name="md5153da0d95fed3d9e233dacc37b9c3504.ActivityLogEditActivity" />
     <activity android:icon="@drawable/icon" android:label="LoginActivity" android:name="md5153da0d95fed3d9e233dacc37b9c3504.LoginActivity" />
-    <activity android:icon="@drawable/icon" android:label="Main" android:name="md5153da0d95fed3d9e233dacc37b9c3504.MainActivity">
+    <activity android:icon="@drawable/icon" android:label="Activity Tracker" android:name="md5153da0d95fed3d9e233dacc37b9c3504.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

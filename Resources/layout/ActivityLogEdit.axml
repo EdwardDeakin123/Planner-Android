@@ -10,34 +10,57 @@
         android:layout_height="match_parent"
         android:layout_weight="1">
         <TextView
-            android:text="Create New Account"
+            android:text="@string/activity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dip"
+            android:id="@+id/tvActivityName"
+            android:textSize="20sp"
             android:gravity="center" />
-        <EditText
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/NewName"
-            android:hint="Enter First Name"
+            android:text="@string/start_time"
+            android:textSize="20sp"
             android:gravity="center" />
-        <EditText
+        <TimePicker
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:timePickerMode="spinner"
+            android:layout_gravity="center"
+            android:id="@+id/tpStartTime"
+            android:scaleX="0.8"
+            android:scaleY="0.8" />
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/NewLastName"
-            android:hint="Enter Last Name"
+            android:textSize="20sp"
+            android:text="@string/end_time"
             android:gravity="center" />
-        <EditText
-            android:layout_width="match_parent"
+        <TimePicker
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/NewUserName"
-            android:hint="Enter a User Name"
-            android:gravity="center" />
-        <EditText
-            android:layout_width="match_parent"
+            android:timePickerMode="spinner"
+            android:layout_gravity="center"
+            android:id="@+id/tpEndTime"
+            android:scaleX="0.8"
+            android:scaleY="0.8" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:background="@color/light_grey"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <Button
+            android:id="@+id/btnSave"
+            android:text="@string/save"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/NewPassword"
-            android:hint="Enter A Password"
-            android:gravity="center" />
+            android:layout_weight="1" />
+        <Button
+            android:id="@+id/btnDelete"
+            android:text="@string/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
     </LinearLayout>
 </LinearLayout>

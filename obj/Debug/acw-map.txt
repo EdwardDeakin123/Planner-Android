@@ -1,3 +1,7 @@
+Front_End.ActivityLogEditActivity, Front_End;md5153da0d95fed3d9e233dacc37b9c3504.ActivityLogEditActivity
+Front_End.ActivityLogEditActivity, Front_End, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5153da0d95fed3d9e233dacc37b9c3504.ActivityLogEditActivity
+Front_End.ActivityLogEditActivity;md5153da0d95fed3d9e233dacc37b9c3504.ActivityLogEditActivity
+front_end.ActivityLogEditActivity;md5153da0d95fed3d9e233dacc37b9c3504.ActivityLogEditActivity
 Front_End.LoginActivity, Front_End;md5153da0d95fed3d9e233dacc37b9c3504.LoginActivity
 Front_End.LoginActivity, Front_End, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5153da0d95fed3d9e233dacc37b9c3504.LoginActivity
 Front_End.LoginActivity;md5153da0d95fed3d9e233dacc37b9c3504.LoginActivity

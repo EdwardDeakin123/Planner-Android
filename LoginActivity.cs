@@ -63,11 +63,10 @@ namespace Front_End
             try
             {
                 // Create an instance of the backend.
-                System.Diagnostics.Debug.WriteLine("Creating backend!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 BackendUser backend = new BackendUser();
                 await backend.Login(username, password);
 
-                // If no exception is thrown, start the Main activity.
+                // If no exception is thrown, return to the previous activity.
                 StartActivity(new Intent(this, typeof(MainActivity)));
             }
             catch(WebException ex)

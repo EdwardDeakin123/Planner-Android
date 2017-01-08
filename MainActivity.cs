@@ -13,7 +13,7 @@ using Front_End.Backend;
 
 namespace Front_End
 {
-    [Activity(Label = "Main", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "Activity Tracker", MainLauncher = true, Icon = "@drawable/icon")]
 	public class MainActivity : Activity
 	{
         // Layout elements.
@@ -21,7 +21,7 @@ namespace Front_End
         RelativeLayout _RLDropzone;
 
         // The date of the current view.
-        DateTime _ViewDate = DateTime.Now;
+        DateTime _ViewDate;
 
         // Global variables used with the demo mode (_FakeData).
         List<ActivityModel> _Activities;
@@ -35,12 +35,14 @@ namespace Front_End
         private const int HOUR_DP = 60;
 
         // This variable is used to skip the backend and just use test data.
-        bool _FakeData = true;
+        bool _FakeData = false;
 
 		protected override void OnCreate(Bundle bundle)
 		{
 			// Set our view from the "main" layout resource
 			SetContentView(Resource.Layout.Main);
+
+            base.OnCreate(bundle);
 
             // Using a global variable so we can simulate adding data when using the FakeData switch.
             _Activities = new List<ActivityModel>();
@@ -48,16 +50,32 @@ namespace Front_End
             _ActivityLogId = 0;
             _ActivityColors = new List<KeyValuePair<int, Color>>();
 
-            // Get the activity buttons from the backend
-            GetActivities();
-            GetActivityLogs();
+            // Assign the next and previous onclick events.
+            FindViewById<ImageButton>(Resource.Id.ibNextDate).Click += NextDay_OnClick;
+            FindViewById<ImageButton>(Resource.Id.ibPrevDate).Click += PreviousDay_OnClick;
+
+            if(_ViewDate == default(DateTime))
+            {
+                DateTime currentTime = DateTime.Now;
+
+                // If the current view date is not set, set it to the current day.
+                _ViewDate = new DateTime(currentTime.Year, currentTime.Month, currentTime.Day, 0, 0, 0);
+            }
 
             // Get the dropzone and attach a drag event listener.
             _RLDropzone = FindViewById<RelativeLayout>(Resource.Id.rlDropzone);
             _RLDropzone.Drag += DropZone_Drag;
+        }
 
-            base.OnCreate(bundle);
-		}
+        protected override void OnResume()
+        {
+            base.OnResume();
+
+            System.Diagnostics.Debug.WriteLine("I am resuming!");
+
+            // Reload the planner when the activity is resumed.
+            ReloadUI();
+        }
 
         #region backend
         private async void GetActivities()
@@ -66,13 +84,14 @@ namespace Front_End
             {
                 // Store activities in a global variable so they can be referenced later without requiring another
                 // connection to the backend.
-
                 // Get activities from the backend.
                 if (!_FakeData)
                 {
                     // Get real data.
                     BackendActivity backend = new BackendActivity();
                     _Activities = await backend.GetAll();
+
+                    System.Diagnostics.Debug.WriteLine("Got " + _Activities.Count + " activities");
                 }
                 else
                 {
@@ -115,16 +134,15 @@ namespace Front_End
         {
             try
             {
-                // Clear the dropzone before adding activity logs
-                ClearDropzone();
-
                 // Get activities from the backend.
                 if (!_FakeData)
                 {
                     // Get real data.
                     BackendActivityLog backend = new BackendActivityLog();
-                    _ActivityLogs = await backend.GetByUser();
+                    _ActivityLogs = await backend.GetByDate(_ViewDate);
                 }
+
+                System.Diagnostics.Debug.WriteLine("Got " + _ActivityLogs.Count + " activity logs");
 
                 foreach (ActivityLogModel actLog in _ActivityLogs)
                 {
@@ -239,7 +257,7 @@ namespace Front_End
                     AddActivityLogToBackend(activityId, startTime, endTime);
 
                     // Get all the activity logs from the backend again.
-                    GetActivityLogs();
+                    ReloadUI();
                     break;
                 case DragAction.Location:
                     // The user has moved their finger. Move the preview.
@@ -250,11 +268,46 @@ namespace Front_End
 
         private void ActivityLog_OnClick(object sender, EventArgs e)
         {
+            var activityLogEditActivity = new Intent(this, typeof(ActivityLogEditActivity));
 
+            // Get the ActivityLog ID from the sender and pass it to the Edit activity.
+            activityLogEditActivity.PutExtra("activityLogId", int.Parse(((RelativeLayout)sender).GetTag(Resource.Id.activity_log_id).ToString()));
+
+            StartActivity(activityLogEditActivity);
+        }
+
+        private void PreviousDay_OnClick(object sender, EventArgs e)
+        {
+            // Update the view date
+            _ViewDate = _ViewDate.AddDays(-1);
+
+            // Reload the UI.
+            ReloadUI();
+        }
+
+        private void NextDay_OnClick(object sender, EventArgs e)
+        {
+            // Update the view date
+            _ViewDate = _ViewDate.AddDays(1);
+
+            // Reload the UI.
+            ReloadUI();
         }
         #endregion
 
         #region planner
+        private void ReloadUI()
+        {
+            // Set the heading to be the date.
+            FindViewById<TextView>(Resource.Id.tvDate).Text = _ViewDate.Day + "/" + _ViewDate.Month + "/" + _ViewDate.Year;
+
+            // Get the dropzone and attach a drag event listener.
+            ClearDropzone();
+            ClearActivities();
+            GetActivities();
+            GetActivityLogs();
+        }
+
         private void PlannerPreview_Create(int size)
         {
             // This method creates a RelativeLayout that is meant to show the user where a new activity log will
@@ -336,6 +389,9 @@ namespace Front_End
             // Add the OnClick event listener.
             vActivityLog.Click += ActivityLog_OnClick;
 
+            // Add a tag to the ActivityLog to identify it.
+            vActivityLog.SetTag(Resource.Id.activity_log_id, activityLog.ActivityLogId);
+
             _RLDropzone.AddView(vActivityLog);
 
             // Get the number of children elements in the Dropzone.
@@ -357,12 +413,16 @@ namespace Front_End
                     continue;
                 }
 
+                // Measure the view so we can determine it's height.
+                childView.Measure(RelativeLayout.LayoutParams.WrapContent, RelativeLayout.LayoutParams.WrapContent);
+
                 // Check to see if the new view will be positioned next to this one.
                 float startChildY = childView.GetY();
-                float endChildY = startChildY + childView.Height;
+                float endChildY = startChildY + childView.MeasuredHeight;
 
-                if(startChildY >= startPos && startChildY <= (startPos + height) ||
-                    endChildY > startPos && endChildY <= (startPos + height))
+                // Check if these two elements pass through each other at all.
+                if (startChildY <= startPos && endChildY >= startPos ||
+                    startChildY >= startPos && startChildY <= (startPos + height))
                 {
                     // These elements are next to each other.
                     // Get the layout parameters of the current childView.
@@ -373,12 +433,7 @@ namespace Front_End
                     parameters.RemoveRule(LayoutRules.AlignParentRight);
                     parameters.RemoveRule(LayoutRules.RightOf);
 
-                    if (adjacentLogs == 0)
-                    {
-                        // If this is the first adjacent log, set it to align to the left side of the parent view.
-                        parameters.AddRule(LayoutRules.AlignParentLeft);
-                    }
-                    else
+                    if (adjacentLogs != 0)
                     {
                         // Assign this view to be to the right of the previous one.
                         parameters.AddRule(LayoutRules.RightOf, lastId);
@@ -394,6 +449,8 @@ namespace Front_End
             RelativeLayout.LayoutParams alParameters = (RelativeLayout.LayoutParams)vActivityLog.LayoutParameters;
             if (adjacentLogs == 0)
             {
+
+                System.Diagnostics.Debug.WriteLine("No adjacent logs");
                 // If there are no logs next to this one, make it use all the space.
                 alParameters.AddRule(LayoutRules.AlignParentLeft);
                 alParameters.AddRule(LayoutRules.AlignParentRight);
@@ -442,8 +499,14 @@ namespace Front_End
         private void ClearDropzone()
         {
             // Remove all views in the dropzone. Use this when refreshing.
-            RelativeLayout rlDropzone = FindViewById<RelativeLayout>(Resource.Id.rlDropzone);
-            rlDropzone.RemoveAllViews();
+            _RLDropzone.RemoveAllViews();
+        }
+
+        private void ClearActivities()
+        {
+            // Remove all views in the dropzone. Use this when refreshing.
+            LinearLayout llActivities = FindViewById<LinearLayout>(Resource.Id.llActivities);
+            llActivities.RemoveAllViews();
         }
 
         public int PixelsToDP(float pixels)

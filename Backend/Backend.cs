@@ -127,13 +127,6 @@ namespace Front_End.Backend
             // Assign our own cookie container to the request object.
             request.CookieContainer = _CookieContainer;
 
-            // Add any available Cookies to the request.
-            //foreach (KeyValuePair<string, Cookie> cookie in _Cookies)
-            //{
-            //    System.Diagnostics.Debug.WriteLine("Adding cookie: " + cookie.Value.Name + " " + cookie.Value.Value);
-            //    request.CookieContainer.Add(cookie.Value);
-            //}
-
             // Create a JsonSerializer to convert the stream from the server into an object.
             var serializer = new JsonSerializer();
 
@@ -175,13 +168,6 @@ namespace Front_End.Backend
             // Assign our own cookie container to the request object.
             request.CookieContainer = _CookieContainer;
 
-            // Add any available Cookies to the request.
-            //foreach (KeyValuePair<string, Cookie> cookie in _Cookies)
-            //{
-            //    System.Diagnostics.Debug.WriteLine("Adding cookie: " + cookie.Value.Name + " " + cookie.Value.Value);
-            //    request.CookieContainer.Add(cookie.Value);
-            //}
-
             // Create a JsonSerializer to convert the stream from the server into an object.
             var serializer = new JsonSerializer();
 
@@ -216,44 +202,19 @@ namespace Front_End.Backend
             // Assign our own cookie container to the request object.
             request.CookieContainer = _CookieContainer;
 
-            // Add any available Cookies to the request.
-            //foreach(KeyValuePair<string, Cookie> cookie in _Cookies)
-            //{
-            //    System.Diagnostics.Debug.WriteLine("Adding cookie: " + cookie.Value.Name + " " + cookie.Value.Value);
-            //    request.CookieContainer.Add(cookie.Value);
-            //}
-
             // Set a proxy - Used for debugging with Fiddler.
-            WebRequest.DefaultWebProxy = new WebProxy("192.168.0.13", 8888);
+            // TODO Disable this later.
+            //WebRequest.DefaultWebProxy = new WebProxy("192.168.0.13", 8888);
 
             request.Method = "POST";
+            System.Diagnostics.Debug.WriteLine("Post Request JSON string!" + jsonString);
+            request.ContentType = "application/json";
 
-            // If the query string is not empty,
-            //if (queryString != "")
-            //{
-                System.Diagnostics.Debug.WriteLine("Post Request JSON string!" + jsonString);
-
-                request.ContentType = "application/json";
-
-                // Write the JSON data to the stream.
-                using(var stream = new StreamWriter(request.GetRequestStream()))
-                {
-                   stream.Write(jsonString);
-                }
-
-
-                // Encode the query string. Found information here:
-                // http://stackoverflow.com/questions/4015324/http-request-with-post
-                //var data = Encoding.UTF8.GetBytes(queryString);
-                //request.ContentType = "application/x-www-form-urlencoded";
-                //request.ContentLength = data.Length;
-
-                // Write the data to the stream.
-                //using(var stream = request.GetRequestStream())
-                //{
-                //   stream.Write(data, 0, data.Length);
-                //}
-            //}
+            // Write the JSON data to the stream.
+            using(var stream = new StreamWriter(request.GetRequestStream()))
+            {
+                stream.Write(jsonString);
+            }
 
             // Submit the request.
             using (HttpWebResponse response = (HttpWebResponse)await request.GetResponseAsync())
@@ -270,6 +231,63 @@ namespace Front_End.Backend
                 }
             }
         }
+
+        public async Task PutRequestAsync()
+        {
+            // Function using POST to write to the backend.
+            // Get the URL.
+            string url = GetUrlString();
+            string jsonString = GetJSON();
+
+            // Create a request, set the content type and method.
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+
+            // Assign our own cookie container to the request object.
+            request.CookieContainer = _CookieContainer;
+
+            // Set a proxy - Used for debugging with Fiddler.
+            // TODO Disable this later.
+            //WebRequest.DefaultWebProxy = new WebProxy("192.168.0.13", 8888);
+
+            request.Method = "PUT";
+            System.Diagnostics.Debug.WriteLine("Post Request JSON string!" + jsonString);
+            request.ContentType = "application/json";
+
+            // Write the JSON data to the stream.
+            using (var stream = new StreamWriter(request.GetRequestStream()))
+            {
+                stream.Write(jsonString);
+            }
+
+            // Submit the request.
+            await request.GetResponseAsync();
+        }
+
+        public async Task DeleteRequestAsync()
+        {
+            // Function using DELETE to query the backend.
+            // Get the URL.
+            string url = GetUrlString();
+            string queryString = GetQueryString();
+
+            // if the query string is not empty, append it to the URL.
+            if (queryString != "")
+            {
+                url += "?" + queryString;
+            }
+
+            // Create a request, set the content type and method.
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+            request.ContentType = "application/json";
+            request.Method = "DELETE";
+
+            // Assign our own cookie container to the request object.
+            request.CookieContainer = _CookieContainer;
+
+            // Send the request asynchronously.
+            await request.GetResponseAsync();
+        }
+
 
         private void LoadCookie()
         {

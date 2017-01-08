@@ -2,6 +2,15 @@
 <resources>
 	<string name="hello">Hello World, Click Me!</string>
 	<string name="app_name">Front_End</string>
+  <string name="start_time">Start Time</string>
+  <string name="activity">Activity</string>
+  <string name="save">Save</string>
+  <string name="delete">Delete</string>
+  <string name="username">Username</string>
+  <string name="password">Password</string>
+  <string name="login">Login</string>
+  <string name="create_account">Create Account</string>
+  <string name="end_time">End Time</string>
   <string name="t0000hrs">12:00am</string>
   <string name="t0100hrs">1:00am</string>
   <string name="t0200hrs">2:00am</string>
