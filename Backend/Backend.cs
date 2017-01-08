@@ -28,7 +28,7 @@ namespace Front_End.Backend
         protected CookieContainer _CookieContainer;
 
         // Define the timeout for the requests.
-        protected const int TIMEOUT = 1;
+        protected const int TIMEOUT = 8000;
 
         //TODO Cleanup parameters are POST or GET requests.
 
