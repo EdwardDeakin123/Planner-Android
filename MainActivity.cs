@@ -46,15 +46,13 @@ namespace Front_End
 
             base.OnCreate(bundle);
 	    
-	    var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+	        var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
 			var pathToDatabase = System.IO.Path.Combine(docsFolder, "db_sqlnet1.db");
 
 			var timenow = findTime(pathToDatabase);
 
 			if (timenow != DateTime.Now.Day.ToString())
 			{
-				
-
 				StartActivity(typeof(Notification));
 			}
 
@@ -84,19 +82,14 @@ namespace Front_End
         protected override void OnResume()
         {
             base.OnResume();
-
-            System.Diagnostics.Debug.WriteLine("I am resuming!");
 	    
-	    var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+	        var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
 			var pathToDatabase = System.IO.Path.Combine(docsFolder, "db_sqlnet1.db");
 
 			var timenow = findTime(pathToDatabase);
 
 			if (timenow != DateTime.Now.Day.ToString())
 			{
-
-
-
 				StartActivity(typeof(Notification));
 			}
 
@@ -109,11 +102,7 @@ namespace Front_End
 			try
 			{
 				var db = new SQLiteConnection(path);
-
 				var count = db.FindWithQuery<Times>("SELECT * FROM Times WHERE ID = (SELECT MAX(ID) FROM Times)").Time;
-
-
-
 				return count;
 			}
 			catch (SQLiteException)
@@ -172,7 +161,7 @@ namespace Front_End
 
                 System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
             }
-            catch (Front_End.Exceptions.TimeoutException)
+            catch (BackendTimeoutException)
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -216,7 +205,7 @@ namespace Front_End
                 }
                 System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
             }
-            catch (Front_End.Exceptions.TimeoutException)
+            catch (BackendTimeoutException)
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -258,7 +247,7 @@ namespace Front_End
                 }
                 System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
             }
-            catch (Front_End.Exceptions.TimeoutException)
+            catch (BackendTimeoutException)
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
