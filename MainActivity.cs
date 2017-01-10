@@ -172,7 +172,7 @@ namespace Front_End
 
                 System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
             }
-            catch (TimeoutException)
+            catch (Front_End.Exceptions.TimeoutException)
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -216,7 +216,7 @@ namespace Front_End
                 }
                 System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
             }
-            catch (TimeoutException)
+            catch (Front_End.Exceptions.TimeoutException)
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -258,7 +258,7 @@ namespace Front_End
                 }
                 System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
             }
-            catch (TimeoutException)
+            catch (Front_End.Exceptions.TimeoutException)
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
 

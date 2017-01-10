@@ -67,7 +67,7 @@ namespace Front_End
                     FindViewById<TextView>(Resource.Id.tvErrors).Text = GetString(Resource.String.unknown_error);
                 }
             }
-            catch (TimeoutException)
+            catch (Front_End.Exceptions.TimeoutException)
             {
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
