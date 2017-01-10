@@ -1,4 +1,5 @@
 
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,8 +23,8 @@ using SQLite;
 using Android.Util;
 namespace Front_End
 {
-	[Activity(Label = "EventListActivity", MainLauncher = true)]
-	public class EventListActivity : Activity
+	[Activity(Label = "Notification")]
+	public class Notification : Activity
 	{
 		int _calId;
 
@@ -38,23 +39,23 @@ namespace Front_End
 			ListEvents();
 			//ListEvents2();
 
-			var text = FindViewById<TextView>(Resource.Id.TextTime);
+
 
 			var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
 			var pathToDatabase = System.IO.Path.Combine(docsFolder, "db_sqlnet1.db");
 
-			var result = createDatabase(pathToDatabase);
+		
 
 
-			var result1 = insertUpdateData(new Times { Time = DateTime.Now.Day.ToString() }, pathToDatabase);
+
 			var records = findTime(pathToDatabase);
-			text.Text += records;
+
 			string check = records;
 
 			string Tag = Convert.ToString(check);
 			Log.Debug(check, "hello");
 
-			text.Text = records;
+
 
 
 		}
@@ -112,8 +113,8 @@ namespace Front_End
 			Calendar c = Calendar.GetInstance(Java.Util.TimeZone.Default);
 
 			c.Set(Calendar.DayOfMonth, DateTime.Now.Day);
-			c.Set(Calendar.HourOfDay, DateTime.Now.Hour);
-			c.Set(Calendar.Minute, DateTime.Now.Minute + 3);
+			c.Set(Calendar.HourOfDay, 21);
+			c.Set(Calendar.Minute, 0);
 			c.Set(Calendar.Month, DateTime.Now.Month - 1);
 			c.Set(Calendar.Year, DateTime.Now.Year);
 
@@ -124,9 +125,9 @@ namespace Front_End
 		{
 			Calendar c = Calendar.GetInstance(Java.Util.TimeZone.Default);
 
-			c.Set(Calendar.DayOfMonth, DateTime.Now.Day);
-			c.Set(Calendar.HourOfDay, DateTime.Now.Hour);
-			c.Set(Calendar.Minute, DateTime.Now.Minute + 13);
+			c.Set(Calendar.DayOfMonth, DateTime.Now.Day + 1);
+			c.Set(Calendar.HourOfDay, 9);
+			c.Set(Calendar.Minute, 0);
 			c.Set(Calendar.Month, DateTime.Now.Month - 1);
 			c.Set(Calendar.Year, DateTime.Now.Year);
 
@@ -141,20 +142,18 @@ namespace Front_End
 		{
 			var eventsUri = CalendarContract.Events.ContentUri;
 
-			var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
-			var pathToDatabase = System.IO.Path.Combine(docsFolder, "db_sqlnet.db");
 
-			var records = findTime(pathToDatabase);
 
-			if (records != DateTime.Now.Day.ToString())
-			{
+
+
+
 
 				ContentValues eventValues = new ContentValues();
 				eventValues.Put(CalendarContract.Events.InterfaceConsts.CalendarId, _calId);
-				eventValues.Put(CalendarContract.Events.InterfaceConsts.Title, "we did it");
-				eventValues.Put(CalendarContract.Events.InterfaceConsts.Description, "This is an event created from Mono for Android");
+				eventValues.Put(CalendarContract.Events.InterfaceConsts.Title, "Have you filled in your planner today?");
+				eventValues.Put(CalendarContract.Events.InterfaceConsts.Description, "Planner");
 				eventValues.Put(CalendarContract.Events.InterfaceConsts.Dtstart, GetDateTimeMS(0, 0, 0, 0, 0));
-				eventValues.Put(CalendarContract.Events.InterfaceConsts.Dtend, GetDateTimeMS2(0, 0, 0, 0, 0));
+				eventValues.Put(CalendarContract.Events.InterfaceConsts.Dtend, GetDateTimeMS(0, 0, 0, 0, 0));
 				eventValues.Put(CalendarContract.Events.InterfaceConsts.EventTimezone, "UTC");
 				eventValues.Put(CalendarContract.Events.InterfaceConsts.EventEndTimezone, "UTC");
 				var uri = ContentResolver.Insert(CalendarContract.Events.ContentUri, eventValues);
@@ -174,25 +173,25 @@ namespace Front_End
 				var reminderUri = ContentResolver.Insert(CalendarContract.Reminders.ContentUri, reminderValues);
 				Console.WriteLine("Uri for new event: {0}", reminderUri);
 
-				insertUpdateData(new Times { Time = DateTime.Now.Day.ToString() }, pathToDatabase);
-			}
+				
 
-			else
-				return;
 		}
 
 
 
 
 
-		/*void ListEvents2()
+		void ListEvents2()
 		{
 			var eventsUri = CalendarContract.Events.ContentUri;
 
+			var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+			var pathToDatabase = System.IO.Path.Combine(docsFolder, "db_sqlnet.db");
+
 			ContentValues eventValues = new ContentValues();
 			eventValues.Put(CalendarContract.Events.InterfaceConsts.CalendarId, _calId);
-			eventValues.Put(CalendarContract.Events.InterfaceConsts.Title, "test2");
-			eventValues.Put(CalendarContract.Events.InterfaceConsts.Description, "This is an event created from Mono for Android");
+			eventValues.Put(CalendarContract.Events.InterfaceConsts.Title, "Please remember to fill in your planner today");
+			eventValues.Put(CalendarContract.Events.InterfaceConsts.Description, "Planner");
 			eventValues.Put(CalendarContract.Events.InterfaceConsts.Dtstart, GetDateTimeMS2(0, 0, 0, 0, 0));
 			eventValues.Put(CalendarContract.Events.InterfaceConsts.Dtend, GetDateTimeMS2(0, 0, 0, 0, 0));
 			eventValues.Put(CalendarContract.Events.InterfaceConsts.EventTimezone, "UTC");
@@ -216,10 +215,12 @@ namespace Front_End
 			var reminderUri = ContentResolver.Insert(CalendarContract.Reminders.ContentUri, reminderValues);
 			Console.WriteLine("Uri for new event: {0}", reminderUri);
 
-			StartActivity(typeof(Main));
+			insertUpdateData(new Times { Time = DateTime.Now.Day.ToString() }, pathToDatabase);
+
+			StartActivity(typeof(MainActivity));
 
 		}
-*/
+
 
 
 
@@ -228,6 +229,11 @@ namespace Front_End
 
 
 	}
+
+
+
+
+
 }
 
 
