@@ -11,6 +11,7 @@ using System.Net;
 using Front_End.Models;
 using Front_End.Backend;
 using Front_End.Exceptions;
+using SQLite;
 
 namespace Front_End
 {
@@ -44,6 +45,18 @@ namespace Front_End
 			SetContentView(Resource.Layout.Main);
 
             base.OnCreate(bundle);
+	    
+	    var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+			var pathToDatabase = System.IO.Path.Combine(docsFolder, "db_sqlnet1.db");
+
+			var timenow = findTime(pathToDatabase);
+
+			if (timenow != DateTime.Now.Day.ToString())
+			{
+				
+
+				StartActivity(typeof(Notification));
+			}
 
             // Using a global variable so we can simulate adding data when using the FakeData switch.
             _Activities = new List<ActivityModel>();
@@ -73,10 +86,41 @@ namespace Front_End
             base.OnResume();
 
             System.Diagnostics.Debug.WriteLine("I am resuming!");
+	    
+	    var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
+			var pathToDatabase = System.IO.Path.Combine(docsFolder, "db_sqlnet1.db");
+
+			var timenow = findTime(pathToDatabase);
+
+			if (timenow != DateTime.Now.Day.ToString())
+			{
+
+
+
+				StartActivity(typeof(Notification));
+			}
 
             // Reload the planner when the activity is resumed.
             ReloadUI();
         }
+	
+	private string findTime(string path)
+		{
+			try
+			{
+				var db = new SQLiteConnection(path);
+
+				var count = db.FindWithQuery<Times>("SELECT * FROM Times WHERE ID = (SELECT MAX(ID) FROM Times)").Time;
+
+
+
+				return count;
+			}
+			catch (SQLiteException)
+			{
+				return ToString();
+			}
+		}
 
         #region backend
         private async void GetActivities()
