@@ -112,11 +112,11 @@ namespace Front_End
 		{
 			Calendar c = Calendar.GetInstance(Java.Util.TimeZone.Default);
 
-			c.Set(Calendar.DayOfMonth, DateTime.Now.Day);
-			c.Set(Calendar.HourOfDay, 21);
-			c.Set(Calendar.Minute, 0);
-			c.Set(Calendar.Month, DateTime.Now.Month - 1);
-			c.Set(Calendar.Year, DateTime.Now.Year);
+			c.Set(Java.Util.CalendarField.DayOfWeek, DateTime.Now.Day);
+			c.Set(Java.Util.CalendarField.HourOfDay, 21);
+			c.Set(Java.Util.CalendarField.Minute, 0);
+			c.Set(Java.Util.CalendarField.Month, DateTime.Now.Month - 1);
+			c.Set(Java.Util.CalendarField.Year, DateTime.Now.Year);
 
 			return c.TimeInMillis;
 		}
@@ -125,14 +125,15 @@ namespace Front_End
 		{
 			Calendar c = Calendar.GetInstance(Java.Util.TimeZone.Default);
 
-			c.Set(Calendar.DayOfMonth, DateTime.Now.Day + 1);
-			c.Set(Calendar.HourOfDay, 9);
-			c.Set(Calendar.Minute, 0);
-			c.Set(Calendar.Month, DateTime.Now.Month - 1);
-			c.Set(Calendar.Year, DateTime.Now.Year);
+			c.Set(Java.Util.CalendarField.DayOfWeek, DateTime.Now.Day + 1);
+			c.Set(Java.Util.CalendarField.HourOfDay, 9);
+			c.Set(Java.Util.CalendarField.Minute, 0);
+			c.Set(Java.Util.CalendarField.Month, DateTime.Now.Month - 1);
+			c.Set(Java.Util.CalendarField.Year, DateTime.Now.Year);
 
 			return c.TimeInMillis;
 		}
+
 
 
 
