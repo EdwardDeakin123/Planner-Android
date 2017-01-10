@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Android.Webkit;
 using Android.Content;
 using Android.Preferences;
+using Front_End.Exceptions;
 
 namespace Front_End.Backend
 {
@@ -117,7 +118,7 @@ namespace Front_End.Backend
                 }
 
                 // Timeout reached, throw an exception.
-                throw new TimeoutException("Reached timeout while trying to communicate with the backend");
+                throw new BackendTimeoutException("Reached timeout while trying to communicate with the backend");
             });
         }
 

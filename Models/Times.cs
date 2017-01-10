@@ -1,16 +1,13 @@
 ﻿using SQLite;
 
-namespace Front_End
+namespace Front_End.Models
 {
+    // Local Database table model.
     public class Times
-
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
-
-        public string Time { get; set; }
-
-        
+        public int Time { get; set; }
 
         public override string ToString()
         {

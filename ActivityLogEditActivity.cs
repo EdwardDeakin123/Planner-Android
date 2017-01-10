@@ -65,14 +65,33 @@ namespace Front_End
             }
             catch (BackendTimeoutException)
             {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                // Display a popup.
+                DisplayAlert(GetString(Resource.String.timeout), GetString(Resource.String.timeout_message));
+            }
+            catch (AggregateException e)
+            {
+                // Catch the aggregate exception, this might be thrown by the asynchronous tasks in the backend.
+                // Handle any of the types that we are aware of.
+                // Managing of aggregate exceptions modified from code found here: https://msdn.microsoft.com/en-us/library/dd537614%28v=vs.110%29.aspx?f=255&MSPPError=-2147217396
 
-                builder.SetMessage(GetString(Resource.String.unable_to_connect));
-                builder.SetTitle(GetString(Resource.String.timeout));
+                e.Handle((x) =>
+                {
+                    if (x is WebException)
+                    {
+                        // Check for an inner exception of Socket Exception
+                        if (x.InnerException is System.Net.Sockets.SocketException)
+                        {
+                            // There is an issue connecting to the backend.
+                            DisplayAlert(GetString(Resource.String.connection_failed), GetString(Resource.String.connection_failed_message));
+                        }
 
-                AlertDialog dialog = builder.Create();
-                dialog.Create();
-                dialog.Show();
+                        // This exception matched, return true.
+                        return true;
+                    }
+
+                    // Was not able to handle the exception.
+                    return false;
+                });
             }
         }
         #endregion
@@ -136,6 +155,20 @@ namespace Front_End
                 }
                 System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
             }
+        }
+        #endregion
+
+        #region utility
+        private void DisplayAlert(string title, string message)
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.SetMessage(message);
+            builder.SetTitle(title);
+
+            AlertDialog dialog = builder.Create();
+            dialog.Create();
+            dialog.Show();
         }
         #endregion
     }

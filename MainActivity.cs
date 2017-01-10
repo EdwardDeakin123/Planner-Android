@@ -12,6 +12,7 @@ using Front_End.Models;
 using Front_End.Backend;
 using Front_End.Exceptions;
 using SQLite;
+using Front_End.Database;
 
 namespace Front_End
 {
@@ -46,16 +47,6 @@ namespace Front_End
 
             base.OnCreate(bundle);
 	    
-	        var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
-			var pathToDatabase = System.IO.Path.Combine(docsFolder, "db_sqlnet1.db");
-
-			var timenow = findTime(pathToDatabase);
-
-			if (timenow != DateTime.Now.Day.ToString())
-			{
-				StartActivity(typeof(Notification));
-			}
-
             // Using a global variable so we can simulate adding data when using the FakeData switch.
             _Activities = new List<ActivityModel>();
             _ActivityLogs = new List<ActivityLogModel>();
@@ -82,35 +73,22 @@ namespace Front_End
         protected override void OnResume()
         {
             base.OnResume();
-	    
-	        var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments);
-			var pathToDatabase = System.IO.Path.Combine(docsFolder, "db_sqlnet1.db");
 
-			var timenow = findTime(pathToDatabase);
+            TimesDatabase timeDb = new TimesDatabase();
 
-			if (timenow != DateTime.Now.Day.ToString())
-			{
-				StartActivity(typeof(Notification));
-			}
+			int latestTime = timeDb.FindLatest();
+
+            System.Diagnostics.Debug.WriteLine("!!!!!!!!! got " + latestTime + " and the current day is " + DateTime.Now.Day);
+
+            if (latestTime != DateTime.Now.Day)
+            {
+                new Notification();
+            }
 
             // Reload the planner when the activity is resumed.
             ReloadUI();
         }
 	
-	private string findTime(string path)
-		{
-			try
-			{
-				var db = new SQLiteConnection(path);
-				var count = db.FindWithQuery<Times>("SELECT * FROM Times WHERE ID = (SELECT MAX(ID) FROM Times)").Time;
-				return count;
-			}
-			catch (SQLiteException)
-			{
-				return ToString();
-			}
-		}
-
         #region backend
         private async void GetActivities()
         {
@@ -163,14 +141,33 @@ namespace Front_End
             }
             catch (BackendTimeoutException)
             {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                // Display a popup.
+                DisplayAlert(GetString(Resource.String.timeout), GetString(Resource.String.timeout_message));
+            }
+            catch (AggregateException ex)
+            {
+                // Catch the aggregate exception, this might be thrown by the asynchronous tasks in the backend.
+                // Handle any of the types that we are aware of.
+                // Managing of aggregate exceptions modified from code found here: https://msdn.microsoft.com/en-us/library/dd537614%28v=vs.110%29.aspx?f=255&MSPPError=-2147217396
 
-                builder.SetMessage(GetString(Resource.String.unable_to_connect));
-                builder.SetTitle(GetString(Resource.String.timeout));
+                ex.Handle((x) =>
+                {
+                    if (x is WebException)
+                    {
+                        // Check for an inner exception of Socket Exception
+                        if (x.InnerException is System.Net.Sockets.SocketException)
+                        {
+                            // There is an issue connecting to the backend.
+                            DisplayAlert(GetString(Resource.String.connection_failed), GetString(Resource.String.connection_failed_message));
+                        }
 
-                AlertDialog dialog = builder.Create();
-                dialog.Create();
-                dialog.Show();
+                        // This exception matched, return true.
+                        return true;
+                    }
+
+                    // Was not able to handle the exception.
+                    return false;
+                });
             }
         }
 
@@ -207,14 +204,33 @@ namespace Front_End
             }
             catch (BackendTimeoutException)
             {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                // Display a popup.
+                DisplayAlert(GetString(Resource.String.timeout), GetString(Resource.String.timeout_message));
+            }
+            catch (AggregateException ex)
+            {
+                // Catch the aggregate exception, this might be thrown by the asynchronous tasks in the backend.
+                // Handle any of the types that we are aware of.
+                // Managing of aggregate exceptions modified from code found here: https://msdn.microsoft.com/en-us/library/dd537614%28v=vs.110%29.aspx?f=255&MSPPError=-2147217396
 
-                builder.SetMessage(GetString(Resource.String.unable_to_connect));
-                builder.SetTitle(GetString(Resource.String.timeout));
+                ex.Handle((x) =>
+                {
+                    if(x is WebException)
+                    {
+                        // Check for an inner exception of Socket Exception
+                        if (x.InnerException is System.Net.Sockets.SocketException)
+                        {
+                            // There is an issue connecting to the backend.
+                            DisplayAlert(GetString(Resource.String.connection_failed), GetString(Resource.String.connection_failed_message));
+                        }
 
-                AlertDialog dialog = builder.Create();
-                dialog.Create();
-                dialog.Show();
+                        // This exception matched, return true.
+                        return true;
+                    }
+                    
+                    // Was not able to handle the exception.
+                    return false;
+                });
             }
         }
 
@@ -249,14 +265,33 @@ namespace Front_End
             }
             catch (BackendTimeoutException)
             {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                // Display a popup.
+                DisplayAlert(GetString(Resource.String.timeout), GetString(Resource.String.timeout_message));
+            }
+            catch (AggregateException ex)
+            {
+                // Catch the aggregate exception, this might be thrown by the asynchronous tasks in the backend.
+                // Handle any of the types that we are aware of.
+                // Managing of aggregate exceptions modified from code found here: https://msdn.microsoft.com/en-us/library/dd537614%28v=vs.110%29.aspx?f=255&MSPPError=-2147217396
 
-                builder.SetMessage(GetString(Resource.String.unable_to_connect));
-                builder.SetTitle(GetString(Resource.String.timeout));
+                ex.Handle((x) =>
+                {
+                    if (x is WebException)
+                    {
+                        // Check for an inner exception of Socket Exception
+                        if (x.InnerException is System.Net.Sockets.SocketException)
+                        {
+                            // There is an issue connecting to the backend.
+                            DisplayAlert(GetString(Resource.String.connection_failed), GetString(Resource.String.connection_failed_message));
+                        }
 
-                AlertDialog dialog = builder.Create();
-                dialog.Create();
-                dialog.Show();
+                        // This exception matched, return true.
+                        return true;
+                    }
+
+                    // Was not able to handle the exception.
+                    return false;
+                });
             }
         }
         #endregion
@@ -530,6 +565,18 @@ namespace Front_End
         #endregion
 
         #region utility
+        private void DisplayAlert(string title, string message)
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.SetMessage(message);
+            builder.SetTitle(title);
+
+            AlertDialog dialog = builder.Create();
+            dialog.Create();
+            dialog.Show();
+        }
+
         private Color GetActivityColor(int activityId)
         {
             // This method will return a color resource ID. This is used to keep the colors consistent between each activity type

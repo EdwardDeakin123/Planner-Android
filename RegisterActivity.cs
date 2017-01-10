@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Widget;
 using Front_End.Backend;
 using System.Net;
+using Front_End.Exceptions;
 
 namespace Front_End
 {
@@ -64,17 +65,50 @@ namespace Front_End
                     FindViewById<TextView>(Resource.Id.tvErrors).Text = GetString(Resource.String.unknown_error);
                 }
             }
-            catch (TimeoutException)
+            catch (BackendTimeoutException)
             {
-                AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-                builder.SetMessage(GetString(Resource.String.unable_to_connect));
-                builder.SetTitle(GetString(Resource.String.timeout));
-
-                AlertDialog dialog = builder.Create();
-                dialog.Create();
-                dialog.Show();
+                // Display a popup.
+                DisplayAlert(GetString(Resource.String.timeout), GetString(Resource.String.timeout_message));
             }
+            catch (AggregateException ex)
+            {
+                // Catch the aggregate exception, this might be thrown by the asynchronous tasks in the backend.
+                // Handle any of the types that we are aware of.
+                // Managing of aggregate exceptions modified from code found here: https://msdn.microsoft.com/en-us/library/dd537614%28v=vs.110%29.aspx?f=255&MSPPError=-2147217396
+
+                ex.Handle((x) =>
+                {
+                    if (x is WebException)
+                    {
+                        // Check for an inner exception of Socket Exception
+                        if (x.InnerException is System.Net.Sockets.SocketException)
+                        {
+                            // There is an issue connecting to the backend.
+                            DisplayAlert(GetString(Resource.String.connection_failed), GetString(Resource.String.connection_failed_message));
+                        }
+
+                        // This exception matched, return true.
+                        return true;
+                    }
+
+                    // Was not able to handle the exception.
+                    return false;
+                });
+            }
+        }
+        #endregion
+
+        #region utility
+        private void DisplayAlert(string title, string message)
+        {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.SetMessage(message);
+            builder.SetTitle(title);
+
+            AlertDialog dialog = builder.Create();
+            dialog.Create();
+            dialog.Show();
         }
         #endregion
     }
