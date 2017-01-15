@@ -6,6 +6,7 @@ using Java.Util;
 using Android.Util;
 using Front_End.Database;
 using Front_End.Models;
+using Android.Database.Sqlite;
 
 namespace Front_End
 {
@@ -23,11 +24,6 @@ namespace Front_End
 
 			ListEvents();
 			ListEvents2();
-
-			//var records = findTime();
-			int check = _TimesDb.FindLatest();
-			//string Tag = Convert.ToString(check);
-			Log.Debug(check.ToString(), "hello");
 		}
 
 		long GetDateTimeMS(int yr, int month, int day, int hr, int min)
@@ -108,23 +104,30 @@ namespace Front_End
 			eventValues.Put(CalendarContract.Events.InterfaceConsts.EventTimezone, "UTC");
 			eventValues.Put(CalendarContract.Events.InterfaceConsts.EventEndTimezone, "UTC");
 
-			var uri = Application.Context.ContentResolver.Insert(CalendarContract.Events.ContentUri, eventValues);
-			Console.WriteLine("Uri for new event: {0}", uri);
+            try
+            {
+                var uri = Application.Context.ContentResolver.Insert(CalendarContract.Events.ContentUri, eventValues);
 
-			long eventID = long.Parse(uri.LastPathSegment);
-			string Tags = eventID.ToString();
+                Console.WriteLine("Uri for new event: {0}", uri);
 
-			Console.WriteLine("Here it is:D {0}", Tags);
+                long eventID = long.Parse(uri.LastPathSegment);
+                string Tags = eventID.ToString();
+                Console.WriteLine("Here it is:D {0}", Tags);
 
-			var reminderValues = new ContentValues();
-			reminderValues.Put(CalendarContract.Reminders.InterfaceConsts.EventId, eventID);
-			reminderValues.Put(CalendarContract.Reminders.InterfaceConsts.Method, (int)RemindersMethod.Alert);
-			reminderValues.Put(CalendarContract.Reminders.InterfaceConsts.Minutes, 1);
+                var reminderValues = new ContentValues();
+                reminderValues.Put(CalendarContract.Reminders.InterfaceConsts.EventId, eventID);
+                reminderValues.Put(CalendarContract.Reminders.InterfaceConsts.Method, (int)RemindersMethod.Alert);
+                reminderValues.Put(CalendarContract.Reminders.InterfaceConsts.Minutes, 1);
 
-			var reminderUri = Application.Context.ContentResolver.Insert(CalendarContract.Reminders.ContentUri, reminderValues);
-			Console.WriteLine("Uri for new event: {0}", reminderUri);
+                var reminderUri = Application.Context.ContentResolver.Insert(CalendarContract.Reminders.ContentUri, reminderValues);
+                Console.WriteLine("Uri for new event: {0}", reminderUri);
+            }
+            catch (SQLiteException ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Hit an error: " + ex.Message);
+            }
 
-			_TimesDb.InsertData(new Times { Time = DateTime.Now.Day });
+            _TimesDb.InsertData(new Times { Time = DateTime.Now.Day });
 		}
 	}
 }

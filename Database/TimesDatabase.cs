@@ -28,12 +28,26 @@ namespace Front_End.Database
 
         public int FindLatest()
         {
-            // this counts all records in the database, it can be slow depending on the size of the database
-            int time = _Database.FindWithQuery<Times>("SELECT * FROM Times WHERE ID = (SELECT MAX(ID) FROM Times)").Time;
+            try
+            {
+                // this counts all records in the database, it can be slow depending on the size of the database
+                Times result = _Database.FindWithQuery<Times>("SELECT * FROM Times WHERE ID = (SELECT MAX(ID) FROM Times)");
 
-            System.Diagnostics.Debug.WriteLine("Got the following day: " + time);
+                if(result == default(Times))
+                {
+                    // There are no existing elements in the database.
+                    return -1;
+                }
 
-            return time;
+                System.Diagnostics.Debug.WriteLine("Got the following day: " + result.Time);
+
+                return result.Time;
+            }
+            catch(SQLiteException)
+            {
+                // Something went wrong.
+                return -1;
+            }
         }
     }
 }

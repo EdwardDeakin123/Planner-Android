@@ -44,6 +44,7 @@ namespace Front_End.Backend
             LoadCookie();
         }
 
+        #region utility
         private string GetUrlString()
         {
             // Build the URL from the global variables and query string.
@@ -122,6 +123,21 @@ namespace Front_End.Backend
             });
         }
 
+        private HttpWebRequest GetWebRequest(string url)
+        {
+            // Create a request, set the content type.
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
+            request.Timeout = TIMEOUT;
+
+            // Assign the cookie container to the request object, this authenticates this request.
+            request.CookieContainer = _CookieContainer;
+            request.ContentType = "application/json";
+
+            return request;
+        }
+        #endregion
+
+        #region requests
         public async Task<List<T>> GetRequestListAsync<T>() where T : IBackendType
         {
             // Using Generics so I can have a single function for getting elements of any type from the API.
@@ -137,14 +153,9 @@ namespace Front_End.Backend
                 url += "?" + queryString;
             }
 
-            // Create a request, set the content type and method.
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
-            request.Timeout = TIMEOUT;
-            request.ContentType = "application/json";
+            // Create a request, and set the method
+            HttpWebRequest request = GetWebRequest(url);
             request.Method = "GET";
-
-            // Assign our own cookie container to the request object.
-            request.CookieContainer = _CookieContainer;
 
             // Create a JsonSerializer to convert the stream from the server into an object.
             var serializer = new JsonSerializer();
@@ -180,13 +191,9 @@ namespace Front_End.Backend
                 url += "?" + queryString;
             }
 
-            // Create a request, set the content type and method.
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
-            request.Timeout = TIMEOUT;
-            request.ContentType = "application/json";
+            // Create a request, and set the method
+            HttpWebRequest request = GetWebRequest(url);
             request.Method = "GET";
-            // Assign our own cookie container to the request object.
-            request.CookieContainer = _CookieContainer;
 
             // Create a JsonSerializer to convert the stream from the server into an object.
             var serializer = new JsonSerializer();
@@ -216,20 +223,11 @@ namespace Front_End.Backend
             string url = GetUrlString();
             string jsonString = GetJSON();
 
-            // Create a request, set the content type and method.
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
-            request.Timeout = TIMEOUT;
-
-            // Assign our own cookie container to the request object.
-            request.CookieContainer = _CookieContainer;
-
-            // Set a proxy - Used for debugging with Fiddler.
-            // TODO Disable this later.
-            //WebRequest.DefaultWebProxy = new WebProxy("192.168.0.13", 8888);
-
+            // Create a request, and set the method
+            HttpWebRequest request = GetWebRequest(url);
             request.Method = "POST";
+
             System.Diagnostics.Debug.WriteLine("Post Request JSON string!" + jsonString);
-            request.ContentType = "application/json";
 
             // Write the JSON data to the stream.
             using(var stream = new StreamWriter(request.GetRequestStream()))
@@ -260,20 +258,12 @@ namespace Front_End.Backend
             string url = GetUrlString();
             string jsonString = GetJSON();
 
-            // Create a request, set the content type and method.
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
-            request.Timeout = TIMEOUT;
-
-            // Assign our own cookie container to the request object.
-            request.CookieContainer = _CookieContainer;
-
-            // Set a proxy - Used for debugging with Fiddler.
-            // TODO Disable this later.
-            //WebRequest.DefaultWebProxy = new WebProxy("192.168.0.13", 8888);
+            // Create a request, and set the method
+            HttpWebRequest request = GetWebRequest(url);
 
             request.Method = "PUT";
-            System.Diagnostics.Debug.WriteLine("Post Request JSON string!" + jsonString);
-            request.ContentType = "application/json";
+
+            System.Diagnostics.Debug.WriteLine("PUT Request JSON string!" + jsonString);
 
             // Write the JSON data to the stream.
             using (var stream = new StreamWriter(request.GetRequestStream()))
@@ -298,20 +288,16 @@ namespace Front_End.Backend
                 url += "?" + queryString;
             }
 
-            // Create a request, set the content type and method.
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
-            request.Timeout = TIMEOUT;
-            request.ContentType = "application/json";
+            // Create a request, and set the method
+            HttpWebRequest request = GetWebRequest(url);
             request.Method = "DELETE";
-
-            // Assign our own cookie container to the request object.
-            request.CookieContainer = _CookieContainer;
 
             // Send the request asynchronously.
             await TaskWithTimeout(request.GetResponseAsync(), TIMEOUT);
         }
+        #endregion
 
-
+        #region cookies
         private void LoadCookie()
         {
             // Access the SharedPreferences and retrieve the saved cookie.
@@ -324,12 +310,25 @@ namespace Front_End.Backend
 
             if(cookieName != "")
             {
+                System.Diagnostics.Debug.WriteLine("The cookie is here!");
                 // If the cookieName is not empty, assume the other values were correctly retrieved.
                 // Create a cookie.
                 Cookie newCookie = new Cookie(cookieName, cookieValue, cookiePath, cookieDomain);
 
-                // Add the cookie to the collection.
-                _CookieContainer.Add(newCookie);
+
+                if (!newCookie.Expired)
+                {
+                    // Add the cookie to the collection.
+                    _CookieContainer.Add(newCookie);
+                }
+                else
+                {
+                    System.Diagnostics.Debug.WriteLine("This cookie has expired. Don't add it.");
+                }
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("No cookies! :(");
             }
         }
 
@@ -356,5 +355,6 @@ namespace Front_End.Backend
             // Apply the changes.
             spEditor.Apply();
         }
+        #endregion
     }
 }

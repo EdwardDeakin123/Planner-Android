@@ -74,19 +74,15 @@ namespace Front_End
         {
             base.OnResume();
 
+            // Reload the planner when the activity is resumed.
+            ReloadUI();
+
             TimesDatabase timeDb = new TimesDatabase();
 
-			int latestTime = timeDb.FindLatest();
-
-            System.Diagnostics.Debug.WriteLine("!!!!!!!!! got " + latestTime + " and the current day is " + DateTime.Now.Day);
-
-            if (latestTime != DateTime.Now.Day)
+            if (timeDb.FindLatest() != DateTime.Now.Day)
             {
                 new Notification();
             }
-
-            // Reload the planner when the activity is resumed.
-            ReloadUI();
         }
 	
         #region backend
@@ -117,8 +113,12 @@ namespace Front_End
                     };
                 }
 
+                System.Diagnostics.Debug.WriteLine("Got some activities.");
+
                 foreach (ActivityModel act in _Activities)
                 {
+                    System.Diagnostics.Debug.WriteLine("Got activity: " + act.ActivityName);
+
                     Button actButton = new Button(this);
                     actButton.Text = act.ActivityName;
 
@@ -159,10 +159,27 @@ namespace Front_End
                         {
                             // There is an issue connecting to the backend.
                             DisplayAlert(GetString(Resource.String.connection_failed), GetString(Resource.String.connection_failed_message));
+
+                            // The exception has been handled. Return true.
+                            return true;
+                        }
+                        else
+                        {
+                            WebException wEx = (WebException)x;
+
+                            if (((HttpWebResponse)wEx.Response).StatusCode == HttpStatusCode.Unauthorized)
+                            {
+                                // The user is not logged in. Move to the Login activity.
+                                StartActivity(new Intent(this, typeof(LoginActivity)));
+
+                                // The exception has been handled. Return true.
+                                return true;
+                            }
+
+                            System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
                         }
 
-                        // This exception matched, return true.
-                        return true;
+                        System.Diagnostics.Debug.WriteLine("Got an aggregate exception...");
                     }
 
                     // Was not able to handle the exception.
@@ -215,19 +232,36 @@ namespace Front_End
 
                 ex.Handle((x) =>
                 {
-                    if(x is WebException)
+                    if (x is WebException)
                     {
                         // Check for an inner exception of Socket Exception
                         if (x.InnerException is System.Net.Sockets.SocketException)
                         {
                             // There is an issue connecting to the backend.
                             DisplayAlert(GetString(Resource.String.connection_failed), GetString(Resource.String.connection_failed_message));
+
+                            // The exception has been handled. Return true.
+                            return true;
+                        }
+                        else
+                        {
+                            WebException wEx = (WebException)x;
+
+                            if (((HttpWebResponse)wEx.Response).StatusCode == HttpStatusCode.Unauthorized)
+                            {
+                                // The user is not logged in. Move to the Login activity.
+                                StartActivity(new Intent(this, typeof(LoginActivity)));
+
+                                // The exception has been handled. Return true.
+                                return true;
+                            }
+
+                            System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
                         }
 
-                        // This exception matched, return true.
-                        return true;
+                        System.Diagnostics.Debug.WriteLine("Got an aggregate exception...");
                     }
-                    
+
                     // Was not able to handle the exception.
                     return false;
                 });
@@ -283,10 +317,27 @@ namespace Front_End
                         {
                             // There is an issue connecting to the backend.
                             DisplayAlert(GetString(Resource.String.connection_failed), GetString(Resource.String.connection_failed_message));
+
+                            // The exception has been handled. Return true.
+                            return true;
+                        }
+                        else
+                        {
+                            WebException wEx = (WebException)x;
+
+                            if (((HttpWebResponse)wEx.Response).StatusCode == HttpStatusCode.Unauthorized)
+                            {
+                                // The user is not logged in. Move to the Login activity.
+                                StartActivity(new Intent(this, typeof(LoginActivity)));
+
+                                // The exception has been handled. Return true.
+                                return true;
+                            }
+
+                            System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
                         }
 
-                        // This exception matched, return true.
-                        return true;
+                        System.Diagnostics.Debug.WriteLine("Got an aggregate exception...");
                     }
 
                     // Was not able to handle the exception.
@@ -647,5 +698,4 @@ namespace Front_End
         }
         #endregion
     }
-
 }

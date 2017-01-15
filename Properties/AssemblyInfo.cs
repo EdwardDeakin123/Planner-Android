@@ -26,3 +26,9 @@ using Android.App;
 //[assembly: AssemblyDelaySign(false)]
 //[assembly: AssemblyKeyFile("")]
 
+// Set Debuggable to false when building for "release"
+#if DEBUG
+[assembly: Application(Debuggable = true)]
+#else
+[assembly: Application(Debuggable=false)]
+#endif
