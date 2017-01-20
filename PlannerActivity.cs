@@ -17,33 +17,50 @@ using Front_End.Database;
 namespace Front_End
 {
     [Activity(Label = "Activity Tracker")]
-	public class MainActivity : Activity
+	public class PlannerActivity : Activity
 	{
         // Layout elements.
-        RelativeLayout _RLHover;
-        RelativeLayout _RLDropzone;
+        protected RelativeLayout _RLHover;
+
+        //TODO Remove this
+        //RelativeLayout _RLDropzone;
 
         // The date of the current view.
-        DateTime _ViewDate;
+        protected DateTime _ViewDate;
 
         // Global variables used with the demo mode (_FakeData).
-        List<ActivityModel> _Activities;
-        List<ActivityLogModel> _ActivityLogs;
-        int _ActivityLogId;
+        protected List<ActivityModel> _Activities;
+        protected List<ActivityLogModel> _ActivityLogs;
+        protected int _ActivityLogId;
 
         // List that contains the list of colors associated with each activity ID.
-        List<KeyValuePair<int, Color>> _ActivityColors;
+        protected List<KeyValuePair<int, Color>> _ActivityColors;
 
         // Set the DP taken up by one hour.
-        private const int HOUR_DP = 60;
+        protected const int HOUR_DP = 60;
+
+        // Use constants to differenciate between Daily and Weekly view types.
+        protected const int DAILY_VIEW = 0;
+        protected const int WEEKLY_VIEW = 1;
 
         // This variable is used to skip the backend and just use test data.
-        bool _FakeData = false;
+        protected bool _FakeData = true;
 
-		protected override void OnCreate(Bundle bundle)
+        protected override void OnCreate(Bundle savedInstanceState)
+        {
+            base.OnCreate(savedInstanceState);
+
+            // Using a global variable so we can simulate adding data when using the FakeData switch.
+            _Activities = new List<ActivityModel>();
+            _ActivityLogs = new List<ActivityLogModel>();
+            _ActivityLogId = 0;
+            _ActivityColors = new List<KeyValuePair<int, Color>>();
+        }
+
+        /*protected override void OnCreate(Bundle bundle)
 		{
 			// Set our view from the "main" layout resource
-			SetContentView(Resource.Layout.PlannerDaily);
+			SetContentView(Resource.Layout.PlannerWeekly);
 
             base.OnCreate(bundle);
 	    
@@ -64,13 +81,9 @@ namespace Front_End
                 // If the current view date is not set, set it to the current day.
                 _ViewDate = new DateTime(currentTime.Year, currentTime.Month, currentTime.Day, 0, 0, 0);
             }
+        }*/
 
-            // Get the dropzone and attach a drag event listener.
-            _RLDropzone = FindViewById<RelativeLayout>(Resource.Id.rlDropzone);
-            _RLDropzone.Drag += DropZone_Drag;
-        }
-
-        protected override void OnResume()
+        /*protected override void OnResume()
         {
             base.OnResume();
 
@@ -83,8 +96,8 @@ namespace Front_End
             {
                 new Notification();
             }
-        }
-	
+        }*/
+
         #region backend
         private async void GetActivities()
         {
@@ -103,6 +116,8 @@ namespace Front_End
                 }
                 else
                 {
+                    System.Diagnostics.Debug.WriteLine("Running in dummy mode.");
+
                     // Populate the page with fake data.
                     _Activities = new List<ActivityModel>()
                     {
@@ -268,7 +283,7 @@ namespace Front_End
             }
         }
 
-        private async void AddActivityLogToBackend(int activityId, DateTime startTime, DateTime endTime)
+        protected async void AddActivityLogToBackend(int activityId, DateTime startTime, DateTime endTime)
         {
             try
             {
@@ -348,7 +363,7 @@ namespace Front_End
         #endregion
 
         #region event handlers
-        private void Activity_LongClick(object sender, View.LongClickEventArgs e)
+        protected void Activity_LongClick(object sender, View.LongClickEventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("Activity Long Click... Starting Drag...");
 
@@ -371,10 +386,13 @@ namespace Front_End
             }
         }
 
-        private void DropZone_Drag(object sender, View.DragEventArgs e)
+        protected void DropZone_Drag(object sender, View.DragEventArgs e)
         {
             // Get the event from the sender object.
             var dragEvent = e.Event;
+
+            // Get the Dropzone's relative layout.
+            RelativeLayout dropzone = (RelativeLayout)sender;
 
             // Perform an action.
             switch (dragEvent.Action)
@@ -384,15 +402,15 @@ namespace Front_End
                     e.Handled = true;
                     break;
                 case DragAction.Entered:
-                    PlannerPreview_Create(HOUR_DP);
+                    PlannerPreview_Create(dropzone, HOUR_DP);
                     break;
                 case DragAction.Exited:
                     // Remove the temporary RelativeLayout when leaving the drop zone.
-                    PlannerPreview_Remove();
+                    PlannerPreview_Remove(dropzone);
                     break;
                 case DragAction.Drop:
                     // Remove the temporary RelativeLayout when the activity is dropped onto the planner.
-                    PlannerPreview_Remove();
+                    PlannerPreview_Remove(dropzone);
 
                     // Work out which hour the activity was dragged to in the UI.
                     int hour = CalculateHourFromPosition(dragEvent.GetY());
@@ -400,10 +418,42 @@ namespace Front_End
                     // Get the activity ID from the clip data.
                     int activityId = int.Parse(dragEvent.ClipData.GetItemAt(0).Text);
 
-                    // Calculate the start and end times and create DateTime objects.
-                    // End time is the same as start time plus one hour.
-                    DateTime startTime = new DateTime(_ViewDate.Year, _ViewDate.Month, _ViewDate.Day, hour, 0, 0);
-                    DateTime endTime = new DateTime(_ViewDate.Year, _ViewDate.Month, _ViewDate.Day, hour + 1, 0, 0);
+                    // Calculate the start and end date / times for this activity log.
+                    DateTime startTime;
+                    DateTime endTime;
+
+                    // Determine if this is a daily or weekly view.
+                    // TODO this can probably be set earlier and not done every time something is dropped.
+                    if(GetPlannerMode() == DAILY_VIEW)
+                    {
+                        // This is a daily view. Calculate the start and end times and create DateTime objects.
+                        // End time is the same as start time plus one hour.
+                        startTime = new DateTime(_ViewDate.Year, _ViewDate.Month, _ViewDate.Day, hour, 0, 0);
+                        endTime = new DateTime(_ViewDate.Year, _ViewDate.Month, _ViewDate.Day, hour + 1, 0, 0);
+
+                        System.Diagnostics.Debug.WriteLine("This is a daily view.");
+                    }
+                    else
+                    {
+                        // This is a weekly view. ViewDate is not necessarily the correct date to use.
+                        // Get the day of the week of the ViewDate.
+                        int vdDow = (int)_ViewDate.DayOfWeek;
+
+                        // Get the day of the week of this dropzone.
+                        int dzDow = GetDayOfWeekByDropzone(dropzone);
+
+                        // Calculate the difference between the view date and the dropzone day so we can calculate the actual date.
+                        int diff = dzDow - vdDow;
+                        System.Diagnostics.Debug.WriteLine("Diff is: " + diff);
+
+                        // Add (or remove if negative) the difference from the view date.
+                        DateTime alDate = _ViewDate.AddDays(diff);
+
+                        System.Diagnostics.Debug.WriteLine("This is a weekly view. View Date is the " + alDate.Day + " day of the month");
+
+                        startTime = new DateTime(alDate.Year, alDate.Month, alDate.Day, hour, 0, 0);
+                        endTime = new DateTime(alDate.Year, alDate.Month, alDate.Day, hour + 1, 0, 0);
+                    }
 
                     // Add the activity to the backend.
                     AddActivityLogToBackend(activityId, startTime, endTime);
@@ -418,7 +468,7 @@ namespace Front_End
             }
         }
 
-        private void ActivityLog_OnClick(object sender, EventArgs e)
+        protected void ActivityLog_OnClick(object sender, EventArgs e)
         {
             var activityLogEditActivity = new Intent(this, typeof(ActivityLogEditActivity));
 
@@ -428,7 +478,7 @@ namespace Front_End
             StartActivity(activityLogEditActivity);
         }
 
-        private void PreviousDay_OnClick(object sender, EventArgs e)
+        protected void PreviousDay_OnClick(object sender, EventArgs e)
         {
             // Update the view date
             _ViewDate = _ViewDate.AddDays(-1);
@@ -437,7 +487,7 @@ namespace Front_End
             ReloadUI();
         }
 
-        private void NextDay_OnClick(object sender, EventArgs e)
+        protected void NextDay_OnClick(object sender, EventArgs e)
         {
             // Update the view date
             _ViewDate = _ViewDate.AddDays(1);
@@ -448,7 +498,7 @@ namespace Front_End
         #endregion
 
         #region planner
-        private void ReloadUI()
+        protected void ReloadUI()
         {
             // Set the heading to be the date.
             FindViewById<TextView>(Resource.Id.tvDate).Text = _ViewDate.Day + "/" + _ViewDate.Month + "/" + _ViewDate.Year;
@@ -460,7 +510,7 @@ namespace Front_End
             GetActivityLogs();
         }
 
-        private void PlannerPreview_Create(int size)
+        protected void PlannerPreview_Create(ViewGroup view, int size)
         {
             // This method creates a RelativeLayout that is meant to show the user where a new activity log will
             // be created if they drop an activity on the planner.
@@ -473,16 +523,16 @@ namespace Front_End
             _RLHover.SetBackgroundColor(new Android.Graphics.Color(GetColor(Resource.Color.blue_hover)));
             _RLHover.LayoutParameters = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, (int)pixels);
 
-            _RLDropzone.AddView(_RLHover);
+            view.AddView(_RLHover);
         }
 
-        private void PlannerPreview_Remove()
+        protected void PlannerPreview_Remove(ViewGroup view)
         {
             // Remove the preview RelativeLayout from the drop zone.
-            _RLDropzone.RemoveView(_RLHover);
+            view.RemoveView(_RLHover);
         }
 
-        private void PlannerPreview_Move(View view, float yPosition)
+        protected void PlannerPreview_Move(View view, float yPosition)
         {
             // This method positions a temporary RelativeLayout in the planner to show the user
             // where the activity log will be added. It snaps to the nearest hour on the planner.
@@ -500,7 +550,7 @@ namespace Front_End
             view.SetY(pixels);
         }
 
-        private void AddActivityLogToCalendar(ActivityLogModel activityLog)
+        protected void AddActivityLogToCalendar(ActivityLogModel activityLog)
         {
             //TODO: Verify the day here.
             // Work out where to place the start of the activity log.
@@ -518,6 +568,19 @@ namespace Front_End
             // Get the start and end times as strings.
             string startTime = activityLog.StartTime.ToString("HH:mm");
             string endTime = activityLog.EndTime.ToString("HH:mm");
+
+            // Determine which dropzone to place this activitylog into.
+            RelativeLayout dropzone;
+
+            if(GetPlannerMode() == DAILY_VIEW)
+            {
+                dropzone = FindViewById<RelativeLayout>(Resource.Id.rlDropzone);
+            }
+            else
+            {
+                // This is a weekly view, get the correct dropzone by the Day Of Week.
+                dropzone = GetDropzoneByDayOfWeek((int)activityLog.StartTime.DayOfWeek);
+            }
 
             // Create the ActivityLog view and set the name and times in the TextView
             View vActivityLog = LayoutInflater.Inflate(Resource.Layout.ActivityLogEvent, null);
@@ -544,12 +607,13 @@ namespace Front_End
             // Add a tag to the ActivityLog to identify it.
             vActivityLog.SetTag(Resource.Id.activity_log_id, activityLog.ActivityLogId);
 
-            _RLDropzone.AddView(vActivityLog);
+            //TODO: Figure out how to manage drop zones.
+            dropzone.AddView(vActivityLog);
 
             // Get the number of children elements in the Dropzone.
             // This is used to find any views that are next to this one and position them correctly.
             // Based on this stackoverflow post: http://stackoverflow.com/questions/6615723/getting-child-elements-from-linearlayout
-            int childCount = _RLDropzone.ChildCount;
+            int childCount = dropzone.ChildCount;
             RelativeLayout childView;
             int adjacentLogs = 0;
             int lastId = 0;
@@ -557,7 +621,7 @@ namespace Front_End
             for(int i = 0; i < childCount; i++)
             {
                 // Get the child view from the dropzone.
-                childView = (RelativeLayout)_RLDropzone.GetChildAt(i);
+                childView = (RelativeLayout)dropzone.GetChildAt(i);
 
                 if(childView.Id == vActivityLog.Id)
                 {
@@ -616,7 +680,7 @@ namespace Front_End
         #endregion
 
         #region utility
-        private void DisplayAlert(string title, string message)
+        protected void DisplayAlert(string title, string message)
         {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -628,7 +692,88 @@ namespace Front_End
             dialog.Show();
         }
 
-        private Color GetActivityColor(int activityId)
+        protected RelativeLayout GetDropzoneByDayOfWeek(int dayOfWeek)
+        {
+            // Get the drop zone for any of the days of the week.
+            RelativeLayout dropzone = default(RelativeLayout);
+
+            switch(dayOfWeek)
+            {
+                case 0:
+                    dropzone = FindViewById<RelativeLayout>(Resource.Id.rlSunDropzone);
+                    break;
+                case 1:
+                    dropzone = FindViewById<RelativeLayout>(Resource.Id.rlMonDropzone);
+                    break;
+                case 2:
+                    dropzone = FindViewById<RelativeLayout>(Resource.Id.rlTueDropzone);
+                    break;
+                case 3:
+                    dropzone = FindViewById<RelativeLayout>(Resource.Id.rlWedDropzone);
+                    break;
+                case 4:
+                    dropzone = FindViewById<RelativeLayout>(Resource.Id.rlThuDropzone);
+                    break;
+                case 5:
+                    dropzone = FindViewById<RelativeLayout>(Resource.Id.rlFriDropzone);
+                    break;
+                case 6:
+                    dropzone = FindViewById<RelativeLayout>(Resource.Id.rlSatDropzone);
+                    break;
+            }
+            
+            return dropzone;
+        }
+
+        protected int GetDayOfWeekByDropzone(RelativeLayout dropzone)
+        {
+            // Get the drop zone for any of the days of the week.
+            int dow = -1;
+
+            switch (dropzone.Id)
+            {
+                case Resource.Id.rlSunDropzone:
+                    dow = 0;
+                    break;
+                case Resource.Id.rlMonDropzone:
+                    dow = 1;
+                    break;
+                case Resource.Id.rlTueDropzone:
+                    dow = 2;
+                    break;
+                case Resource.Id.rlWedDropzone:
+                    dow = 3;
+                    break;
+                case Resource.Id.rlThuDropzone:
+                    dow = 4;
+                    break;
+                case Resource.Id.rlFriDropzone:
+                    dow = 5;
+                    break;
+                case Resource.Id.rlSatDropzone:
+                    dow = 6;
+                    break;
+            }
+
+            return dow;
+        }
+
+        protected int GetPlannerMode()
+        {
+            // Count how many dropzones are on the screen. This will tell us if it's a daily or weekly view.
+            int noDropzones = FindViewById<LinearLayout>(Resource.Id.llDropzoneParent).ChildCount;
+
+            if(noDropzones == 1)
+            {
+                // If there is only one child, this is a daily view.
+                return DAILY_VIEW;
+            }
+
+            // Otherwise, this is a weekly view.
+            return WEEKLY_VIEW;
+        }
+
+        protected Color GetActivityColor(int activityId)
         {
             // This method will return a color resource ID. This is used to keep the colors consistent between each activity type
             // on the planner.
@@ -660,34 +805,44 @@ namespace Front_End
             return activityColor;
         }
 
-        private void ClearDropzone()
+        protected void ClearDropzone()
         {
-            // Remove all views in the dropzone. Use this when refreshing.
-            _RLDropzone.RemoveAllViews();
+            // Loop through all of the dropzones on the screen and remove all child elements.
+            LinearLayout llDropzoneParent = FindViewById<LinearLayout>(Resource.Id.llDropzoneParent);
+
+            int childCount = llDropzoneParent.ChildCount;
+            RelativeLayout childView;
+
+            for (int i = 0; i < childCount; i++)
+            {
+                // Get the child view from the dropzone.
+                childView = (RelativeLayout)llDropzoneParent.GetChildAt(i);
+                childView.RemoveAllViews();
+            }
         }
 
-        private void ClearActivities()
+        protected void ClearActivities()
         {
             // Remove all views in the dropzone. Use this when refreshing.
             LinearLayout llActivities = FindViewById<LinearLayout>(Resource.Id.llActivities);
             llActivities.RemoveAllViews();
         }
 
-        public int PixelsToDP(float pixels)
+        protected int PixelsToDP(float pixels)
         {
             // Convert pixels to DP.
             // https://developer.xamarin.com/recipes/android/resources/device_specific/detect_screen_size/
             return (int)((pixels) / Resources.DisplayMetrics.Density);
         }
 
-        public float DPToPixels(int dp)
+        protected float DPToPixels(int dp)
         {
             // Convert DP to pixels. This is required as most (if not all) elements don't accept DP programmatically.
             // https://developer.xamarin.com/recipes/android/resources/device_specific/detect_screen_size/
             return (dp) * Resources.DisplayMetrics.Density;
         }
 
-        private int CalculateHourFromPosition(float yPosition)
+        protected int CalculateHourFromPosition(float yPosition)
         {
             // This method takes a position on the screen in pixels and calculates what the hour would be on the planner.
             // Each hour uses 60dp of screen space which makes it trivial to calculate.

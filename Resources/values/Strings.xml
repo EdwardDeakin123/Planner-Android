@@ -22,6 +22,13 @@
   <string name="connection_failed">Connection Failed</string>
   <string name="connection_failed_message">Unable to connect to the backend</string>
   <string name="retry">Retry</string>
+  <string name="short_sunday">Sun</string>
+  <string name="short_monday">Mon</string>
+  <string name="short_tuesday">Tue</string>
+  <string name="short_wednesday">Wed</string>
+  <string name="short_thursday">Thu</string>
+  <string name="short_friday">Fri</string>
+  <string name="short_saturday">Sat</string>
   <string name="end_time">End Time</string>
   <string name="t0000hrs">12:00am</string>
   <string name="t0100hrs">1:00am</string>

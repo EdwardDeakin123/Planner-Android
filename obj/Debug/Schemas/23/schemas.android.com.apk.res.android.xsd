@@ -2,7 +2,7 @@
 <xs:schema xmlns:android="http://schemas.android.com/apk/res/android" attributeFormDefault="qualified" elementFormDefault="unqualified" targetNamespace="http://schemas.android.com/apk/res/android" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>v23</xs:documentation>
-    <xs:documentation>8/01/2017 11:12:39 PM</xs:documentation>
+    <xs:documentation>19/01/2017 9:06:15 PM</xs:documentation>
   </xs:annotation>
   <xs:attribute name="accessibilityLiveRegion">
     <xs:annotation>
@@ -3761,6 +3761,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -3775,6 +3777,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -3801,7 +3810,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -3845,6 +3854,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -3859,6 +3870,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -3885,7 +3903,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -4513,6 +4531,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -4527,6 +4547,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -4553,7 +4580,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -5101,6 +5128,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -5115,6 +5144,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -5141,7 +5177,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -6269,6 +6305,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -6283,6 +6321,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -6309,7 +6354,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -6612,6 +6657,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -6626,6 +6673,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -6652,7 +6706,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -11554,6 +11608,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -11568,6 +11624,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -11594,7 +11657,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -11638,6 +11701,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -11652,6 +11717,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -11678,7 +11750,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -12278,6 +12350,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -12292,6 +12366,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -12318,7 +12399,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -12362,6 +12443,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -12376,6 +12459,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -12402,7 +12492,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -12446,6 +12536,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -12460,6 +12552,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -12486,7 +12585,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -17727,6 +17826,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -17741,6 +17842,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -17767,7 +17875,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -17920,8 +18028,17 @@
             <xs:enumeration value="@id/ibNextDate" />
             <xs:enumeration value="@id/ibPrevDate" />
             <xs:enumeration value="@id/llActivities" />
+            <xs:enumeration value="@id/llDaysOfTheWeek" />
+            <xs:enumeration value="@id/llDropzoneParent" />
             <xs:enumeration value="@id/rlDropzone" />
+            <xs:enumeration value="@id/rlFriDropzone" />
+            <xs:enumeration value="@id/rlMonDropzone" />
+            <xs:enumeration value="@id/rlSatDropzone" />
+            <xs:enumeration value="@id/rlSunDropzone" />
+            <xs:enumeration value="@id/rlThuDropzone" />
             <xs:enumeration value="@id/rlTimeMarkers" />
+            <xs:enumeration value="@id/rlTueDropzone" />
+            <xs:enumeration value="@id/rlWedDropzone" />
             <xs:enumeration value="@id/svCalendar" />
             <xs:enumeration value="@id/tpEndTime" />
             <xs:enumeration value="@id/tpStartTime" />
@@ -18292,6 +18409,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -18306,6 +18425,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -18332,7 +18458,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -19589,6 +19715,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -19603,6 +19731,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -19629,7 +19764,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -22155,6 +22290,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -22169,6 +22306,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -22195,7 +22339,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -22396,6 +22540,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -22410,6 +22556,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -22436,7 +22589,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -22694,6 +22847,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -22708,6 +22863,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -22734,7 +22896,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -23448,6 +23610,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -23462,6 +23626,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -23488,7 +23659,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -25487,6 +25658,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -25501,6 +25674,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -25527,7 +25707,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -27527,6 +27707,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -27541,6 +27723,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -27567,7 +27756,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -28598,6 +28787,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -28612,6 +28803,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -28638,7 +28836,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -32160,6 +32358,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -32174,6 +32374,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -32200,7 +32407,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -33514,6 +33721,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -33528,6 +33737,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -33554,7 +33770,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -33613,7 +33829,9 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@style/dayofweek_textview" />
             <xs:enumeration value="@style/horizontal_divider" />
+            <xs:enumeration value="@style/time_textview" />
             <xs:enumeration value="@style/XamarinDesignerCustomAppliedTheme" />
             <xs:enumeration value="@android:style/Animation" />
             <xs:enumeration value="@android:style/Animation.Activity" />
@@ -34740,6 +34958,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -34754,6 +34974,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -34780,7 +35007,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -36503,6 +36730,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -36517,6 +36746,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -36543,7 +36779,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -36587,6 +36823,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -36601,6 +36839,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -36627,7 +36872,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -39867,6 +40112,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -39881,6 +40128,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -39907,7 +40161,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -39951,6 +40205,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -39965,6 +40221,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -39991,7 +40254,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -40830,7 +41093,9 @@
       <xs:union memberTypes="xs:string">
         <xs:simpleType>
           <xs:restriction base="xs:string">
+            <xs:enumeration value="@style/dayofweek_textview" />
             <xs:enumeration value="@style/horizontal_divider" />
+            <xs:enumeration value="@style/time_textview" />
             <xs:enumeration value="@style/XamarinDesignerCustomAppliedTheme" />
             <xs:enumeration value="@android:style/Animation" />
             <xs:enumeration value="@android:style/Animation.Activity" />
@@ -42172,6 +42437,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -42186,6 +42453,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -42212,7 +42486,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -42369,6 +42643,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -42383,6 +42659,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -42409,7 +42692,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />
@@ -43576,6 +43859,8 @@
           <xs:restriction base="xs:string">
             <xs:enumeration value="@string/activity" />
             <xs:enumeration value="@string/app_name" />
+            <xs:enumeration value="@string/connection_failed" />
+            <xs:enumeration value="@string/connection_failed_message" />
             <xs:enumeration value="@string/create_account" />
             <xs:enumeration value="@string/delete" />
             <xs:enumeration value="@string/end_time" />
@@ -43590,6 +43875,13 @@
             <xs:enumeration value="@string/register_username_taken" />
             <xs:enumeration value="@string/retry" />
             <xs:enumeration value="@string/save" />
+            <xs:enumeration value="@string/short_friday" />
+            <xs:enumeration value="@string/short_monday" />
+            <xs:enumeration value="@string/short_saturday" />
+            <xs:enumeration value="@string/short_sunday" />
+            <xs:enumeration value="@string/short_thursday" />
+            <xs:enumeration value="@string/short_tuesday" />
+            <xs:enumeration value="@string/short_wednesday" />
             <xs:enumeration value="@string/start_time" />
             <xs:enumeration value="@string/t0000hrs" />
             <xs:enumeration value="@string/t0100hrs" />
@@ -43616,7 +43908,7 @@
             <xs:enumeration value="@string/t2200hrs" />
             <xs:enumeration value="@string/t2300hrs" />
             <xs:enumeration value="@string/timeout" />
-            <xs:enumeration value="@string/unable_to_connect" />
+            <xs:enumeration value="@string/timeout_message" />
             <xs:enumeration value="@string/unknown_error" />
             <xs:enumeration value="@string/username" />
             <xs:enumeration value="@android:string/cancel" />

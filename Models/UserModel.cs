@@ -13,7 +13,7 @@ using Front_End.Backend;
 
 namespace Front_End.Models
 {
-    class UserModel : IBackendType
+    public class UserModel : IBackendType
     {
         public int UserId { get; set; }
         public string FirstName { get; set; }

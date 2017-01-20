@@ -13,7 +13,7 @@ using Front_End.Backend;
 
 namespace Front_End.Models
 {
-    class ActivityModel : IBackendType
+    public class ActivityModel : IBackendType
     {
         public int ActivityId { get; set; }
         public string ActivityName { get; set; }

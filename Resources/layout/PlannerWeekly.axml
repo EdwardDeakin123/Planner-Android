@@ -49,274 +49,272 @@
             <!-- Draw the horizontal dividers. -->
                 <View
                     style="@style/horizontal_divider"
-                    android:layout_marginTop="60dp" />
+                    android:layout_marginTop="100dp" />
                 <View
                     style="@style/horizontal_divider"
-                    android:layout_marginTop="120dp" />
+                    android:layout_marginTop="160dp" />
                 <View
                     style="@style/horizontal_divider"
-                    android:layout_marginTop="180dp" />
+                    android:layout_marginTop="220dp" />
                 <View
                     style="@style/horizontal_divider"
-                    android:layout_marginTop="240dp" />
+                    android:layout_marginTop="280dp" />
                 <View
                     style="@style/horizontal_divider"
-                    android:layout_marginTop="300dp" />
+                    android:layout_marginTop="340dp" />
                 <View
                     style="@style/horizontal_divider"
-                    android:layout_marginTop="360dp" />
+                    android:layout_marginTop="400dp" />
                 <View
                     style="@style/horizontal_divider"
-                    android:layout_marginTop="420dp" />
+                    android:layout_marginTop="460dp" />
                 <View
                     style="@style/horizontal_divider"
-                    android:layout_marginTop="480dp" />
+                    android:layout_marginTop="520dp" />
                 <View
                     style="@style/horizontal_divider"
-                    android:layout_marginTop="540dp" />
+                    android:layout_marginTop="580dp" />
                 <View
                     style="@style/horizontal_divider"
-                    android:layout_marginTop="600dp" />
+                    android:layout_marginTop="640dp" />
                 <View
                     style="@style/horizontal_divider"
-                    android:layout_marginTop="660dp" />
+                    android:layout_marginTop="700dp" />
                 <View
                     style="@style/horizontal_divider"
-                    android:layout_marginTop="720dp" />
+                    android:layout_marginTop="760dp" />
                 <View
                     style="@style/horizontal_divider"
-                    android:layout_marginTop="780dp" />
+                    android:layout_marginTop="820dp" />
                 <View
                     style="@style/horizontal_divider"
-                    android:layout_marginTop="840dp" />
+                    android:layout_marginTop="880dp" />
                 <View
                     style="@style/horizontal_divider"
-                    android:layout_marginTop="900dp" />
+                    android:layout_marginTop="940dp" />
                 <View
                     style="@style/horizontal_divider"
-                    android:layout_marginTop="960dp" />
+                    android:layout_marginTop="1000dp" />
                 <View
                     style="@style/horizontal_divider"
-                    android:layout_marginTop="1020dp" />
+                    android:layout_marginTop="1060dp" />
                 <View
                     style="@style/horizontal_divider"
-                    android:layout_marginTop="1080dp" />
+                    android:layout_marginTop="1120dp" />
                 <View
                     style="@style/horizontal_divider"
-                    android:layout_marginTop="1140dp" />
+                    android:layout_marginTop="1180dp" />
                 <View
                     style="@style/horizontal_divider"
-                    android:layout_marginTop="1200dp" />
+                    android:layout_marginTop="1240dp" />
                 <View
                     style="@style/horizontal_divider"
-                    android:layout_marginTop="1260dp" />
+                    android:layout_marginTop="1300dp" />
                 <View
                     style="@style/horizontal_divider"
-                    android:layout_marginTop="1320dp" />
+                    android:layout_marginTop="1360dp" />
                 <View
                     style="@style/horizontal_divider"
-                    android:layout_marginTop="1380dp" />
+                    android:layout_marginTop="1420dp" />
                 <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
                     android:id="@+id/rlTimeMarkers">
                     <TextView
                         android:id="@+id/tv0000"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:text="@string/t0000hrs"
-                        android:gravity="center"
-                        android:height="60dp" />
+                        style="@style/time_textview" />
                     <TextView
                         android:id="@+id/tv0100"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="60dp"
                         android:text="@string/t0100hrs"
-                        android:gravity="center"
-                        android:height="60dp" />
+                        style="@style/time_textview" />
                     <TextView
                         android:id="@+id/tv0200"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="120dp"
                         android:text="@string/t0200hrs"
-                        android:gravity="center"
-                        android:height="60dp" />
+                        style="@style/time_textview" />
                     <TextView
                         android:id="@+id/tv0300"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="180dp"
                         android:text="@string/t0300hrs"
-                        android:gravity="center"
-                        android:height="60dp" />
+                        style="@style/time_textview" />
                     <TextView
                         android:id="@+id/tv0400"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="240dp"
                         android:text="@string/t0400hrs"
-                        android:gravity="center"
-                        android:height="60dp" />
+                        style="@style/time_textview" />
                     <TextView
                         android:id="@+id/tv0500"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="300dp"
                         android:text="@string/t0500hrs"
-                        android:gravity="center"
-                        android:height="60dp" />
+                        style="@style/time_textview" />
                     <TextView
                         android:id="@+id/tv0600"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="360dp"
                         android:text="@string/t0600hrs"
-                        android:gravity="center"
-                        android:height="60dp" />
+                        style="@style/time_textview" />
                     <TextView
                         android:id="@+id/tv0700"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="420dp"
                         android:text="@string/t0700hrs"
-                        android:gravity="center"
-                        android:height="60dp" />
+                        style="@style/time_textview" />
                     <TextView
                         android:id="@+id/tv0800"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="480dp"
                         android:text="@string/t0800hrs"
-                        android:gravity="center"
-                        android:height="60dp" />
+                        style="@style/time_textview" />
                     <TextView
                         android:id="@+id/tv0900"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="540dp"
                         android:text="@string/t0900hrs"
-                        android:gravity="center"
-                        android:height="60dp" />
+                        style="@style/time_textview" />
                     <TextView
                         android:id="@+id/tv1000"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="600dp"
                         android:text="@string/t1000hrs"
-                        android:gravity="center"
-                        android:height="60dp" />
+                        style="@style/time_textview" />
                     <TextView
                         android:id="@+id/tv1100"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="660dp"
                         android:text="@string/t1100hrs"
-                        android:gravity="center"
-                        android:height="60dp" />
+                        style="@style/time_textview" />
                     <TextView
                         android:id="@+id/tv1200"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="720dp"
                         android:text="@string/t1200hrs"
-                        android:gravity="center"
-                        android:height="60dp" />
+                        style="@style/time_textview" />
                     <TextView
                         android:id="@+id/tv1300"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="780dp"
                         android:text="@string/t1300hrs"
-                        android:gravity="center"
-                        android:height="60dp" />
+                        style="@style/time_textview" />
                     <TextView
                         android:id="@+id/tv1400"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="840dp"
                         android:text="@string/t1400hrs"
-                        android:gravity="center"
-                        android:height="60dp" />
+                        style="@style/time_textview" />
                     <TextView
                         android:id="@+id/tv1500"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="900dp"
                         android:text="@string/t1500hrs"
-                        android:gravity="center"
-                        android:height="60dp" />
+                        style="@style/time_textview" />
                     <TextView
                         android:id="@+id/tv1600"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="960dp"
                         android:text="@string/t1600hrs"
-                        android:gravity="center"
-                        android:height="60dp" />
+                        style="@style/time_textview" />
                     <TextView
                         android:id="@+id/tv1700"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="1020dp"
                         android:text="@string/t1700hrs"
-                        android:gravity="center"
-                        android:height="60dp" />
+                        style="@style/time_textview" />
                     <TextView
                         android:id="@+id/tv1800"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="1080dp"
                         android:text="@string/t1800hrs"
-                        android:gravity="center"
-                        android:height="60dp" />
+                        style="@style/time_textview" />
                     <TextView
                         android:id="@+id/tv1900"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="1140dp"
                         android:text="@string/t1900hrs"
-                        android:gravity="center"
-                        android:height="60dp" />
+                        style="@style/time_textview" />
                     <TextView
                         android:id="@+id/tv2000"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="1200dp"
                         android:text="@string/t2000hrs"
-                        android:gravity="center"
-                        android:height="60dp" />
+                        style="@style/time_textview" />
                     <TextView
                         android:id="@+id/tv2100"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="1260dp"
                         android:text="@string/t2100hrs"
-                        android:gravity="center"
-                        android:height="60dp" />
+                        style="@style/time_textview" />
                     <TextView
                         android:id="@+id/tv2200"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="1320dp"
                         android:text="@string/t2200hrs"
-                        android:gravity="center"
-                        android:height="60dp" />
+                        style="@style/time_textview" />
                     <TextView
                         android:id="@+id/tv2300"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginTop="1380dp"
                         android:text="@string/t2300hrs"
-                        android:gravity="center"
-                        android:height="60dp" />
+                        style="@style/time_textview" />
                 </RelativeLayout>
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="1440dp"
-                    android:id="@+id/rlDropzone"
-                    android:layout_toRightOf="@id/rlTimeMarkers" />
+                    android:layout_height="match_parent"
+                    android:id="@+id/llDaysOfTheWeek"
+                    android:orientation="vertical"
+                    android:layout_toRightOf="@id/rlTimeMarkers">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:text="@string/short_sunday"
+                            style="@style/dayofweek_textview" />
+                        <TextView
+                            android:text="@string/short_monday"
+                            style="@style/dayofweek_textview" />
+                        <TextView
+                            android:text="@string/short_tuesday"
+                            style="@style/dayofweek_textview" />
+                        <TextView
+                            android:text="@string/short_wednesday"
+                            style="@style/dayofweek_textview" />
+                        <TextView
+                            android:text="@string/short_thursday"
+                            style="@style/dayofweek_textview" />
+                        <TextView
+                            android:text="@string/short_friday"
+                            style="@style/dayofweek_textview" />
+                        <TextView
+                            android:text="@string/short_saturday"
+                            style="@style/dayofweek_textview" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/llDropzoneParent"
+                        android:orientation="horizontal">
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1440dp"
+                            android:id="@+id/rlSunDropzone"
+                            android:layout_weight="1" />
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1440dp"
+                            android:id="@+id/rlMonDropzone"
+                            android:layout_weight="1" />
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1440dp"
+                            android:id="@+id/rlTueDropzone"
+                            android:layout_weight="1" />
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1440dp"
+                            android:id="@+id/rlWedDropzone"
+                            android:layout_weight="1" />
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1440dp"
+                            android:id="@+id/rlThuDropzone"
+                            android:layout_weight="1" />
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1440dp"
+                            android:id="@+id/rlFriDropzone"
+                            android:layout_weight="1" />
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1440dp"
+                            android:id="@+id/rlSatDropzone"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+                </LinearLayout>
             </RelativeLayout>
         </ScrollView>
         <LinearLayout

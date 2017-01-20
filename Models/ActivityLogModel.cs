@@ -3,7 +3,7 @@ using Front_End.Backend;
 
 namespace Front_End.Models
 {
-    class ActivityLogModel : IBackendType
+    public class ActivityLogModel : IBackendType
     {
         public int ActivityLogId { get; set; }
         public DateTime StartTime { get; set; }
