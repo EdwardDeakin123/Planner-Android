@@ -54,4 +54,9 @@
   <string name="t2100hrs">9:00pm</string>
   <string name="t2200hrs">10:00pm</string>
   <string name="t2300hrs">11:00pm</string>
+
+  <string-array name="navigation_array">
+    <item>Daily</item>
+    <item>Weekly</item>
+  </string-array>
 </resources>
