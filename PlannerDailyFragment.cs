@@ -51,7 +51,8 @@ namespace Front_End
             View.FindViewById<RelativeLayout>(Resource.Id.rlDropzone).Drag += DropZone_Drag;
         }
 
-        public override void OnResume()
+
+        /*public override void OnResume()
         {
             base.OnResume();
 
@@ -65,7 +66,7 @@ namespace Front_End
                 new Notification();
             }
         }
-	
+	    */
         #region backend
         #endregion
 
@@ -87,6 +88,14 @@ namespace Front_End
 
             // Reload the UI.
             ReloadUI();
+        }
+
+        protected override void RefreshPlanner(object sender, EventArgs e)
+        {
+            ReloadUI();
+
+            // Mark the refresh as complete.
+            _SwipeLayout.Refreshing = false;
         }
         #endregion
 

@@ -1742,6 +1742,27 @@ namespace Front_End
 			// aapt resource value: 0x7f0a003b
 			public const int customPanel = 2131361851;
 			
+			// aapt resource value: 0x7f0a0098
+			public const int dayofmonth_friday = 2131361944;
+			
+			// aapt resource value: 0x7f0a0094
+			public const int dayofmonth_monday = 2131361940;
+			
+			// aapt resource value: 0x7f0a0099
+			public const int dayofmonth_saturday = 2131361945;
+			
+			// aapt resource value: 0x7f0a0093
+			public const int dayofmonth_sunday = 2131361939;
+			
+			// aapt resource value: 0x7f0a0097
+			public const int dayofmonth_thursday = 2131361943;
+			
+			// aapt resource value: 0x7f0a0095
+			public const int dayofmonth_tuesday = 2131361941;
+			
+			// aapt resource value: 0x7f0a0096
+			public const int dayofmonth_wednesday = 2131361942;
+			
 			// aapt resource value: 0x7f0a0045
 			public const int decor_content_parent = 2131361861;
 			
@@ -1760,17 +1781,17 @@ namespace Front_End
 			// aapt resource value: 0x7f0a0070
 			public const int end_padder = 2131361904;
 			
-			// aapt resource value: 0x7f0a0099
-			public const int etFirstName = 2131361945;
+			// aapt resource value: 0x7f0a00a1
+			public const int etFirstName = 2131361953;
 			
-			// aapt resource value: 0x7f0a009a
-			public const int etLastName = 2131361946;
+			// aapt resource value: 0x7f0a00a2
+			public const int etLastName = 2131361954;
 			
-			// aapt resource value: 0x7f0a009c
-			public const int etPassword = 2131361948;
+			// aapt resource value: 0x7f0a00a4
+			public const int etPassword = 2131361956;
 			
-			// aapt resource value: 0x7f0a009b
-			public const int etUsername = 2131361947;
+			// aapt resource value: 0x7f0a00a3
+			public const int etUsername = 2131361955;
 			
 			// aapt resource value: 0x7f0a002a
 			public const int expand_activities_button = 2131361834;
@@ -1814,14 +1835,14 @@ namespace Front_End
 			// aapt resource value: 0x7f0a002d
 			public const int list_item = 2131361837;
 			
-			// aapt resource value: 0x7f0a0090
-			public const int llActivities = 2131361936;
-			
 			// aapt resource value: 0x7f0a0091
-			public const int llDaysOfTheWeek = 2131361937;
+			public const int llActivities = 2131361937;
 			
-			// aapt resource value: 0x7f0a008e
-			public const int llDropzoneParent = 2131361934;
+			// aapt resource value: 0x7f0a0092
+			public const int llDaysOfTheWeek = 2131361938;
+			
+			// aapt resource value: 0x7f0a008f
+			public const int llDropzoneParent = 2131361935;
 			
 			// aapt resource value: 0x7f0a0067
 			public const int media_actions = 2131361895;
@@ -1859,32 +1880,32 @@ namespace Front_End
 			// aapt resource value: 0x7f0a0040
 			public const int radio = 2131361856;
 			
-			// aapt resource value: 0x7f0a008f
-			public const int rlDropzone = 2131361935;
+			// aapt resource value: 0x7f0a0090
+			public const int rlDropzone = 2131361936;
 			
-			// aapt resource value: 0x7f0a0097
-			public const int rlFriDropzone = 2131361943;
+			// aapt resource value: 0x7f0a009f
+			public const int rlFriDropzone = 2131361951;
 			
-			// aapt resource value: 0x7f0a0093
-			public const int rlMonDropzone = 2131361939;
+			// aapt resource value: 0x7f0a009b
+			public const int rlMonDropzone = 2131361947;
 			
-			// aapt resource value: 0x7f0a0098
-			public const int rlSatDropzone = 2131361944;
+			// aapt resource value: 0x7f0a00a0
+			public const int rlSatDropzone = 2131361952;
 			
-			// aapt resource value: 0x7f0a0092
-			public const int rlSunDropzone = 2131361938;
+			// aapt resource value: 0x7f0a009a
+			public const int rlSunDropzone = 2131361946;
 			
-			// aapt resource value: 0x7f0a0096
-			public const int rlThuDropzone = 2131361942;
+			// aapt resource value: 0x7f0a009e
+			public const int rlThuDropzone = 2131361950;
 			
-			// aapt resource value: 0x7f0a0075
-			public const int rlTimeMarkers = 2131361909;
+			// aapt resource value: 0x7f0a0076
+			public const int rlTimeMarkers = 2131361910;
 			
-			// aapt resource value: 0x7f0a0094
-			public const int rlTueDropzone = 2131361940;
+			// aapt resource value: 0x7f0a009c
+			public const int rlTueDropzone = 2131361948;
 			
-			// aapt resource value: 0x7f0a0095
-			public const int rlWedDropzone = 2131361941;
+			// aapt resource value: 0x7f0a009d
+			public const int rlWedDropzone = 2131361949;
 			
 			// aapt resource value: 0x7f0a0017
 			public const int screen = 2131361815;
@@ -1967,8 +1988,11 @@ namespace Front_End
 			// aapt resource value: 0x7f0a0052
 			public const int submit_area = 2131361874;
 			
+			// aapt resource value: 0x7f0a0075
+			public const int svCalendar = 2131361909;
+			
 			// aapt resource value: 0x7f0a0074
-			public const int svCalendar = 2131361908;
+			public const int swiperefresh = 2131361908;
 			
 			// aapt resource value: 0x7f0a000d
 			public const int tabMode = 2131361805;
@@ -2003,77 +2027,77 @@ namespace Front_End
 			// aapt resource value: 0x7f0a0057
 			public const int tpStartTime = 2131361879;
 			
-			// aapt resource value: 0x7f0a0076
-			public const int tv0000 = 2131361910;
-			
 			// aapt resource value: 0x7f0a0077
-			public const int tv0100 = 2131361911;
+			public const int tv0000 = 2131361911;
 			
 			// aapt resource value: 0x7f0a0078
-			public const int tv0200 = 2131361912;
+			public const int tv0100 = 2131361912;
 			
 			// aapt resource value: 0x7f0a0079
-			public const int tv0300 = 2131361913;
+			public const int tv0200 = 2131361913;
 			
 			// aapt resource value: 0x7f0a007a
-			public const int tv0400 = 2131361914;
+			public const int tv0300 = 2131361914;
 			
 			// aapt resource value: 0x7f0a007b
-			public const int tv0500 = 2131361915;
+			public const int tv0400 = 2131361915;
 			
 			// aapt resource value: 0x7f0a007c
-			public const int tv0600 = 2131361916;
+			public const int tv0500 = 2131361916;
 			
 			// aapt resource value: 0x7f0a007d
-			public const int tv0700 = 2131361917;
+			public const int tv0600 = 2131361917;
 			
 			// aapt resource value: 0x7f0a007e
-			public const int tv0800 = 2131361918;
+			public const int tv0700 = 2131361918;
 			
 			// aapt resource value: 0x7f0a007f
-			public const int tv0900 = 2131361919;
+			public const int tv0800 = 2131361919;
 			
 			// aapt resource value: 0x7f0a0080
-			public const int tv1000 = 2131361920;
+			public const int tv0900 = 2131361920;
 			
 			// aapt resource value: 0x7f0a0081
-			public const int tv1100 = 2131361921;
+			public const int tv1000 = 2131361921;
 			
 			// aapt resource value: 0x7f0a0082
-			public const int tv1200 = 2131361922;
+			public const int tv1100 = 2131361922;
 			
 			// aapt resource value: 0x7f0a0083
-			public const int tv1300 = 2131361923;
+			public const int tv1200 = 2131361923;
 			
 			// aapt resource value: 0x7f0a0084
-			public const int tv1400 = 2131361924;
+			public const int tv1300 = 2131361924;
 			
 			// aapt resource value: 0x7f0a0085
-			public const int tv1500 = 2131361925;
+			public const int tv1400 = 2131361925;
 			
 			// aapt resource value: 0x7f0a0086
-			public const int tv1600 = 2131361926;
+			public const int tv1500 = 2131361926;
 			
 			// aapt resource value: 0x7f0a0087
-			public const int tv1700 = 2131361927;
+			public const int tv1600 = 2131361927;
 			
 			// aapt resource value: 0x7f0a0088
-			public const int tv1800 = 2131361928;
+			public const int tv1700 = 2131361928;
 			
 			// aapt resource value: 0x7f0a0089
-			public const int tv1900 = 2131361929;
+			public const int tv1800 = 2131361929;
 			
 			// aapt resource value: 0x7f0a008a
-			public const int tv2000 = 2131361930;
+			public const int tv1900 = 2131361930;
 			
 			// aapt resource value: 0x7f0a008b
-			public const int tv2100 = 2131361931;
+			public const int tv2000 = 2131361931;
 			
 			// aapt resource value: 0x7f0a008c
-			public const int tv2200 = 2131361932;
+			public const int tv2100 = 2131361932;
 			
 			// aapt resource value: 0x7f0a008d
-			public const int tv2300 = 2131361933;
+			public const int tv2200 = 2131361933;
+			
+			// aapt resource value: 0x7f0a008e
+			public const int tv2300 = 2131361934;
 			
 			// aapt resource value: 0x7f0a0056
 			public const int tvActivityName = 2131361878;

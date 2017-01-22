@@ -57,8 +57,12 @@ namespace Front_End
             View.FindViewById<RelativeLayout>(Resource.Id.rlThuDropzone).Drag += DropZone_Drag;
             View.FindViewById<RelativeLayout>(Resource.Id.rlFriDropzone).Drag += DropZone_Drag;
             View.FindViewById<RelativeLayout>(Resource.Id.rlSatDropzone).Drag += DropZone_Drag;
+
+            // Update the text views that show the date above each day.
+            SetDayOfMonth();
         }
 
+        /*
         public override void OnResume()
         {
             base.OnResume();
@@ -72,6 +76,39 @@ namespace Front_End
             {
                 new Notification();
             }
+        }
+        */
+
+        private void SetDayOfMonth()
+        {
+            // Get the day of the week of the current view date.
+            int dow = (int)_ViewDate.DayOfWeek;
+
+            // Subtract dow from _View date to get the date on Sunday.
+            DateTime sundayDate = _ViewDate.AddDays(-dow);
+            DateTime mondayDate = sundayDate.AddDays(1);
+            DateTime tuesdayDate = sundayDate.AddDays(2);
+            DateTime wednesdayDate = sundayDate.AddDays(3);
+            DateTime thursdayDate = sundayDate.AddDays(4);
+            DateTime fridayDate = sundayDate.AddDays(5);
+            DateTime saturdayDate = sundayDate.AddDays(6);
+
+            // Update the day of month display.
+            View.FindViewById<TextView>(Resource.Id.dayofmonth_sunday).Text = sundayDate.Day.ToString();
+            View.FindViewById<TextView>(Resource.Id.dayofmonth_monday).Text = mondayDate.Day.ToString();
+            View.FindViewById<TextView>(Resource.Id.dayofmonth_tuesday).Text = tuesdayDate.Day.ToString();
+            View.FindViewById<TextView>(Resource.Id.dayofmonth_wednesday).Text = wednesdayDate.Day.ToString();
+            View.FindViewById<TextView>(Resource.Id.dayofmonth_thursday).Text = thursdayDate.Day.ToString();
+            View.FindViewById<TextView>(Resource.Id.dayofmonth_friday).Text = fridayDate.Day.ToString();
+            View.FindViewById<TextView>(Resource.Id.dayofmonth_saturday).Text = saturdayDate.Day.ToString();
+        }
+
+        protected override void RefreshPlanner(object sender, EventArgs e)
+        {
+            ReloadUI();
+
+            // Mark the refresh as complete.
+            _SwipeLayout.Refreshing = false;
         }
     }
 }

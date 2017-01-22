@@ -13,14 +13,16 @@ using Front_End.Backend;
 using Front_End.Exceptions;
 using SQLite;
 using Front_End.Database;
+using Android.Support.V4.Widget;
 
 namespace Front_End
 {
     [Activity(Label = "Activity Tracker")]
-	public class PlannerFragment : Fragment
-	{
+    public abstract class PlannerFragment : Fragment
+    {
         // Layout elements.
         protected RelativeLayout _RLHover;
+        protected SwipeRefreshLayout _SwipeLayout;
 
         //TODO Remove this
         //RelativeLayout _RLDropzone;
@@ -56,6 +58,17 @@ namespace Front_End
             _ActivityLogId = 0;
             _ActivityColors = new List<KeyValuePair<int, Color>>();
         }
+
+        public override void OnViewCreated(View view, Bundle savedInstanceState)
+        {
+            base.OnViewCreated(view, savedInstanceState);
+
+            _SwipeLayout = View.FindViewById<SwipeRefreshLayout>(Resource.Id.swiperefresh);
+            _SwipeLayout.Refresh += RefreshPlanner;
+        }
+
+        protected abstract void RefreshPlanner(object sender, EventArgs e);
+
 
         /*
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -431,7 +444,7 @@ namespace Front_End
 
                     // Determine if this is a daily or weekly view.
                     // TODO this can probably be set earlier and not done every time something is dropped.
-                    if(GetPlannerMode() == DAILY_VIEW)
+                    if (GetPlannerMode() == DAILY_VIEW)
                     {
                         // This is a daily view. Calculate the start and end times and create DateTime objects.
                         // End time is the same as start time plus one hour.
@@ -579,7 +592,7 @@ namespace Front_End
             // Determine which dropzone to place this activitylog into.
             RelativeLayout dropzone;
 
-            if(GetPlannerMode() == DAILY_VIEW)
+            if (GetPlannerMode() == DAILY_VIEW)
             {
                 dropzone = View.FindViewById<RelativeLayout>(Resource.Id.rlDropzone);
             }
@@ -625,12 +638,12 @@ namespace Front_End
             int adjacentLogs = 0;
             int lastId = 0;
 
-            for(int i = 0; i < childCount; i++)
+            for (int i = 0; i < childCount; i++)
             {
                 // Get the child view from the dropzone.
                 childView = (RelativeLayout)dropzone.GetChildAt(i);
 
-                if(childView.Id == vActivityLog.Id)
+                if (childView.Id == vActivityLog.Id)
                 {
                     // This is the ActivityLog view, skip it.
                     continue;
@@ -704,7 +717,7 @@ namespace Front_End
             // Get the drop zone for any of the days of the week.
             RelativeLayout dropzone = default(RelativeLayout);
 
-            switch(dayOfWeek)
+            switch (dayOfWeek)
             {
                 case 0:
                     dropzone = View.FindViewById<RelativeLayout>(Resource.Id.rlSunDropzone);
@@ -728,7 +741,7 @@ namespace Front_End
                     dropzone = View.FindViewById<RelativeLayout>(Resource.Id.rlSatDropzone);
                     break;
             }
-            
+
             return dropzone;
         }
 
@@ -770,7 +783,7 @@ namespace Front_End
             // Count how many dropzones are on the screen. This will tell us if it's a daily or weekly view.
             int noDropzones = View.FindViewById<LinearLayout>(Resource.Id.llDropzoneParent).ChildCount;
 
-            if(noDropzones == 1)
+            if (noDropzones == 1)
             {
                 // If there is only one child, this is a daily view.
                 return DAILY_VIEW;
@@ -787,9 +800,9 @@ namespace Front_End
             Color activityColor = default(Color);
 
             // Check if this activity id has been assigned a color in the past.
-            foreach(KeyValuePair<int, Color> actColor in _ActivityColors)
+            foreach (KeyValuePair<int, Color> actColor in _ActivityColors)
             {
-                if(actColor.Key == activityId)
+                if (actColor.Key == activityId)
                 {
                     // If this activity has already been assigned a color, return it.
                     return actColor.Value;
