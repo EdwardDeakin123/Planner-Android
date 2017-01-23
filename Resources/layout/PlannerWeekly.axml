@@ -36,356 +36,169 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="horizontal">
-        <!-- Daily view here.-->
-      <android.support.v4.widget.SwipeRefreshLayout
-  xmlns:android="http://schemas.android.com/apk/res/android"
-  android:id="@+id/swiperefresh"
-  android:layout_weight="1"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent">
-        <ScrollView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="none"
-            android:id="@+id/svCalendar">
-          <RelativeLayout
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content">
-            <!-- Draw the horizontal dividers. -->
-            <View
-                style="@style/horizontal_divider"
-                android:layout_marginTop="100dp" />
-            <View
-                style="@style/horizontal_divider"
-                android:layout_marginTop="160dp" />
-            <View
-                style="@style/horizontal_divider"
-                android:layout_marginTop="220dp" />
-            <View
-                style="@style/horizontal_divider"
-                android:layout_marginTop="280dp" />
-            <View
-                style="@style/horizontal_divider"
-                android:layout_marginTop="340dp" />
-            <View
-                style="@style/horizontal_divider"
-                android:layout_marginTop="400dp" />
-            <View
-                style="@style/horizontal_divider"
-                android:layout_marginTop="460dp" />
-            <View
-                style="@style/horizontal_divider"
-                android:layout_marginTop="520dp" />
-            <View
-                style="@style/horizontal_divider"
-                android:layout_marginTop="580dp" />
-            <View
-                style="@style/horizontal_divider"
-                android:layout_marginTop="640dp" />
-            <View
-                style="@style/horizontal_divider"
-                android:layout_marginTop="700dp" />
-            <View
-                style="@style/horizontal_divider"
-                android:layout_marginTop="760dp" />
-            <View
-                style="@style/horizontal_divider"
-                android:layout_marginTop="820dp" />
-            <View
-                style="@style/horizontal_divider"
-                android:layout_marginTop="880dp" />
-            <View
-                style="@style/horizontal_divider"
-                android:layout_marginTop="940dp" />
-            <View
-                style="@style/horizontal_divider"
-                android:layout_marginTop="1000dp" />
-            <View
-                style="@style/horizontal_divider"
-                android:layout_marginTop="1060dp" />
-            <View
-                style="@style/horizontal_divider"
-                android:layout_marginTop="1120dp" />
-            <View
-                style="@style/horizontal_divider"
-                android:layout_marginTop="1180dp" />
-            <View
-                style="@style/horizontal_divider"
-                android:layout_marginTop="1240dp" />
-            <View
-                style="@style/horizontal_divider"
-                android:layout_marginTop="1300dp" />
-            <View
-                style="@style/horizontal_divider"
-                android:layout_marginTop="1360dp" />
-            <View
-                style="@style/horizontal_divider"
-                android:layout_marginTop="1420dp" />
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:id="@+id/rlTimeMarkers">
-              <TextView
-                  android:id="@+id/tv0000"
-                  android:text="@string/t0000hrs"
-                  style="@style/time_textview" />
-              <TextView
-                  android:id="@+id/tv0100"
-                  android:layout_marginTop="60dp"
-                  android:text="@string/t0100hrs"
-                  style="@style/time_textview" />
-              <TextView
-                  android:id="@+id/tv0200"
-                  android:layout_marginTop="120dp"
-                  android:text="@string/t0200hrs"
-                  style="@style/time_textview" />
-              <TextView
-                  android:id="@+id/tv0300"
-                  android:layout_marginTop="180dp"
-                  android:text="@string/t0300hrs"
-                  style="@style/time_textview" />
-              <TextView
-                  android:id="@+id/tv0400"
-                  android:layout_marginTop="240dp"
-                  android:text="@string/t0400hrs"
-                  style="@style/time_textview" />
-              <TextView
-                  android:id="@+id/tv0500"
-                  android:layout_marginTop="300dp"
-                  android:text="@string/t0500hrs"
-                  style="@style/time_textview" />
-              <TextView
-                  android:id="@+id/tv0600"
-                  android:layout_marginTop="360dp"
-                  android:text="@string/t0600hrs"
-                  style="@style/time_textview" />
-              <TextView
-                  android:id="@+id/tv0700"
-                  android:layout_marginTop="420dp"
-                  android:text="@string/t0700hrs"
-                  style="@style/time_textview" />
-              <TextView
-                  android:id="@+id/tv0800"
-                  android:layout_marginTop="480dp"
-                  android:text="@string/t0800hrs"
-                  style="@style/time_textview" />
-              <TextView
-                  android:id="@+id/tv0900"
-                  android:layout_marginTop="540dp"
-                  android:text="@string/t0900hrs"
-                  style="@style/time_textview" />
-              <TextView
-                  android:id="@+id/tv1000"
-                  android:layout_marginTop="600dp"
-                  android:text="@string/t1000hrs"
-                  style="@style/time_textview" />
-              <TextView
-                  android:id="@+id/tv1100"
-                  android:layout_marginTop="660dp"
-                  android:text="@string/t1100hrs"
-                  style="@style/time_textview" />
-              <TextView
-                  android:id="@+id/tv1200"
-                  android:layout_marginTop="720dp"
-                  android:text="@string/t1200hrs"
-                  style="@style/time_textview" />
-              <TextView
-                  android:id="@+id/tv1300"
-                  android:layout_marginTop="780dp"
-                  android:text="@string/t1300hrs"
-                  style="@style/time_textview" />
-              <TextView
-                  android:id="@+id/tv1400"
-                  android:layout_marginTop="840dp"
-                  android:text="@string/t1400hrs"
-                  style="@style/time_textview" />
-              <TextView
-                  android:id="@+id/tv1500"
-                  android:layout_marginTop="900dp"
-                  android:text="@string/t1500hrs"
-                  style="@style/time_textview" />
-              <TextView
-                  android:id="@+id/tv1600"
-                  android:layout_marginTop="960dp"
-                  android:text="@string/t1600hrs"
-                  style="@style/time_textview" />
-              <TextView
-                  android:id="@+id/tv1700"
-                  android:layout_marginTop="1020dp"
-                  android:text="@string/t1700hrs"
-                  style="@style/time_textview" />
-              <TextView
-                  android:id="@+id/tv1800"
-                  android:layout_marginTop="1080dp"
-                  android:text="@string/t1800hrs"
-                  style="@style/time_textview" />
-              <TextView
-                  android:id="@+id/tv1900"
-                  android:layout_marginTop="1140dp"
-                  android:text="@string/t1900hrs"
-                  style="@style/time_textview" />
-              <TextView
-                  android:id="@+id/tv2000"
-                  android:layout_marginTop="1200dp"
-                  android:text="@string/t2000hrs"
-                  style="@style/time_textview" />
-              <TextView
-                  android:id="@+id/tv2100"
-                  android:layout_marginTop="1260dp"
-                  android:text="@string/t2100hrs"
-                  style="@style/time_textview" />
-              <TextView
-                  android:id="@+id/tv2200"
-                  android:layout_marginTop="1320dp"
-                  android:text="@string/t2200hrs"
-                  style="@style/time_textview" />
-              <TextView
-                  android:id="@+id/tv2300"
-                  android:layout_marginTop="1380dp"
-                  android:text="@string/t2300hrs"
-                  style="@style/time_textview" />
-            </RelativeLayout>
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/llDaysOfTheWeek"
-                android:orientation="vertical"
-                android:layout_toRightOf="@id/rlTimeMarkers">
-              <LinearLayout
-                  android:layout_width="match_parent"
-                  android:layout_height="40dp"
-                  android:orientation="horizontal">
+                android:layout_height="40dp"
+                android:layout_marginLeft="60dp"
+                android:orientation="horizontal">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
-                  <TextView
-                      android:id="@+id/dayofmonth_sunday"
-                      style="@style/dayofweek_textview" />
-                  <TextView
-                      android:text="@string/short_sunday"
-                      style="@style/dayofweek_textview" />
+                    <TextView
+                        android:id="@+id/dayofmonth_sunday"
+                        style="@style/dayofweek_textview" />
+                    <TextView
+                        android:text="@string/short_sunday"
+                        style="@style/dayofweek_textview" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
-                  <TextView
-                      android:id="@+id/dayofmonth_monday"
-                      style="@style/dayofweek_textview" />
-                  <TextView
-                      android:text="@string/short_monday"
-                      style="@style/dayofweek_textview" />
+                    <TextView
+                        android:id="@+id/dayofmonth_monday"
+                        style="@style/dayofweek_textview" />
+                    <TextView
+                        android:text="@string/short_monday"
+                        style="@style/dayofweek_textview" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
-                  <TextView
-                      android:id="@+id/dayofmonth_tuesday"
-                      style="@style/dayofweek_textview" />
-                  <TextView
-                      android:text="@string/short_tuesday"
-                      style="@style/dayofweek_textview" />
+                    <TextView
+                        android:id="@+id/dayofmonth_tuesday"
+                        style="@style/dayofweek_textview" />
+                    <TextView
+                        android:text="@string/short_tuesday"
+                        style="@style/dayofweek_textview" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
-                  <TextView
-                      android:id="@+id/dayofmonth_wednesday"
-                      style="@style/dayofweek_textview" />
-                  <TextView
-                      android:text="@string/short_wednesday"
-                      style="@style/dayofweek_textview" />
+                    <TextView
+                        android:id="@+id/dayofmonth_wednesday"
+                        style="@style/dayofweek_textview" />
+                    <TextView
+                        android:text="@string/short_wednesday"
+                        style="@style/dayofweek_textview" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
-                  <TextView
-                      android:id="@+id/dayofmonth_thursday"
-                      style="@style/dayofweek_textview" />
-                  <TextView
-                      android:text="@string/short_thursday"
-                      style="@style/dayofweek_textview" />
+                    <TextView
+                        android:id="@+id/dayofmonth_thursday"
+                        style="@style/dayofweek_textview" />
+                    <TextView
+                        android:text="@string/short_thursday"
+                        style="@style/dayofweek_textview" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
-                  <TextView
-                      android:id="@+id/dayofmonth_friday"
-                      style="@style/dayofweek_textview" />
-                  <TextView
-                      android:text="@string/short_friday"
-                      style="@style/dayofweek_textview" />
+                    <TextView
+                        android:id="@+id/dayofmonth_friday"
+                        style="@style/dayofweek_textview" />
+                    <TextView
+                        android:text="@string/short_friday"
+                        style="@style/dayofweek_textview" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="vertical">
-                  <TextView
-                      android:id="@+id/dayofmonth_saturday"
-                      style="@style/dayofweek_textview" />
-                  <TextView
-                      android:text="@string/short_saturday"
-                      style="@style/dayofweek_textview" />
+                    <TextView
+                        android:id="@+id/dayofmonth_saturday"
+                        style="@style/dayofweek_textview" />
+                    <TextView
+                        android:text="@string/short_saturday"
+                        style="@style/dayofweek_textview" />
                 </LinearLayout>
-              </LinearLayout>
-              <LinearLayout
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:id="@+id/llDropzoneParent"
-                  android:orientation="horizontal">
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1440dp"
-                    android:id="@+id/rlSunDropzone"
-                    android:layout_weight="1" />
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1440dp"
-                    android:id="@+id/rlMonDropzone"
-                    android:layout_weight="1" />
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1440dp"
-                    android:id="@+id/rlTueDropzone"
-                    android:layout_weight="1" />
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1440dp"
-                    android:id="@+id/rlWedDropzone"
-                    android:layout_weight="1" />
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1440dp"
-                    android:id="@+id/rlThuDropzone"
-                    android:layout_weight="1" />
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1440dp"
-                    android:id="@+id/rlFriDropzone"
-                    android:layout_weight="1" />
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1440dp"
-                    android:id="@+id/rlSatDropzone"
-                    android:layout_weight="1" />
-              </LinearLayout>
             </LinearLayout>
-          </RelativeLayout>
-        </ScrollView>
-      </android.support.v4.widget.SwipeRefreshLayout>
+        <!-- Daily view here.-->
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/swiperefresh"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="none"
+                    android:id="@+id/svCalendar">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rlPlanner">
+                    <!-- Draw the horizontal dividers. -->
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/rlTimeMarkers">
+                        <!-- Time markers go here. -->
+                        </RelativeLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/llDropzoneParent"
+                            android:orientation="horizontal"
+                            android:layout_toRightOf="@id/rlTimeMarkers">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1440dp"
+                                android:id="@+id/rlSunDropzone"
+                                android:layout_weight="1" />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1440dp"
+                                android:id="@+id/rlMonDropzone"
+                                android:layout_weight="1" />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1440dp"
+                                android:id="@+id/rlTueDropzone"
+                                android:layout_weight="1" />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1440dp"
+                                android:id="@+id/rlWedDropzone"
+                                android:layout_weight="1" />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1440dp"
+                                android:id="@+id/rlThuDropzone"
+                                android:layout_weight="1" />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1440dp"
+                                android:id="@+id/rlFriDropzone"
+                                android:layout_weight="1" />
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="1440dp"
+                                android:id="@+id/rlSatDropzone"
+                                android:layout_weight="1" />
+                        </LinearLayout>
+                    </RelativeLayout>
+                </ScrollView>
+            </android.support.v4.widget.SwipeRefreshLayout>
+        </LinearLayout>
         <LinearLayout
             android:background="@color/light_grey"
             android:layout_width="200dp"

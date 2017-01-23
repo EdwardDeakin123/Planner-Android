@@ -40,15 +40,11 @@ namespace Front_End
             return inflater.Inflate(Resource.Layout.PlannerWeekly, container, false);
         }
 
-        public override void OnActivityCreated(Bundle savedInstanceState)
+        public override void OnViewCreated(View view, Bundle savedInstanceState)
         {
-            base.OnActivityCreated(savedInstanceState);
+            base.OnViewCreated(view, savedInstanceState);
 
             // The view has been created, assign the event handlers.
-            // Assign the next and previous onclick events.
-            View.FindViewById<ImageButton>(Resource.Id.ibNextDate).Click += NextDay_OnClick;
-            View.FindViewById<ImageButton>(Resource.Id.ibPrevDate).Click += PreviousDay_OnClick;
-
             // Add the Drag event listener to the dropzones.
             View.FindViewById<RelativeLayout>(Resource.Id.rlSunDropzone).Drag += DropZone_Drag;
             View.FindViewById<RelativeLayout>(Resource.Id.rlMonDropzone).Drag += DropZone_Drag;
@@ -57,9 +53,6 @@ namespace Front_End
             View.FindViewById<RelativeLayout>(Resource.Id.rlThuDropzone).Drag += DropZone_Drag;
             View.FindViewById<RelativeLayout>(Resource.Id.rlFriDropzone).Drag += DropZone_Drag;
             View.FindViewById<RelativeLayout>(Resource.Id.rlSatDropzone).Drag += DropZone_Drag;
-
-            // Update the text views that show the date above each day.
-            SetDayOfMonth();
         }
 
         /*
@@ -103,12 +96,55 @@ namespace Front_End
             View.FindViewById<TextView>(Resource.Id.dayofmonth_saturday).Text = saturdayDate.Day.ToString();
         }
 
-        protected override void RefreshPlanner(object sender, EventArgs e)
+        #region event handlers
+        protected override void Planner_OnRefresh(object sender, EventArgs e)
         {
-            ReloadUI();
+            Refresh();
 
             // Mark the refresh as complete.
             _SwipeLayout.Refreshing = false;
         }
+
+        protected override void Previous_OnClick(object sender, EventArgs e)
+        {
+            // Update the view date
+            _ViewDate = _ViewDate.AddDays(-7);
+
+            // Reload the UI.
+            Refresh();
+        }
+
+        protected override void Next_OnClick(object sender, EventArgs e)
+        {
+            // Update the view date.
+            _ViewDate = _ViewDate.AddDays(7);
+
+            // Reload the UI.
+            Refresh();
+        }
+
+        protected override void Refresh()
+        {
+            // Clear the activities and any dropzones.
+            ClearActivities();
+            ClearDropzone();
+
+            // Update the title above the planner.
+            // Get the date of Sunday this week.
+            int dow = (int)_ViewDate.DayOfWeek;
+
+            // Subtract dow from _View date to get the date on Sunday.
+            DateTime sundayDate = _ViewDate.AddDays(-dow);
+
+            SetTitle("Week of " + sundayDate.Day + "/" + sundayDate.Month + "/" + sundayDate.Year);
+
+            // Update the day of the month displayed of the day of the week.
+            SetDayOfMonth();
+
+            // Retrieve the activities and activity logs.
+            GetActivities();
+            GetActivityLogs();
+        }
+        #endregion
     }
 }

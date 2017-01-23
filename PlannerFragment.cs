@@ -63,63 +63,113 @@ namespace Front_End
         {
             base.OnViewCreated(view, savedInstanceState);
 
+            // Assign the next and previous onclick events.
+            View.FindViewById<ImageButton>(Resource.Id.ibNextDate).Click += Next_OnClick;
+            View.FindViewById<ImageButton>(Resource.Id.ibPrevDate).Click += Previous_OnClick;
+
             _SwipeLayout = View.FindViewById<SwipeRefreshLayout>(Resource.Id.swiperefresh);
-            _SwipeLayout.Refresh += RefreshPlanner;
+            _SwipeLayout.Refresh += Planner_OnRefresh;
+
+            DrawHourMarkers();
+            DrawTimes();
         }
 
-        protected abstract void RefreshPlanner(object sender, EventArgs e);
+        protected abstract void Planner_OnRefresh(object sender, EventArgs e);
+        protected abstract void Previous_OnClick(object sender, EventArgs e);
+        protected abstract void Next_OnClick(object sender, EventArgs e);
+        protected abstract void Refresh();
 
 
-        /*
+        protected void SetTitle(string title)
+        {
+            // Set the title at the stop of the planner.
+            View.FindViewById<TextView>(Resource.Id.tvDate).Text = title;
+        }
+        
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
            return base.OnCreateView(inflater, container, savedInstanceState);
         }
-        */
 
-        /*protected override void OnCreate(Bundle bundle)
-		{
-			// Set our view from the "main" layout resource
-			SetContentView(Resource.Layout.PlannerWeekly);
-
-            base.OnCreate(bundle);
-	    
-            // Using a global variable so we can simulate adding data when using the FakeData switch.
-            _Activities = new List<ActivityModel>();
-            _ActivityLogs = new List<ActivityLogModel>();
-            _ActivityLogId = 0;
-            _ActivityColors = new List<KeyValuePair<int, Color>>();
-
-            // Assign the next and previous onclick events.
-            FindViewById<ImageButton>(Resource.Id.ibNextDate).Click += NextDay_OnClick;
-            FindViewById<ImageButton>(Resource.Id.ibPrevDate).Click += PreviousDay_OnClick;
-
-            if(_ViewDate == default(DateTime))
-            {
-                DateTime currentTime = DateTime.Now;
-
-                // If the current view date is not set, set it to the current day.
-                _ViewDate = new DateTime(currentTime.Year, currentTime.Month, currentTime.Day, 0, 0, 0);
-            }
-        }*/
-
-        /*protected override void OnResume()
+        public override void OnResume()
         {
             base.OnResume();
 
             // Reload the planner when the activity is resumed.
-            ReloadUI();
+            Refresh();
 
+            /* TODO Need to update this to use the newer permission schemes in Android.
             TimesDatabase timeDb = new TimesDatabase();
 
             if (timeDb.FindLatest() != DateTime.Now.Day)
             {
                 new Notification();
             }
-        }*/
+            */
+        }
+
+        #region UI
+        protected void DrawHourMarkers()
+        {
+            System.Diagnostics.Debug.WriteLine("Drawing markers.");
+
+            int currentPos = 0;
+            RelativeLayout rlPlanner = View.FindViewById<RelativeLayout>(Resource.Id.rlPlanner);
+
+            for (int i = 0; i < 24; i++)
+            {
+                currentPos += HOUR_DP;
+
+                System.Diagnostics.Debug.WriteLine("Putting a marker at " + currentPos);
+
+                // Create a new horizontal divider.
+                //View divider = new View(this.Activity, );
+
+                View divider = Activity.LayoutInflater.Inflate(Resource.Layout.PlannerHorizontalDivider, null);
+
+                RelativeLayout.LayoutParams rlParameters = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, (int)DPToPixels(1));
+
+                // Set the margin for the divider.
+                rlParameters.TopMargin = (int)DPToPixels(currentPos);
+                rlParameters.LeftMargin = (int)DPToPixels(HOUR_DP);
+                //rlParameters.SetMargins(60, currentPos, 0, 0);
+                divider.LayoutParameters = rlParameters;
+
+                rlPlanner.AddView(divider);
+            }
+        }
+
+        protected void DrawTimes()
+        {
+            // Every time marker should be offset by half of the HOUR_DP so it is aligned with the hour marker.
+            int currentPos = HOUR_DP / 2;
+            RelativeLayout rlTimeMarkers = View.FindViewById<RelativeLayout>(Resource.Id.rlTimeMarkers);
+
+            // Get all of the possible times from the strings file.
+            string[] timesArray = Resources.GetStringArray(Resource.Array.times);
+
+            foreach(string time in timesArray)
+            {
+                TextView tvTime = new TextView(this.Activity);
+
+                // Set text for this TextView.
+                tvTime.Text = time;
+                tvTime.Gravity = GravityFlags.Center;
+                tvTime.SetHeight((int)DPToPixels(60));
+
+                // Create a new LayoutParams object to set the height, width, etc.
+                RelativeLayout.LayoutParams rlParameters = new RelativeLayout.LayoutParams((int)DPToPixels(HOUR_DP), ViewGroup.LayoutParams.WrapContent);
+                rlParameters.TopMargin = (int)DPToPixels(currentPos);
+                tvTime.LayoutParameters = rlParameters;
+
+                rlTimeMarkers.AddView(tvTime);
+                currentPos += HOUR_DP;
+            }
+        }
+        #endregion
 
         #region backend
-        private async void GetActivities()
+        protected async void GetActivities()
         {
             try
             {
@@ -223,7 +273,7 @@ namespace Front_End
             }
         }
 
-        private async void GetActivityLogs()
+        protected async void GetActivityLogs()
         {
             try
             {
@@ -478,8 +528,8 @@ namespace Front_End
                     // Add the activity to the backend.
                     AddActivityLogToBackend(activityId, startTime, endTime);
 
-                    // Get all the activity logs from the backend again.
-                    ReloadUI();
+                    // Refresh the screen.
+                    Refresh();
                     break;
                 case DragAction.Location:
                     // The user has moved their finger. Move the preview.
@@ -497,39 +547,9 @@ namespace Front_End
 
             StartActivity(activityLogEditActivity);
         }
-
-        protected void PreviousDay_OnClick(object sender, EventArgs e)
-        {
-            // Update the view date
-            _ViewDate = _ViewDate.AddDays(-1);
-
-            // Reload the UI.
-            ReloadUI();
-        }
-
-        protected void NextDay_OnClick(object sender, EventArgs e)
-        {
-            // Update the view date
-            _ViewDate = _ViewDate.AddDays(1);
-
-            // Reload the UI.
-            ReloadUI();
-        }
         #endregion
 
         #region planner
-        protected void ReloadUI()
-        {
-            // Set the heading to be the date.
-            View.FindViewById<TextView>(Resource.Id.tvDate).Text = _ViewDate.Day + "/" + _ViewDate.Month + "/" + _ViewDate.Year;
-
-            // Get the dropzone and attach a drag event listener.
-            ClearDropzone();
-            ClearActivities();
-            GetActivities();
-            GetActivityLogs();
-        }
-
         protected void PlannerPreview_Create(ViewGroup view, int size)
         {
             // This method creates a RelativeLayout that is meant to show the user where a new activity log will
