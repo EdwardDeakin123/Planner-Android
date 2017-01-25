@@ -31,12 +31,13 @@ namespace Front_End.Backend
             return await GetRequestListAsync<ActivityLogModel>();
         }
 
-        public async Task<List<ActivityLogModel>> GetByDate(DateTime date)
+        public async Task<List<ActivityLogModel>> GetByDate(DateTime startDate, DateTime endDate)
         {
             // Set the command and create the query string.
             _Command = "GetByDate";
 
-            _Parameters.Add(new BackendParameter { Key = "date", Value = date.ToString("yyyy-MM-dd HH:mm:ss") });
+            _Parameters.Add(new BackendParameter { Key = "startDate", Value = startDate.ToString("yyyy-MM-dd HH:mm:ss") });
+            _Parameters.Add(new BackendParameter { Key = "endDate", Value = endDate.ToString("yyyy-MM-dd HH:mm:ss") });
 
             return await GetRequestListAsync<ActivityLogModel>();
         }

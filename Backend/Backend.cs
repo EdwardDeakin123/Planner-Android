@@ -129,7 +129,7 @@ namespace Front_End.Backend
             HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(url));
             request.Timeout = TIMEOUT;
 
-            request.Proxy = new WebProxy("192.168.0.13", 8888);
+            //request.Proxy = new WebProxy("192.168.0.13", 8888);
 
             // Assign the cookie container to the request object, this authenticates this request.
             request.CookieContainer = _CookieContainer;

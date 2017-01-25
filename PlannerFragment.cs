@@ -14,18 +14,17 @@ using Front_End.Exceptions;
 using SQLite;
 using Front_End.Database;
 using Android.Support.V4.Widget;
+using System.Xml.Serialization;
 
 namespace Front_End
 {
     [Activity(Label = "Activity Tracker")]
     public abstract class PlannerFragment : Fragment
     {
+        //TODO Do more stuff in separate threads.
         // Layout elements.
         protected RelativeLayout _RLHover;
         protected SwipeRefreshLayout _SwipeLayout;
-
-        //TODO Remove this
-        //RelativeLayout _RLDropzone;
 
         // The date of the current view.
         protected DateTime _ViewDate;
@@ -33,7 +32,6 @@ namespace Front_End
         // Global variables used with the demo mode (_FakeData).
         protected List<ActivityModel> _Activities;
         protected List<ActivityLogModel> _ActivityLogs;
-        protected int _ActivityLogId;
 
         // List that contains the list of colors associated with each activity ID.
         protected List<KeyValuePair<int, Color>> _ActivityColors;
@@ -46,16 +44,65 @@ namespace Front_End
         protected const int WEEKLY_VIEW = 1;
 
         // This variable is used to skip the backend and just use test data.
-        protected bool _FakeData = true;
+        protected bool _FakeData = false;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            // Using a global variable so we can simulate adding data when using the FakeData switch.
-            _Activities = new List<ActivityModel>();
-            _ActivityLogs = new List<ActivityLogModel>();
-            _ActivityLogId = 0;
+            // Notify the calling activity that this fragment has an options menu.
+            SetHasOptionsMenu(true);
+
+            if (savedInstanceState == null)
+            {
+                // Using a global variable so we can simulate adding data when using the FakeData switch.
+                _Activities = new List<ActivityModel>();
+                _ActivityLogs = new List<ActivityLogModel>();
+            }
+            else
+            {
+                string activityXml = savedInstanceState.GetString("activities", "");
+                string activityLogXml = savedInstanceState.GetString("activityLogs", "");
+
+                if(activityXml == "")
+                {
+                    // If there is no saved XML, just recreate the list.
+                    _Activities = new List<ActivityModel>();
+                }
+                else
+                {
+                    // Retrieve the Activities from the saved instance state and deserialize.
+                    _Activities = Utility.DeserializeFromString<List<ActivityModel>>(activityXml);
+                }
+
+
+                if (activityLogXml == "")
+                {
+                    // If there is no saved XML, just recreate the list.
+                    _ActivityLogs = new List<ActivityLogModel>();
+                }
+                else
+                {
+                    // Retrieve the ActivityLogs from the saved instance state and deserialize.
+                    _ActivityLogs = Utility.DeserializeFromString<List<ActivityLogModel>>(activityLogXml);
+                }
+                
+                //Restore the view date
+                int year = savedInstanceState.GetInt("viewDateYear", -1);
+                int month = savedInstanceState.GetInt("viewDateMonth", -1);
+                int day = savedInstanceState.GetInt("viewDateDay", -1);
+
+                // If any of the values return -1, just use todays date as the view date.
+                if(year > -1 || month > -1 || day > -1)
+                {
+                    _ViewDate = new DateTime(year, month, day, 0, 0, 0);
+                }
+                else
+                {
+                    _ViewDate = DateTime.Now;
+                }
+            }
+
             _ActivityColors = new List<KeyValuePair<int, Color>>();
         }
 
@@ -72,13 +119,21 @@ namespace Front_End
 
             DrawHourMarkers();
             DrawTimes();
+            Refresh();
+            DrawCurrentTime();
+        }
+
+        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater menuInflater)
+        {
+            menuInflater.Inflate(Resource.Menu.menu_fragment_daily_planner, menu);
+
+            base.OnCreateOptionsMenu(menu, menuInflater);
         }
 
         protected abstract void Planner_OnRefresh(object sender, EventArgs e);
         protected abstract void Previous_OnClick(object sender, EventArgs e);
         protected abstract void Next_OnClick(object sender, EventArgs e);
         protected abstract void Refresh();
-
 
         protected void SetTitle(string title)
         {
@@ -96,7 +151,7 @@ namespace Front_End
             base.OnResume();
 
             // Reload the planner when the activity is resumed.
-            Refresh();
+            //Refresh();
 
             /* TODO Need to update this to use the newer permission schemes in Android.
             TimesDatabase timeDb = new TimesDatabase();
@@ -106,6 +161,19 @@ namespace Front_End
                 new Notification();
             }
             */
+        }
+
+        public override void OnSaveInstanceState(Bundle outState)
+        {
+            base.OnSaveInstanceState(outState);
+
+            // When the instance is destroyed or recreated, save any important information for reuse.
+            // This happens when the screen orientation changes.
+            outState.PutString("activities", Utility.SerializeToString(_Activities));
+            outState.PutString("activityLogs", Utility.SerializeToString(_ActivityLogs));
+            outState.PutInt("viewDateYear", _ViewDate.Year);
+            outState.PutInt("viewDateMonth", _ViewDate.Month);
+            outState.PutInt("viewDateDay", _ViewDate.Day);
         }
 
         #region UI
@@ -120,22 +188,19 @@ namespace Front_End
             {
                 currentPos += HOUR_DP;
 
-                System.Diagnostics.Debug.WriteLine("Putting a marker at " + currentPos);
+                //System.Diagnostics.Debug.WriteLine("Putting a marker at " + currentPos);
 
                 // Create a new horizontal divider.
-                //View divider = new View(this.Activity, );
+                View hourMarker = new View(this.Activity);
+                hourMarker.SetBackgroundColor(new Android.Graphics.Color(Activity.GetColor(Resource.Color.planner_divider)));
 
-                View divider = Activity.LayoutInflater.Inflate(Resource.Layout.PlannerHorizontalDivider, null);
-
+                // Get the layout and set the margins.
                 RelativeLayout.LayoutParams rlParameters = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, (int)DPToPixels(1));
-
-                // Set the margin for the divider.
                 rlParameters.TopMargin = (int)DPToPixels(currentPos);
                 rlParameters.LeftMargin = (int)DPToPixels(HOUR_DP);
-                //rlParameters.SetMargins(60, currentPos, 0, 0);
-                divider.LayoutParameters = rlParameters;
 
-                rlPlanner.AddView(divider);
+                hourMarker.LayoutParameters = rlParameters;
+                rlPlanner.AddView(hourMarker);
             }
         }
 
@@ -166,6 +231,59 @@ namespace Front_End
                 currentPos += HOUR_DP;
             }
         }
+
+        protected void DrawCurrentTime()
+        {
+            DateTime currentTime = DateTime.Now;
+            RelativeLayout dropzone = default(RelativeLayout);
+
+            if(GetPlannerMode() == DAILY_VIEW)
+            {
+                System.Diagnostics.Debug.WriteLine("CurrentTime: Daily View");
+
+                if (!(_ViewDate.Day == currentTime.Day && _ViewDate.Month == currentTime.Month && _ViewDate.Year == currentTime.Year))
+                {
+                    // Today's date is not displayed on the current screen. Don't do anything.
+                    return;
+                }
+                    System.Diagnostics.Debug.WriteLine("CurrentTime: Displaying today.");
+
+                    // We are displaying today. Get the dropzone.
+                    dropzone = View.FindViewById<RelativeLayout>(Resource.Id.rlDropzone);
+            }
+            else
+            {
+                // Get todays day of the week.
+                int curDow = (int)currentTime.DayOfWeek;
+
+                // Check if the current day of week is todays date in the current view.
+                DateTime curDate = GetDateTimeForDayOfWeek(curDow);
+
+                // Check if today's date is in the display.
+                if (!(curDate.Day == currentTime.Day && curDate.Month == currentTime.Month && curDate.Year == currentTime.Year))
+                {
+                    // Today's date is not displayed on the current screen. Don't do anything.
+                    return;
+                }
+
+                // Today's date is on display, get the correct dropzone.
+                dropzone = GetDropzoneByDayOfWeek(curDow);
+            }
+
+            // Use the current time to determine where to place the "current time line".
+            int hour = currentTime.Hour * HOUR_DP;
+            // This calculation will cancel itself out if HOUR_DP is set to 60 (as default), decided to leave it in case the DP is changed later.
+            int minutes = (int)((currentTime.Minute / 60.00F) * HOUR_DP);
+
+            View timeMarker = new View(this.Activity);
+            timeMarker.SetBackgroundColor(new Android.Graphics.Color(Activity.GetColor(Resource.Color.bright_red)));
+
+            // Get the layout and set the margins.
+            RelativeLayout.LayoutParams rlParameters = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, (int)DPToPixels(2));
+            rlParameters.TopMargin = (int)DPToPixels(hour + minutes);
+            timeMarker.LayoutParameters = rlParameters;
+            dropzone.AddView(timeMarker);
+        }
         #endregion
 
         #region backend
@@ -175,6 +293,8 @@ namespace Front_End
             {
                 // Store activities in a global variable so they can be referenced later without requiring another
                 // connection to the backend.
+                List<ActivityModel> activities = new List<ActivityModel>();
+
                 // Get activities from the backend.
                 if (!_FakeData)
                 {
@@ -260,6 +380,13 @@ namespace Front_End
                                 // The exception has been handled. Return true.
                                 return true;
                             }
+                            else if (((HttpWebResponse)wEx.Response).StatusCode == HttpStatusCode.NotFound)
+                            {
+                                //TODO handle all other messages as Unexpected Error.
+                                DisplayAlert(GetString(Resource.String.unexpected_error), GetString(Resource.String.unexpected_error_message));
+
+                                return true;
+                            }
 
                             System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
                         }
@@ -273,16 +400,35 @@ namespace Front_End
             }
         }
 
-        protected async void GetActivityLogs()
+        /*protected void DisplayActivities()
+        {
+            foreach (ActivityModel act in _Activities)
+            {
+                System.Diagnostics.Debug.WriteLine("Got activity: " + act.ActivityName);
+
+                Button actButton = new Button(this.Activity);
+                actButton.Text = act.ActivityName;
+
+                // Add the ID of this activity to the button's tag so it can later be identified.
+                actButton.SetTag(Resource.Id.activity_id, act.ActivityId);
+                actButton.LongClick += Activity_LongClick;
+
+                View.FindViewById<LinearLayout>(Resource.Id.llActivities).AddView(actButton);
+            }
+        }*/
+
+        protected async void GetActivityLogs(DateTime startDate, DateTime endDate)
         {
             try
             {
+                //List<ActivityLogModel> activityLogs = new List<ActivityLogModel>();
+
                 // Get activities from the backend.
                 if (!_FakeData)
                 {
                     // Get real data.
                     BackendActivityLog backend = new BackendActivityLog();
-                    _ActivityLogs = await backend.GetByDate(_ViewDate);
+                    _ActivityLogs = await backend.GetByDate(startDate, endDate);
                 }
 
                 System.Diagnostics.Debug.WriteLine("Got " + _ActivityLogs.Count + " activity logs");
@@ -340,6 +486,12 @@ namespace Front_End
                                 // The exception has been handled. Return true.
                                 return true;
                             }
+                            else if (((HttpWebResponse)wEx.Response).StatusCode == HttpStatusCode.NotFound)
+                            {
+                                DisplayAlert(GetString(Resource.String.unexpected_error), GetString(Resource.String.unexpected_error_message));
+
+                                return true;
+                            }
 
                             System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
                         }
@@ -353,6 +505,19 @@ namespace Front_End
             }
         }
 
+        /*protected void DisplayActivityLogs()
+        {
+            System.Diagnostics.Debug.WriteLine("Got " + _ActivityLogs.Count + " activity logs");
+
+            foreach (ActivityLogModel actLog in _ActivityLogs)
+            {
+                Console.WriteLine("ActivityLog: " + actLog.Activity.ActivityName + " " + actLog.StartTime.ToString() + " " + actLog.EndTime.ToString());
+
+                // Display the Activity Log on the calendar.
+                AddActivityLogToCalendar(actLog);
+            }
+        }*/
+
         protected async void AddActivityLogToBackend(int activityId, DateTime startTime, DateTime endTime)
         {
             try
@@ -365,12 +530,14 @@ namespace Front_End
                 }
                 else
                 {
+                    // We need to generate an activitylog id when creating fake entries.
+                    // Use the number of activity logs in the list as the ID.
+                    int activityLogId = _ActivityLogs.Count;
+
                     // Create an ActivityLog and add it to the global list but don't push it to the database.
                     // Get the activity associated with this log.
                     ActivityModel activity = _Activities.Where(act => act.ActivityId == activityId).FirstOrDefault();
-                    _ActivityLogs.Add(new ActivityLogModel() { ActivityLogId = _ActivityLogId, Activity = activity, StartTime = startTime, EndTime = endTime });
-
-                    _ActivityLogId++;
+                    _ActivityLogs.Add(new ActivityLogModel() { ActivityLogId = activityLogId, Activity = activity, StartTime = startTime, EndTime = endTime });
                 }
             }
             catch (System.Net.WebException ex)
@@ -593,6 +760,35 @@ namespace Front_End
         protected void AddActivityLogToCalendar(ActivityLogModel activityLog)
         {
             //TODO: Verify the day here.
+            // Determine which dropzone to place this activitylog into.
+            RelativeLayout dropzone;
+
+            if (GetPlannerMode() == DAILY_VIEW)
+            {
+                // Get the dropzone but also make sure that the the activity log should be displayed on this day.
+                dropzone = View.FindViewById<RelativeLayout>(Resource.Id.rlDropzone);
+
+                if(!(_ViewDate.Day == activityLog.StartTime.Day && _ViewDate.Month == activityLog.StartTime.Month && _ViewDate.Year == activityLog.StartTime.Year))
+                {
+                    // This is the incorrect day
+                    return;
+                }
+            }
+            else
+            {
+                // This is a weekly view, get the correct dropzone by the Day Of Week.
+                dropzone = GetDropzoneByDayOfWeek((int)activityLog.StartTime.DayOfWeek);
+
+                // Get the date for the day of the week this activity log falls on and check that it matches the date of the activity log.
+                DateTime weekDate = GetDateTimeForDayOfWeek((int)activityLog.StartTime.DayOfWeek);
+
+                if (!(weekDate.Day == activityLog.StartTime.Day && weekDate.Month == activityLog.StartTime.Month && weekDate.Year == activityLog.StartTime.Year))
+                {
+                    // This is the incorrect day
+                    return;
+                }
+            }
+
             // Work out where to place the start of the activity log.
             int startHour = activityLog.StartTime.Hour;
 
@@ -608,19 +804,6 @@ namespace Front_End
             // Get the start and end times as strings.
             string startTime = activityLog.StartTime.ToString("HH:mm");
             string endTime = activityLog.EndTime.ToString("HH:mm");
-
-            // Determine which dropzone to place this activitylog into.
-            RelativeLayout dropzone;
-
-            if (GetPlannerMode() == DAILY_VIEW)
-            {
-                dropzone = View.FindViewById<RelativeLayout>(Resource.Id.rlDropzone);
-            }
-            else
-            {
-                // This is a weekly view, get the correct dropzone by the Day Of Week.
-                dropzone = GetDropzoneByDayOfWeek((int)activityLog.StartTime.DayOfWeek);
-            }
 
             // Create the ActivityLog view and set the name and times in the TextView
             View vActivityLog = Activity.LayoutInflater.Inflate(Resource.Layout.ActivityLogEvent, null);
@@ -796,6 +979,21 @@ namespace Front_End
             }
 
             return dow;
+        }
+
+        protected DateTime GetDateTimeForDayOfWeek(int dow)
+        {
+            // Get the day of the week of the view date.
+            int vdDow = (int)_ViewDate.DayOfWeek;
+
+            // Check if the current day of week is todays date in the current view.
+            // Calculate the difference between the view date and the current day so we can calculate the actual date.
+            int diff = dow - vdDow;
+
+            System.Diagnostics.Debug.WriteLine("Diff is: " + diff);
+
+            // Add (or remove if negative) the difference from the view date.
+            return _ViewDate.AddDays(diff);
         }
 
         protected int GetPlannerMode()

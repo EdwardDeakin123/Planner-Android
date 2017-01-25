@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item android:id="@+id/today"
+        android:icon="@drawable/ic_today_white_24dp"
+        android:title="@string/today"
+        android:showAsAction="always" />
+  <item android:id="@+id/refresh"
+      android:icon="@drawable/ic_refresh_white_24dp"
+      android:title="@string/refresh"
+      android:showAsAction="always" />
+</menu>

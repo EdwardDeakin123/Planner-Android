@@ -125,25 +125,26 @@ namespace Front_End
 
         protected override void Refresh()
         {
+            System.Diagnostics.Debug.WriteLine("Refreshing...");
+
+            // Get the date of Sunday this week.
+            DateTime sundayDate = GetDateTimeForDayOfWeek(0);
+            DateTime saturdayDate = GetDateTimeForDayOfWeek(6);
+
+            // Retrieve the activities and activity logs.
+            GetActivities();
+            GetActivityLogs(sundayDate, saturdayDate);
+
             // Clear the activities and any dropzones.
             ClearActivities();
             ClearDropzone();
 
             // Update the title above the planner.
-            // Get the date of Sunday this week.
-            int dow = (int)_ViewDate.DayOfWeek;
-
-            // Subtract dow from _View date to get the date on Sunday.
-            DateTime sundayDate = _ViewDate.AddDays(-dow);
 
             SetTitle("Week of " + sundayDate.Day + "/" + sundayDate.Month + "/" + sundayDate.Year);
 
             // Update the day of the month displayed of the day of the week.
             SetDayOfMonth();
-
-            // Retrieve the activities and activity logs.
-            GetActivities();
-            GetActivityLogs();
         }
         #endregion
     }

@@ -2,3 +2,5 @@
 
 https://material.io/icons/#ic_view_day (Apache License Version 2.0)
 https://material.io/icons/#ic_view_week (Apache License Version 2.0)
+Today Icon https://material.io/icons/#ic_today (Apache License Version 2.0)
+Refresh Icon https://material.io/icons/#ic_refresh (Apache License Version 2.0)

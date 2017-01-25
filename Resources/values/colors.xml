@@ -13,7 +13,7 @@
   <item name="blue" type="color">#6675ff</item>
   <item name="grey" type="color">#c6c6c6</item>
 
-
+  <item name="bright_red" type="color">#ff3d3d</item>
 
   <array name="activitylog_colors">
     <item>@color/pale_blue</item>

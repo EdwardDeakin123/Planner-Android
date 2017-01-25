@@ -37,9 +37,7 @@ namespace Front_End
 
             SetContentView(Resource.Layout.Navigation);
 
-            // Allow the user to click the application icon in the action bar to open or close the drawer.
-            ActionBar.SetDisplayHomeAsUpEnabled(true);
-            ActionBar.SetHomeButtonEnabled(true);
+            System.Diagnostics.Debug.WriteLine("MainActivity is being created.");
 
             // Set up the navigation drawer.
             //string[] navigationArray = Resources.GetStringArray(Resource.Array.navigation_array);
@@ -49,15 +47,18 @@ namespace Front_End
             navigationList.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, _NavigationItems);
             navigationList.ItemClick += SelectItem;
 
-            // Show the Daily Planner by default.
-            // Create an instance of the fragment.
-            Fragment fragment = new PlannerDailyFragment();
+            if (bundle == null)
+            {
+                // Show the Daily Planner by default.
+                // Create an instance of the fragment.
+                Fragment fragment = new PlannerDailyFragment();
 
-            // Use the FragmentManager to assign the fragment to the content layout.
-            //FragmentManager fragmentManager = this.FragmentManager;
-            FragmentManager.BeginTransaction()
-                .Replace(Resource.Id.content, fragment)
-                .Commit();
+                // Use the FragmentManager to assign the fragment to the content layout.
+                //FragmentManager fragmentManager = this.FragmentManager;
+                FragmentManager.BeginTransaction()
+                    .Replace(Resource.Id.content, fragment)
+                    .Commit();
+            }
         }
 
         private void SelectItem(object sender, AdapterView.ItemClickEventArgs e)
@@ -84,6 +85,14 @@ namespace Front_End
                     .Replace(Resource.Id.content, fragment)
                     .Commit();
             }
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            //MenuInflater.Inflate(Resource.Menu.menu_fragment_daily_planner, menu);
+
+            //MenuInflater.Inflate(Resource.Menu.top_menus, menu);
+            return base.OnCreateOptionsMenu(menu);
         }
     }
 }

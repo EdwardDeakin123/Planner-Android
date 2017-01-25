@@ -99,6 +99,7 @@ namespace Front_End
 
         protected override void Refresh()
         {
+            System.Diagnostics.Debug.WriteLine("Refreshing...");
             // Clear the activities and any dropzones.
             ClearActivities();
             ClearDropzone();
@@ -108,7 +109,9 @@ namespace Front_End
 
             // Retrieve the activities and activity logs.
             GetActivities();
-            GetActivityLogs();
+
+            // This is a daily view, so only get activity logs from today.
+            GetActivityLogs(_ViewDate, _ViewDate);
         }
         #endregion
 
