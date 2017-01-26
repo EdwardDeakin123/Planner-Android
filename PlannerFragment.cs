@@ -44,7 +44,7 @@ namespace Front_End
         protected const int WEEKLY_VIEW = 1;
 
         // This variable is used to skip the backend and just use test data.
-        protected bool _FakeData = false;
+        protected bool _FakeData = true;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -55,37 +55,64 @@ namespace Front_End
 
             if (savedInstanceState == null)
             {
-                // Using a global variable so we can simulate adding data when using the FakeData switch.
-                _Activities = new List<ActivityModel>();
-                _ActivityLogs = new List<ActivityLogModel>();
+                // This is a new instance of this fragment.
+                // Check to see if there are any cached versions of the data that can be retrieved from the disk.
+                try
+                {
+                    // Get the serialized data from the disk.
+                    string activityXml = Utility.ReadFromFile("activities.txt");
+                    ObjectCacheModel<List<ActivityModel>> activityCache = Utility.DeserializeFromString<ObjectCacheModel<List<ActivityModel>>>(activityXml);
+
+                    // Check if the cached object has expired, if it has - create a new object.
+                    // Otherwise return the cached object.
+                    if (activityCache.Expired)
+                        _Activities = new List<ActivityModel>();
+                    else
+                        _Activities = activityCache.Object;
+                }
+                catch(System.IO.FileNotFoundException)
+                {
+                    // There is no cache. Do nothing.
+                    _Activities = new List<ActivityModel>();
+                }
+
+                try
+                {
+                    // Get the serialized data from the disk.
+                    string activityXml = Utility.ReadFromFile("activitylogs.txt");
+                    ObjectCacheModel<List<ActivityLogModel>> activityLogCache = Utility.DeserializeFromString<ObjectCacheModel<List<ActivityLogModel>>>(activityXml);
+
+                    // Check if the cached object has expired, if it has - create a new object.
+                    // Otherwise return the cached object.
+                    if (activityLogCache.Expired)
+                        _ActivityLogs = new List<ActivityLogModel>();
+                    else
+                        _ActivityLogs = activityLogCache.Object;
+                }
+                catch (System.IO.FileNotFoundException)
+                {
+                    // There is no cache. Do nothing.
+                    _ActivityLogs = new List<ActivityLogModel>();
+                }
             }
             else
             {
                 string activityXml = savedInstanceState.GetString("activities", "");
                 string activityLogXml = savedInstanceState.GetString("activityLogs", "");
 
-                if(activityXml == "")
-                {
-                    // If there is no saved XML, just recreate the list.
+                // If there is no saved XML, just recreate the list.
+                // Otherwise, retrieve the Activities from the saved instance state and deserialize.
+                if (activityXml == "")
                     _Activities = new List<ActivityModel>();
-                }
                 else
-                {
-                    // Retrieve the Activities from the saved instance state and deserialize.
                     _Activities = Utility.DeserializeFromString<List<ActivityModel>>(activityXml);
-                }
 
-
+                // If there is no saved XML, just recreate the list.
+                // Otherwise, retrieve the ActivityLogs from the saved instance state and deserialize.
                 if (activityLogXml == "")
-                {
-                    // If there is no saved XML, just recreate the list.
                     _ActivityLogs = new List<ActivityLogModel>();
-                }
                 else
-                {
-                    // Retrieve the ActivityLogs from the saved instance state and deserialize.
                     _ActivityLogs = Utility.DeserializeFromString<List<ActivityLogModel>>(activityLogXml);
-                }
                 
                 //Restore the view date
                 int year = savedInstanceState.GetInt("viewDateYear", -1);
@@ -120,15 +147,37 @@ namespace Front_End
             DrawHourMarkers();
             DrawTimes();
             Refresh();
+
+            // TODO Schedule this to update at regular intervals.
             DrawCurrentTime();
         }
 
+        #region menu
         public override void OnCreateOptionsMenu(IMenu menu, MenuInflater menuInflater)
         {
             menuInflater.Inflate(Resource.Menu.menu_fragment_daily_planner, menu);
 
             base.OnCreateOptionsMenu(menu, menuInflater);
         }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch(item.ItemId)
+            {
+                case Resource.Id.refresh:
+                    // Refresh the planner.
+                    Refresh();
+                    break;
+                case Resource.Id.today:
+                    // Switch to todays date.
+                    _ViewDate = DateTime.Now;
+                    Refresh();
+                    break;
+            }
+
+            return base.OnOptionsItemSelected(item);
+        }
+        #endregion
 
         protected abstract void Planner_OnRefresh(object sender, EventArgs e);
         protected abstract void Previous_OnClick(object sender, EventArgs e);
@@ -167,6 +216,8 @@ namespace Front_End
         {
             base.OnSaveInstanceState(outState);
 
+            System.Diagnostics.Debug.WriteLine("Saving Instance.");
+
             // When the instance is destroyed or recreated, save any important information for reuse.
             // This happens when the screen orientation changes.
             outState.PutString("activities", Utility.SerializeToString(_Activities));
@@ -174,6 +225,27 @@ namespace Front_End
             outState.PutInt("viewDateYear", _ViewDate.Year);
             outState.PutInt("viewDateMonth", _ViewDate.Month);
             outState.PutInt("viewDateDay", _ViewDate.Day);
+        }
+
+        public override void OnStop()
+        {
+            base.OnStop();
+
+            System.Diagnostics.Debug.WriteLine("Stopping now...");
+
+            // Serialize the Activities and Activity logs when the activity stops and save them to disk.
+            // This can then be retrieved the next time this fragment runs. This allows us to pass data between the daily
+            // and weekly views, reducing the number of calls to the backend. It also makes the dummy data mode better.
+
+            // Add the activity logs and activities to an ObjectCacheModel object. This will help manage stale items in the cache.
+            ObjectCacheModel<List<ActivityModel>> activityCache = new ObjectCacheModel<List<ActivityModel>>() { Object = _Activities };
+            ObjectCacheModel<List<ActivityLogModel>> activityLogCache = new ObjectCacheModel<List<ActivityLogModel>>() { Object = _ActivityLogs };
+
+            System.Diagnostics.Debug.WriteLine("Serializing objects now.");
+
+            // Serialize these objects and write them to the disk.
+            Utility.WriteToFile(Utility.SerializeToString(activityCache), "activities.txt");
+            Utility.WriteToFile(Utility.SerializeToString(activityLogCache), "activitylogs.txt");
         }
 
         #region UI
@@ -354,7 +426,6 @@ namespace Front_End
                 // Catch the aggregate exception, this might be thrown by the asynchronous tasks in the backend.
                 // Handle any of the types that we are aware of.
                 // Managing of aggregate exceptions modified from code found here: https://msdn.microsoft.com/en-us/library/dd537614%28v=vs.110%29.aspx?f=255&MSPPError=-2147217396
-
                 ex.Handle((x) =>
                 {
                     if (x is WebException)
@@ -400,29 +471,10 @@ namespace Front_End
             }
         }
 
-        /*protected void DisplayActivities()
-        {
-            foreach (ActivityModel act in _Activities)
-            {
-                System.Diagnostics.Debug.WriteLine("Got activity: " + act.ActivityName);
-
-                Button actButton = new Button(this.Activity);
-                actButton.Text = act.ActivityName;
-
-                // Add the ID of this activity to the button's tag so it can later be identified.
-                actButton.SetTag(Resource.Id.activity_id, act.ActivityId);
-                actButton.LongClick += Activity_LongClick;
-
-                View.FindViewById<LinearLayout>(Resource.Id.llActivities).AddView(actButton);
-            }
-        }*/
-
         protected async void GetActivityLogs(DateTime startDate, DateTime endDate)
         {
             try
             {
-                //List<ActivityLogModel> activityLogs = new List<ActivityLogModel>();
-
                 // Get activities from the backend.
                 if (!_FakeData)
                 {
@@ -505,26 +557,13 @@ namespace Front_End
             }
         }
 
-        /*protected void DisplayActivityLogs()
-        {
-            System.Diagnostics.Debug.WriteLine("Got " + _ActivityLogs.Count + " activity logs");
-
-            foreach (ActivityLogModel actLog in _ActivityLogs)
-            {
-                Console.WriteLine("ActivityLog: " + actLog.Activity.ActivityName + " " + actLog.StartTime.ToString() + " " + actLog.EndTime.ToString());
-
-                // Display the Activity Log on the calendar.
-                AddActivityLogToCalendar(actLog);
-            }
-        }*/
-
         protected async void AddActivityLogToBackend(int activityId, DateTime startTime, DateTime endTime)
         {
             try
             {
                 if (!_FakeData)
                 {
-                    // Get real data.
+                    // Add the acitivity log to the backend.
                     BackendActivityLog backend = new BackendActivityLog();
                     await backend.Add(activityId, startTime, endTime);
                 }
@@ -673,18 +712,11 @@ namespace Front_End
                     else
                     {
                         // This is a weekly view. ViewDate is not necessarily the correct date to use.
-                        // Get the day of the week of the ViewDate.
-                        int vdDow = (int)_ViewDate.DayOfWeek;
-
                         // Get the day of the week of this dropzone.
                         int dzDow = GetDayOfWeekByDropzone(dropzone);
 
-                        // Calculate the difference between the view date and the dropzone day so we can calculate the actual date.
-                        int diff = dzDow - vdDow;
-                        System.Diagnostics.Debug.WriteLine("Diff is: " + diff);
-
-                        // Add (or remove if negative) the difference from the view date.
-                        DateTime alDate = _ViewDate.AddDays(diff);
+                        // Get the date for the dropzone.
+                        DateTime alDate = GetDateTimeForDayOfWeek(dzDow);
 
                         System.Diagnostics.Debug.WriteLine("This is a weekly view. View Date is the " + alDate.Day + " day of the month");
 
@@ -759,7 +791,6 @@ namespace Front_End
 
         protected void AddActivityLogToCalendar(ActivityLogModel activityLog)
         {
-            //TODO: Verify the day here.
             // Determine which dropzone to place this activitylog into.
             RelativeLayout dropzone;
 
@@ -830,7 +861,6 @@ namespace Front_End
             // Add a tag to the ActivityLog to identify it.
             vActivityLog.SetTag(Resource.Id.activity_log_id, activityLog.ActivityLogId);
 
-            //TODO: Figure out how to manage drop zones.
             dropzone.AddView(vActivityLog);
 
             // Get the number of children elements in the Dropzone.

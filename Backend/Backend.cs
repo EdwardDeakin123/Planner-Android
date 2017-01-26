@@ -40,7 +40,6 @@ namespace Front_End.Backend
             _CookieContainer = new CookieContainer();
 
             // Restore the saved cookie.
-            // TODO: Add logic to check for expired cookies.
             LoadCookie();
         }
 

@@ -70,7 +70,6 @@ namespace Front_End
         #endregion
 
         #region event handlers
-        // TODO: Make these abstract, rename to Next and Previous 
         protected override void Previous_OnClick(object sender, EventArgs e)
         {
             // Update the view date
@@ -99,7 +98,6 @@ namespace Front_End
 
         protected override void Refresh()
         {
-            System.Diagnostics.Debug.WriteLine("Refreshing...");
             // Clear the activities and any dropzones.
             ClearActivities();
             ClearDropzone();

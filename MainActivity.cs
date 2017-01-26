@@ -41,11 +41,13 @@ namespace Front_End
 
             // Set up the navigation drawer.
             //string[] navigationArray = Resources.GetStringArray(Resource.Array.navigation_array);
-            DrawerLayout navigationDraw = FindViewById<DrawerLayout>(Resource.Id.navigation_drawer);
-            ListView navigationList = FindViewById<ListView>(Resource.Id.navigation_list);
+            //DrawerLayout navigationDraw = FindViewById<DrawerLayout>(Resource.Id.navigation_drawer);
+            //ListView navigationList = FindViewById<ListView>(Resource.Id.navigation_list);
 
-            navigationList.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, _NavigationItems);
-            navigationList.ItemClick += SelectItem;
+            //navigationList.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, _NavigationItems);
+            //navigationList.ItemClick += SelectItem;
+
+            CreateNavigationMenu();
 
             if (bundle == null)
             {
@@ -59,6 +61,21 @@ namespace Front_End
                     .Replace(Resource.Id.content, fragment)
                     .Commit();
             }
+        }
+
+        private void CreateNavigationMenu()
+        {
+            // Create the menu items.
+            List<MenuItemModel> menuItems = new List<MenuItemModel>();
+
+            menuItems.Add(new MenuItemModel { Text = GetString(Resource.String.daily), ImageResource = Resource.Drawable.ic_view_day_white_24dp });
+            menuItems.Add(new MenuItemModel { Text = GetString(Resource.String.weekly), ImageResource = Resource.Drawable.ic_view_week_white_24dp });
+
+            // Create the adapter and attach it to the menu and attach the item click event.
+            ListView navigationList = FindViewById<ListView>(Resource.Id.navigation_list);
+
+            navigationList.Adapter = new MenuAdapter(this, menuItems);
+            navigationList.ItemClick += SelectItem;
         }
 
         private void SelectItem(object sender, AdapterView.ItemClickEventArgs e)

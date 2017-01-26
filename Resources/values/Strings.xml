@@ -34,6 +34,9 @@
   <string name="end_time">End Time</string>
   <string name="today">Today</string>
   <string name="refresh">Refresh</string>
+  <string name="daily">Daily</string>
+  <string name="weekly">Weekly</string>
+  <string name="logout">Logout</string>
 
   <string-array name="times">
     <item>1 AM</item>

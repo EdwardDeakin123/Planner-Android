@@ -54,5 +54,37 @@ namespace Front_End
 
             return deserialized;
         }
+
+        public static void WriteToFile(string data, string filename)
+        {
+            // This method is used to store data on the disk.
+            // This will mostly be used to serialize objects to be retrieved between activities.
+            // Code based on code from: https://forums.xamarin.com/discussion/79/saving-objects-to-file
+            string directory = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            string path = Path.Combine(directory, filename);
+
+            using(var stream = new StreamWriter(path, false))
+            {
+                stream.Write(data);
+            }
+        }
+
+        public static string ReadFromFile(string filename)
+        {
+            // This method is used to store data on the disk.
+            // This will mostly be used to serialize objects to be retrieved between activities.
+            // Code based on code from: https://forums.xamarin.com/discussion/79/saving-objects-to-file
+            string directory = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            string path = Path.Combine(directory, filename);
+            string data = "";
+
+            using (var stream = new StreamReader(path))
+            {
+                data = stream.ReadToEnd();
+                System.Diagnostics.Debug.WriteLine(data);
+            }
+
+            return data;
+        }
     }
 }

@@ -20,7 +20,6 @@ namespace Front_End
 	public class PlannerWeeklyFragment : PlannerFragment
 	{
         // TODO Swipe to move forward and backward a week at a time.
-        // TODO Update the GetActivityLogs to accept a date range which can be controlled from either Weekly or Daily activities.
 		public override void OnCreate(Bundle bundle)
 		{
             base.OnCreate(bundle);
@@ -127,6 +126,10 @@ namespace Front_End
         {
             System.Diagnostics.Debug.WriteLine("Refreshing...");
 
+            // Clear the activities and any dropzones.
+            ClearActivities();
+            ClearDropzone();
+
             // Get the date of Sunday this week.
             DateTime sundayDate = GetDateTimeForDayOfWeek(0);
             DateTime saturdayDate = GetDateTimeForDayOfWeek(6);
@@ -134,10 +137,6 @@ namespace Front_End
             // Retrieve the activities and activity logs.
             GetActivities();
             GetActivityLogs(sundayDate, saturdayDate);
-
-            // Clear the activities and any dropzones.
-            ClearActivities();
-            ClearDropzone();
 
             // Update the title above the planner.
 
