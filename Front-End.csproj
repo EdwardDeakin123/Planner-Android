@@ -137,7 +137,7 @@
     <Compile Include="Exceptions\BackendTimeoutException.cs" />
     <Compile Include="MenuAdapter.cs" />
     <Compile Include="Models\MenuItemModel.cs" />
-    <Compile Include="Models\ObjectCacheModel.cs" />
+    <Compile Include="ObjectCache.cs" />
     <Compile Include="PlannerDailyFragment.cs" />
     <Compile Include="PlannerFragment.cs" />
     <Compile Include="PlannerWeeklyFragment.cs" />

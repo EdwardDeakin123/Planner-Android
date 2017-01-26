@@ -61,7 +61,7 @@ namespace Front_End
                 {
                     // Get the serialized data from the disk.
                     string activityXml = Utility.ReadFromFile("activities.txt");
-                    ObjectCacheModel<List<ActivityModel>> activityCache = Utility.DeserializeFromString<ObjectCacheModel<List<ActivityModel>>>(activityXml);
+                    ObjectCache<List<ActivityModel>> activityCache = Utility.DeserializeFromString<ObjectCache<List<ActivityModel>>>(activityXml);
 
                     // Check if the cached object has expired, if it has - create a new object.
                     // Otherwise return the cached object.
@@ -80,7 +80,7 @@ namespace Front_End
                 {
                     // Get the serialized data from the disk.
                     string activityXml = Utility.ReadFromFile("activitylogs.txt");
-                    ObjectCacheModel<List<ActivityLogModel>> activityLogCache = Utility.DeserializeFromString<ObjectCacheModel<List<ActivityLogModel>>>(activityXml);
+                    ObjectCache<List<ActivityLogModel>> activityLogCache = Utility.DeserializeFromString<ObjectCache<List<ActivityLogModel>>>(activityXml);
 
                     // Check if the cached object has expired, if it has - create a new object.
                     // Otherwise return the cached object.
@@ -238,8 +238,8 @@ namespace Front_End
             // and weekly views, reducing the number of calls to the backend. It also makes the dummy data mode better.
 
             // Add the activity logs and activities to an ObjectCacheModel object. This will help manage stale items in the cache.
-            ObjectCacheModel<List<ActivityModel>> activityCache = new ObjectCacheModel<List<ActivityModel>>() { Object = _Activities };
-            ObjectCacheModel<List<ActivityLogModel>> activityLogCache = new ObjectCacheModel<List<ActivityLogModel>>() { Object = _ActivityLogs };
+            ObjectCache<List<ActivityModel>> activityCache = new ObjectCache<List<ActivityModel>>() { Object = _Activities };
+            ObjectCache<List<ActivityLogModel>> activityLogCache = new ObjectCache<List<ActivityLogModel>>() { Object = _ActivityLogs };
 
             System.Diagnostics.Debug.WriteLine("Serializing objects now.");
 
