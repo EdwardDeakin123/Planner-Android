@@ -38,22 +38,14 @@ namespace Front_End
 
             if (activityLogId > -1)
             {
-                System.Diagnostics.Debug.WriteLine("Got an ID of: " + activityLogId);
-
-                // Deserialize the activity log that was passed through the bundle.
-                //_ActivityLog = Utility.DeserializeFromString<ActivityLogModel>(activityLog);
-
                 // Get the Activity Logs from the local cache.
                 GetActivityLogs();
 
                 // Get the Index of the activity log that's being edited.
                 _ActivityLogIndex = _ActivityLogs.FindIndex(actLog => actLog.ActivityLogId == activityLogId);
-
-                System.Diagnostics.Debug.WriteLine("Got an index of: " + _ActivityLogIndex);
             }
             else
             {
-                System.Diagnostics.Debug.WriteLine("Didn't get an activity log id :(");
                 //TODO Report an error here
             }
 

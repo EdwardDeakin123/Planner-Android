@@ -29,7 +29,7 @@ namespace Front_End
 	public class MainActivity : Activity
 	{
         // String array that contains the menu items.
-        //private static readonly string[] _NavigationItems = new string[] { "Daily", "Weekly", "Logout" };
+        private Preferences _Preferences;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -38,6 +38,9 @@ namespace Front_End
             SetContentView(Resource.Layout.Navigation);
 
             System.Diagnostics.Debug.WriteLine("MainActivity is being created.");
+
+            // Create an instance of Preferences which will manage the shared preferences in Android.
+            _Preferences = new Preferences();
 
             // Set up the navigation drawer.
             //string[] navigationArray = Resources.GetStringArray(Resource.Array.navigation_array);
@@ -70,8 +73,8 @@ namespace Front_End
 
             menuItems.Add(new MenuItemModel { Text = GetString(Resource.String.daily), ImageResource = Resource.Drawable.ic_view_day_white_24dp });
             menuItems.Add(new MenuItemModel { Text = GetString(Resource.String.weekly), ImageResource = Resource.Drawable.ic_view_week_white_24dp });
-            //TODO update the icon here.
-            menuItems.Add(new MenuItemModel { Text = GetString(Resource.String.settings), ImageResource = Resource.Drawable.ic_view_week_white_24dp });
+            menuItems.Add(new MenuItemModel { Text = GetString(Resource.String.settings), ImageResource = Resource.Drawable.ic_settings_white_24dp });
+            menuItems.Add(new MenuItemModel { Text = GetString(Resource.String.logout), ImageResource = Resource.Drawable.ic_exit_to_app_white_24dp });
 
             // Create the adapter and attach it to the menu and attach the item click event.
             ListView navigationList = FindViewById<ListView>(Resource.Id.navigation_list);
@@ -95,6 +98,14 @@ namespace Front_End
                 case 2:
                     fragment = new SettingsFragment();
                     break;
+                case 3:
+                    //TODO logout here
+                    if (!_Preferences.DemoMode)
+                    {
+                        // Make sure we're not running in demo mode, then logout and redirect to the login fragment.
+                        Logout();
+                    }
+                    break;
             }
 
             if (fragment != null)
@@ -113,5 +124,26 @@ namespace Front_End
             //MenuInflater.Inflate(Resource.Menu.top_menus, menu);
             return base.OnCreateOptionsMenu(menu);
         }
+
+        #region backend
+        private async void Logout()
+        {
+            try
+            {
+                // Prepare the User backend object.
+                BackendUser backend = new BackendUser();
+                await backend.Logout();
+            }
+            catch (System.Net.WebException ex)
+            {
+                if (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Unauthorized)
+                {
+                    // The user is not logged in. Move to the Login activity.
+                    StartActivity(new Intent(this, typeof(LoginActivity)));
+                }
+                System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
+            }
+        }
+        #endregion
     }
 }
