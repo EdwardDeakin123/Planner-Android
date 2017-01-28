@@ -37,6 +37,12 @@
   <string name="daily">Daily</string>
   <string name="weekly">Weekly</string>
   <string name="logout">Logout</string>
+  <string name="demo_mode">Demo Mode</string>
+  <string name="server_ip">Server IP</string>
+  <string name="server_port">Server Port</string>
+  <string name="settings">Settings</string>
+  <string name="on">On</string>
+  <string name="off">Off</string>
 
   <string-array name="times">
     <item>1 AM</item>

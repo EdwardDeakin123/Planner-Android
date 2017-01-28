@@ -40,11 +40,10 @@ namespace Front_End
         protected const int HOUR_DP = 60;
 
         // Use constants to differenciate between Daily and Weekly view types.
-        protected const int DAILY_VIEW = 0;
-        protected const int WEEKLY_VIEW = 1;
+        public const int DAILY_VIEW = 0;
+        public const int WEEKLY_VIEW = 1;
 
-        // This variable is used to skip the backend and just use test data.
-        protected bool _FakeData = true;
+        private Preferences _Preferences;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -53,68 +52,16 @@ namespace Front_End
             // Notify the calling activity that this fragment has an options menu.
             SetHasOptionsMenu(true);
 
-            if (savedInstanceState == null)
+            // Create an instance of Preferences. This will help to determine if this is running in demo mode, etc.
+            // Demo mode will skip the backend and just use fake data.
+            _Preferences = new Preferences();
+
+            // Attempt to restore from the cache on the disk. This will recover the activities and logs from a previous run.
+            RestoreFromCache();
+
+            if (savedInstanceState != null)
             {
-                // This is a new instance of this fragment.
-                // Check to see if there are any cached versions of the data that can be retrieved from the disk.
-                try
-                {
-                    // Get the serialized data from the disk.
-                    string activityXml = Utility.ReadFromFile("activities.txt");
-                    ObjectCache<List<ActivityModel>> activityCache = Utility.DeserializeFromString<ObjectCache<List<ActivityModel>>>(activityXml);
-
-                    // Check if the cached object has expired, if it has - create a new object.
-                    // Otherwise return the cached object.
-                    if (activityCache.Expired)
-                        _Activities = new List<ActivityModel>();
-                    else
-                        _Activities = activityCache.Object;
-                }
-                catch(System.IO.FileNotFoundException)
-                {
-                    // There is no cache. Do nothing.
-                    _Activities = new List<ActivityModel>();
-                }
-
-                try
-                {
-                    // Get the serialized data from the disk.
-                    string activityXml = Utility.ReadFromFile("activitylogs.txt");
-                    ObjectCache<List<ActivityLogModel>> activityLogCache = Utility.DeserializeFromString<ObjectCache<List<ActivityLogModel>>>(activityXml);
-
-                    // Check if the cached object has expired, if it has - create a new object.
-                    // Otherwise return the cached object.
-                    if (activityLogCache.Expired)
-                        _ActivityLogs = new List<ActivityLogModel>();
-                    else
-                        _ActivityLogs = activityLogCache.Object;
-                }
-                catch (System.IO.FileNotFoundException)
-                {
-                    // There is no cache. Do nothing.
-                    _ActivityLogs = new List<ActivityLogModel>();
-                }
-            }
-            else
-            {
-                string activityXml = savedInstanceState.GetString("activities", "");
-                string activityLogXml = savedInstanceState.GetString("activityLogs", "");
-
-                // If there is no saved XML, just recreate the list.
-                // Otherwise, retrieve the Activities from the saved instance state and deserialize.
-                if (activityXml == "")
-                    _Activities = new List<ActivityModel>();
-                else
-                    _Activities = Utility.DeserializeFromString<List<ActivityModel>>(activityXml);
-
-                // If there is no saved XML, just recreate the list.
-                // Otherwise, retrieve the ActivityLogs from the saved instance state and deserialize.
-                if (activityLogXml == "")
-                    _ActivityLogs = new List<ActivityLogModel>();
-                else
-                    _ActivityLogs = Utility.DeserializeFromString<List<ActivityLogModel>>(activityLogXml);
-                
-                //Restore the view date
+                // This is not a new instance of the fragment. Attempt to recover the view date.
                 int year = savedInstanceState.GetInt("viewDateYear", -1);
                 int month = savedInstanceState.GetInt("viewDateMonth", -1);
                 int day = savedInstanceState.GetInt("viewDateDay", -1);
@@ -127,6 +74,42 @@ namespace Front_End
                 else
                 {
                     _ViewDate = DateTime.Now;
+                }
+            }
+
+            // Check to see if a bundle was passed to this fragment.
+            // This will happen when returning from ActivityLogEditFragment.
+            if (this.Arguments != null)
+            {
+                // Retrieve the view date if it was set.
+                int year = this.Arguments.GetInt("viewDateYear", -1);
+                int month = this.Arguments.GetInt("viewDateMonth", -1);
+                int day = this.Arguments.GetInt("viewDateDay", -1);
+
+                // Make sure all of the values were set before updating the view date.
+                if(year > -1 && month > -1 && day > -1)
+                {
+                    _ViewDate = new DateTime(year, month, day, 0, 0, 0);
+                }
+
+                // Attempt to get an updated activity log from the bundle. This will only happen in demo mode.
+                string activityLogXml = this.Arguments.GetString("updatedActivityLog", "");
+
+                // Make sure the activity log is set.
+                if(activityLogXml != "")
+                {
+                    System.Diagnostics.Debug.WriteLine("Got an updated activity log!!!!!!! " + activityLogXml);
+
+                    ActivityLogModel updatedActLog = Utility.DeserializeFromString<ActivityLogModel>(activityLogXml);
+
+                    System.Diagnostics.Debug.WriteLine("About to remove it. ID: " + updatedActLog.ActivityLogId);
+                    // Remove the current version of this activity log from list of activity logs.
+                    _ActivityLogs.RemoveAll(actLog => actLog.ActivityLogId == updatedActLog.ActivityLogId);
+                    System.Diagnostics.Debug.WriteLine("Removed, about to add.");
+
+
+                    // Add the updated log into the list
+                    _ActivityLogs.Add(updatedActLog);
                 }
             }
 
@@ -189,11 +172,6 @@ namespace Front_End
             // Set the title at the stop of the planner.
             View.FindViewById<TextView>(Resource.Id.tvDate).Text = title;
         }
-        
-        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
-        {
-           return base.OnCreateView(inflater, container, savedInstanceState);
-        }
 
         public override void OnResume()
         {
@@ -220,11 +198,12 @@ namespace Front_End
 
             // When the instance is destroyed or recreated, save any important information for reuse.
             // This happens when the screen orientation changes.
-            outState.PutString("activities", Utility.SerializeToString(_Activities));
-            outState.PutString("activityLogs", Utility.SerializeToString(_ActivityLogs));
             outState.PutInt("viewDateYear", _ViewDate.Year);
             outState.PutInt("viewDateMonth", _ViewDate.Month);
             outState.PutInt("viewDateDay", _ViewDate.Day);
+
+            // Save the activities and logs to the disk.
+            CacheToDisk();
         }
 
         public override void OnStop()
@@ -233,19 +212,8 @@ namespace Front_End
 
             System.Diagnostics.Debug.WriteLine("Stopping now...");
 
-            // Serialize the Activities and Activity logs when the activity stops and save them to disk.
-            // This can then be retrieved the next time this fragment runs. This allows us to pass data between the daily
-            // and weekly views, reducing the number of calls to the backend. It also makes the dummy data mode better.
-
-            // Add the activity logs and activities to an ObjectCacheModel object. This will help manage stale items in the cache.
-            ObjectCache<List<ActivityModel>> activityCache = new ObjectCache<List<ActivityModel>>() { Object = _Activities };
-            ObjectCache<List<ActivityLogModel>> activityLogCache = new ObjectCache<List<ActivityLogModel>>() { Object = _ActivityLogs };
-
-            System.Diagnostics.Debug.WriteLine("Serializing objects now.");
-
-            // Serialize these objects and write them to the disk.
-            Utility.WriteToFile(Utility.SerializeToString(activityCache), "activities.txt");
-            Utility.WriteToFile(Utility.SerializeToString(activityLogCache), "activitylogs.txt");
+            // When the instance is stopped (for example, when changing from daily to weekly views), cache the activities and logs to disk.
+            CacheToDisk();
         }
 
         #region UI
@@ -368,7 +336,7 @@ namespace Front_End
                 List<ActivityModel> activities = new List<ActivityModel>();
 
                 // Get activities from the backend.
-                if (!_FakeData)
+                if (!_Preferences.DemoMode)
                 {
                     // Get real data.
                     BackendActivity backend = new BackendActivity();
@@ -476,7 +444,7 @@ namespace Front_End
             try
             {
                 // Get activities from the backend.
-                if (!_FakeData)
+                if (!_Preferences.DemoMode)
                 {
                     // Get real data.
                     BackendActivityLog backend = new BackendActivityLog();
@@ -561,7 +529,7 @@ namespace Front_End
         {
             try
             {
-                if (!_FakeData)
+                if (!_Preferences.DemoMode)
                 {
                     // Add the acitivity log to the backend.
                     BackendActivityLog backend = new BackendActivityLog();
@@ -739,12 +707,23 @@ namespace Front_End
 
         protected void ActivityLog_OnClick(object sender, EventArgs e)
         {
-            var activityLogEditActivity = new Intent(this.Activity, typeof(ActivityLogEditActivity));
+            // Switch to the activity log edit fragment.
+            FragmentTransaction fragmentTransaction = FragmentManager.BeginTransaction();
+            ActivityLogEditFragment activityLogEditFragment = new ActivityLogEditFragment();
 
-            // Get the ActivityLog ID from the sender and pass it to the Edit activity.
-            activityLogEditActivity.PutExtra("activityLogId", int.Parse(((RelativeLayout)sender).GetTag(Resource.Id.activity_log_id).ToString()));
+            // Get the activityLogId from the tag on the sending object, then get the activity log from the list.
+            int activityLogId = int.Parse(((RelativeLayout)sender).GetTag(Resource.Id.activity_log_id).ToString());
+            //ActivityLogModel activityLog = _ActivityLogs.Where(actLog => actLog.ActivityLogId == activityLogId).FirstOrDefault();
 
-            StartActivity(activityLogEditActivity);
+            // Create a bundle that can be passed to the Edit Fragment.
+            // Serialize the activity log so it can be sent and won't require another call to the backend to retrieve it.
+            Bundle fragmentBundle = new Bundle();
+            fragmentBundle.PutInt("activityLogId", activityLogId);
+
+            // Tell the Edit fragment which planner sent it so it can return to the correct type.
+            fragmentBundle.PutInt("plannerMode", GetPlannerMode());
+            activityLogEditFragment.Arguments = fragmentBundle;
+            fragmentTransaction.Replace(Resource.Id.content, activityLogEditFragment).Commit();
         }
         #endregion
 
@@ -1118,6 +1097,66 @@ namespace Front_End
 
             // Divide the dp by 60 to determine which hour it is.
             return (int)(Math.Floor((double)(dp / HOUR_DP)));
+        }
+
+        private void CacheToDisk()
+        {
+            // Serialize the Activities and Activity logs when the activity stops and save them to disk.
+            // This can then be retrieved the next time this fragment runs. This allows us to pass data between the daily
+            // and weekly views, reducing the number of calls to the backend. It also makes the dummy data mode better.
+
+            // Add the activity logs and activities to an ObjectCacheModel object. This will help manage stale items in the cache.
+            ObjectCache<List<ActivityModel>> activityCache = new ObjectCache<List<ActivityModel>>() { Object = _Activities };
+            ObjectCache<List<ActivityLogModel>> activityLogCache = new ObjectCache<List<ActivityLogModel>>() { Object = _ActivityLogs };
+
+            System.Diagnostics.Debug.WriteLine("Serializing objects now.");
+
+            // Serialize these objects and write them to the disk.
+            Utility.WriteToFile(Utility.SerializeToString(activityCache), "activities.txt");
+            Utility.WriteToFile(Utility.SerializeToString(activityLogCache), "activitylogs.txt");
+        }
+
+        private void RestoreFromCache()
+        {
+            // Load the cached activities and logs from the disk.
+            // Check to see if there are any cached versions of the data that can be retrieved from the disk.
+            try
+            {
+                // Get the serialized data from the disk.
+                string activityXml = Utility.ReadFromFile("activities.txt");
+                ObjectCache<List<ActivityModel>> activityCache = Utility.DeserializeFromString<ObjectCache<List<ActivityModel>>>(activityXml);
+
+                // Check if the cached object has expired, if it has - create a new object.
+                // Otherwise return the cached object.
+                if (activityCache.Expired)
+                    _Activities = new List<ActivityModel>();
+                else
+                    _Activities = activityCache.Object;
+            }
+            catch
+            {
+                // There is no cache or an error occurred. Do nothing.
+                _Activities = new List<ActivityModel>();
+            }
+
+            try
+            {
+                // Get the serialized data from the disk.
+                string activityXml = Utility.ReadFromFile("activitylogs.txt");
+                ObjectCache<List<ActivityLogModel>> activityLogCache = Utility.DeserializeFromString<ObjectCache<List<ActivityLogModel>>>(activityXml);
+
+                // Check if the cached object has expired, if it has - create a new object.
+                // Otherwise return the cached object.
+                if (activityLogCache.Expired)
+                    _ActivityLogs = new List<ActivityLogModel>();
+                else
+                    _ActivityLogs = activityLogCache.Object;
+            }
+            catch
+            {
+                // There is no cache or an error occurred. Do nothing.
+                _ActivityLogs = new List<ActivityLogModel>();
+            }
         }
         #endregion
     }

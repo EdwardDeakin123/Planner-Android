@@ -1796,6 +1796,12 @@ namespace Front_End
 			// aapt resource value: 0x7f0a000e
 			public const int disableHome = 2131361806;
 			
+			// aapt resource value: 0x7f0a0094
+			public const int editText1 = 2131361940;
+			
+			// aapt resource value: 0x7f0a0092
+			public const int editText2 = 2131361938;
+			
 			// aapt resource value: 0x7f0a0049
 			public const int edit_query = 2131361865;
 			
@@ -1901,8 +1907,8 @@ namespace Front_End
 			// aapt resource value: 0x7f0a0040
 			public const int radio = 2131361856;
 			
-			// aapt resource value: 0x7f0a0090
-			public const int refresh = 2131361936;
+			// aapt resource value: 0x7f0a0096
+			public const int refresh = 2131361942;
 			
 			// aapt resource value: 0x7f0a007b
 			public const int rlDropzone = 2131361915;
@@ -2018,6 +2024,9 @@ namespace Front_End
 			// aapt resource value: 0x7f0a0077
 			public const int svCalendar = 2131361911;
 			
+			// aapt resource value: 0x7f0a0090
+			public const int swDemoMode = 2131361936;
+			
 			// aapt resource value: 0x7f0a0076
 			public const int swiperefresh = 2131361910;
 			
@@ -2033,6 +2042,15 @@ namespace Front_End
 			// aapt resource value: 0x7f0a0039
 			public const int textSpacerNoButtons = 2131361849;
 			
+			// aapt resource value: 0x7f0a008f
+			public const int textView1 = 2131361935;
+			
+			// aapt resource value: 0x7f0a0091
+			public const int textView2 = 2131361937;
+			
+			// aapt resource value: 0x7f0a0093
+			public const int textView3 = 2131361939;
+			
 			// aapt resource value: 0x7f0a006c
 			public const int time = 2131361900;
 			
@@ -2042,8 +2060,8 @@ namespace Front_End
 			// aapt resource value: 0x7f0a0034
 			public const int title_template = 2131361844;
 			
-			// aapt resource value: 0x7f0a008f
-			public const int today = 2131361935;
+			// aapt resource value: 0x7f0a0095
+			public const int today = 2131361941;
 			
 			// aapt resource value: 0x7f0a0025
 			public const int top = 2131361829;
@@ -2261,7 +2279,10 @@ namespace Front_End
 			public const int select_dialog_singlechoice_material = 2130903084;
 			
 			// aapt resource value: 0x7f03002d
-			public const int support_simple_spinner_dropdown_item = 2130903085;
+			public const int Settings = 2130903085;
+			
+			// aapt resource value: 0x7f03002e
+			public const int support_simple_spinner_dropdown_item = 2130903086;
 			
 			static Layout()
 			{
@@ -2406,6 +2427,9 @@ namespace Front_End
 			// aapt resource value: 0x7f050026
 			public const int delete = 2131034150;
 			
+			// aapt resource value: 0x7f050046
+			public const int demo_mode = 2131034182;
+			
 			// aapt resource value: 0x7f050040
 			public const int end_time = 2131034176;
 			
@@ -2430,6 +2454,12 @@ namespace Front_End
 			// aapt resource value: 0x7f050045
 			public const int logout = 2131034181;
 			
+			// aapt resource value: 0x7f05004b
+			public const int off = 2131034187;
+			
+			// aapt resource value: 0x7f05004a
+			public const int on = 2131034186;
+			
 			// aapt resource value: 0x7f05002a
 			public const int password = 2131034154;
 			
@@ -2450,6 +2480,15 @@ namespace Front_End
 			
 			// aapt resource value: 0x7f050013
 			public const int search_menu_title = 2131034131;
+			
+			// aapt resource value: 0x7f050047
+			public const int server_ip = 2131034183;
+			
+			// aapt resource value: 0x7f050048
+			public const int server_port = 2131034184;
+			
+			// aapt resource value: 0x7f050049
+			public const int settings = 2131034185;
 			
 			// aapt resource value: 0x7f05003e
 			public const int short_friday = 2131034174;

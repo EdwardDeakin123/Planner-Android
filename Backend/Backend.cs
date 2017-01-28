@@ -335,6 +335,7 @@ namespace Front_End.Backend
 
         private void SaveCookie()
         {
+            //TODO Move this to the preferences class.
             // Access the SharedPreferences and retrieve the saved cookie.
             ISharedPreferences sharedPreferences = PreferenceManager.GetDefaultSharedPreferences(Android.App.Application.Context);
             ISharedPreferencesEditor spEditor = sharedPreferences.Edit();

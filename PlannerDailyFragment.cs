@@ -50,22 +50,6 @@ namespace Front_End
             //DrawHourMarkers();
         }
 
-
-        /*public override void OnResume()
-        {
-            base.OnResume();
-
-            // Reload the planner when the activity is resumed.
-            ReloadUI();
-
-            TimesDatabase timeDb = new TimesDatabase();
-
-            if (timeDb.FindLatest() != DateTime.Now.Day)
-            {
-                new Notification();
-            }
-        }
-	    */
         #region backend
         #endregion
 

@@ -29,7 +29,7 @@ namespace Front_End
 	public class MainActivity : Activity
 	{
         // String array that contains the menu items.
-        private static readonly string[] _NavigationItems = new string[] { "Daily", "Weekly", "Logout" };
+        //private static readonly string[] _NavigationItems = new string[] { "Daily", "Weekly", "Logout" };
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -70,6 +70,8 @@ namespace Front_End
 
             menuItems.Add(new MenuItemModel { Text = GetString(Resource.String.daily), ImageResource = Resource.Drawable.ic_view_day_white_24dp });
             menuItems.Add(new MenuItemModel { Text = GetString(Resource.String.weekly), ImageResource = Resource.Drawable.ic_view_week_white_24dp });
+            //TODO update the icon here.
+            menuItems.Add(new MenuItemModel { Text = GetString(Resource.String.settings), ImageResource = Resource.Drawable.ic_view_week_white_24dp });
 
             // Create the adapter and attach it to the menu and attach the item click event.
             ListView navigationList = FindViewById<ListView>(Resource.Id.navigation_list);
@@ -91,7 +93,7 @@ namespace Front_End
                     fragment = new PlannerWeeklyFragment();
                     break;
                 case 2:
-                    // Do the logout stuff here.
+                    fragment = new SettingsFragment();
                     break;
             }
 
