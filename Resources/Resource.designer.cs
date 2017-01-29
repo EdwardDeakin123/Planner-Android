@@ -1802,12 +1802,6 @@ namespace Front_End
 			// aapt resource value: 0x7f0a000e
 			public const int disableHome = 2131361806;
 			
-			// aapt resource value: 0x7f0a0094
-			public const int editText1 = 2131361940;
-			
-			// aapt resource value: 0x7f0a0092
-			public const int editText2 = 2131361938;
-			
 			// aapt resource value: 0x7f0a0049
 			public const int edit_query = 2131361865;
 			
@@ -2095,6 +2089,12 @@ namespace Front_End
 			
 			// aapt resource value: 0x7f0a005d
 			public const int txtPassword = 2131361885;
+			
+			// aapt resource value: 0x7f0a0092
+			public const int txtServerAddress = 2131361938;
+			
+			// aapt resource value: 0x7f0a0094
+			public const int txtServerPort = 2131361940;
 			
 			// aapt resource value: 0x7f0a005c
 			public const int txtUsername = 2131361884;
@@ -2427,17 +2427,17 @@ namespace Front_End
 			// aapt resource value: 0x7f05002c
 			public const int create_account = 2131034156;
 			
-			// aapt resource value: 0x7f050043
-			public const int daily = 2131034179;
+			// aapt resource value: 0x7f050045
+			public const int daily = 2131034181;
 			
 			// aapt resource value: 0x7f050026
 			public const int delete = 2131034150;
 			
-			// aapt resource value: 0x7f050046
-			public const int demo_mode = 2131034182;
+			// aapt resource value: 0x7f050048
+			public const int demo_mode = 2131034184;
 			
-			// aapt resource value: 0x7f050040
-			public const int end_time = 2131034176;
+			// aapt resource value: 0x7f050042
+			public const int end_time = 2131034178;
 			
 			// aapt resource value: 0x7f050027
 			public const int first_name = 2131034151;
@@ -2457,20 +2457,20 @@ namespace Front_End
 			// aapt resource value: 0x7f05002d
 			public const int login_required_fields = 2131034157;
 			
-			// aapt resource value: 0x7f050045
-			public const int logout = 2131034181;
+			// aapt resource value: 0x7f050047
+			public const int logout = 2131034183;
 			
-			// aapt resource value: 0x7f05004b
-			public const int off = 2131034187;
+			// aapt resource value: 0x7f05004d
+			public const int off = 2131034189;
 			
-			// aapt resource value: 0x7f05004a
-			public const int on = 2131034186;
+			// aapt resource value: 0x7f05004c
+			public const int on = 2131034188;
 			
 			// aapt resource value: 0x7f05002a
 			public const int password = 2131034154;
 			
-			// aapt resource value: 0x7f050042
-			public const int refresh = 2131034178;
+			// aapt resource value: 0x7f050044
+			public const int refresh = 2131034180;
 			
 			// aapt resource value: 0x7f050030
 			public const int register_required_fields = 2131034160;
@@ -2478,8 +2478,8 @@ namespace Front_End
 			// aapt resource value: 0x7f050031
 			public const int register_username_taken = 2131034161;
 			
-			// aapt resource value: 0x7f050038
-			public const int retry = 2131034168;
+			// aapt resource value: 0x7f05003a
+			public const int retry = 2131034170;
 			
 			// aapt resource value: 0x7f050025
 			public const int save = 2131034149;
@@ -2487,35 +2487,41 @@ namespace Front_End
 			// aapt resource value: 0x7f050013
 			public const int search_menu_title = 2131034131;
 			
-			// aapt resource value: 0x7f050047
-			public const int server_ip = 2131034183;
-			
-			// aapt resource value: 0x7f050048
-			public const int server_port = 2131034184;
-			
 			// aapt resource value: 0x7f050049
-			public const int settings = 2131034185;
+			public const int server_address = 2131034185;
 			
-			// aapt resource value: 0x7f05003e
-			public const int short_friday = 2131034174;
-			
-			// aapt resource value: 0x7f05003a
-			public const int short_monday = 2131034170;
-			
-			// aapt resource value: 0x7f05003f
-			public const int short_saturday = 2131034175;
+			// aapt resource value: 0x7f050038
+			public const int server_address_error = 2131034168;
 			
 			// aapt resource value: 0x7f050039
-			public const int short_sunday = 2131034169;
+			public const int server_address_error_message = 2131034169;
 			
-			// aapt resource value: 0x7f05003d
-			public const int short_thursday = 2131034173;
+			// aapt resource value: 0x7f05004a
+			public const int server_port = 2131034186;
 			
-			// aapt resource value: 0x7f05003b
-			public const int short_tuesday = 2131034171;
+			// aapt resource value: 0x7f05004b
+			public const int settings = 2131034187;
+			
+			// aapt resource value: 0x7f050040
+			public const int short_friday = 2131034176;
 			
 			// aapt resource value: 0x7f05003c
-			public const int short_wednesday = 2131034172;
+			public const int short_monday = 2131034172;
+			
+			// aapt resource value: 0x7f050041
+			public const int short_saturday = 2131034177;
+			
+			// aapt resource value: 0x7f05003b
+			public const int short_sunday = 2131034171;
+			
+			// aapt resource value: 0x7f05003f
+			public const int short_thursday = 2131034175;
+			
+			// aapt resource value: 0x7f05003d
+			public const int short_tuesday = 2131034173;
+			
+			// aapt resource value: 0x7f05003e
+			public const int short_wednesday = 2131034174;
 			
 			// aapt resource value: 0x7f050023
 			public const int start_time = 2131034147;
@@ -2529,8 +2535,8 @@ namespace Front_End
 			// aapt resource value: 0x7f050033
 			public const int timeout_message = 2131034163;
 			
-			// aapt resource value: 0x7f050041
-			public const int today = 2131034177;
+			// aapt resource value: 0x7f050043
+			public const int today = 2131034179;
 			
 			// aapt resource value: 0x7f050036
 			public const int unexpected_error = 2131034166;
@@ -2544,8 +2550,8 @@ namespace Front_End
 			// aapt resource value: 0x7f050029
 			public const int username = 2131034153;
 			
-			// aapt resource value: 0x7f050044
-			public const int weekly = 2131034180;
+			// aapt resource value: 0x7f050046
+			public const int weekly = 2131034182;
 			
 			static String()
 			{

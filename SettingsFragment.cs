@@ -41,6 +41,7 @@ namespace Front_End
             GetSavedSettings();
 
             View.FindViewById<Switch>(Resource.Id.swDemoMode).CheckedChange += OnCheckedChange;
+            View.FindViewById<Button>(Resource.Id.btnSave).Click += Save_OnClick;
         }
 
         #region event handlers
@@ -49,6 +50,15 @@ namespace Front_End
             // Save the value of IsChecked in the shared preferences. This will enable or disable demo mode.
             _Preferences.DemoMode = e.IsChecked;
         }
+
+        private void Save_OnClick(object sender, EventArgs e)
+        {
+            string serverAddress = View.FindViewById<EditText>(Resource.Id.txtServerAddress).Text;
+            int serverPort = int.Parse(View.FindViewById<EditText>(Resource.Id.txtServerPort).Text);
+
+            _Preferences.ServerAddress = serverAddress;
+            _Preferences.ServerPort = serverPort;
+        }
         #endregion
 
         #region UI
@@ -56,6 +66,8 @@ namespace Front_End
         {
             // Update the UI elements.
             View.FindViewById<Switch>(Resource.Id.swDemoMode).Checked = _Preferences.DemoMode;
+            View.FindViewById<EditText>(Resource.Id.txtServerAddress).Text = _Preferences.ServerAddress;
+            View.FindViewById<EditText>(Resource.Id.txtServerPort).Text = _Preferences.ServerPort.ToString();
         }
         #endregion
     }

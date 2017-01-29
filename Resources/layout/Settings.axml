@@ -3,32 +3,50 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:text="@string/demo_mode"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView1" />
-    <Switch
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+        <TextView
+            android:text="@string/demo_mode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1" />
+        <Switch
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/swDemoMode" />
+        <TextView
+            android:text="@string/server_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtServerAddress" />
+        <TextView
+            android:text="@string/server_port"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3" />
+        <EditText
+            android:inputType="number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtServerPort" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:background="@color/light_grey"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/swDemoMode" />
-    <TextView
-        android:text="@string/server_ip"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText2" />
-    <TextView
-        android:text="@string/server_port"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView3" />
-    <EditText
-        android:inputType="number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText1" />
+        android:layout_height="60dp">
+        <Button
+            android:text="@string/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnSave"
+            android:layout_weight="1" />
+    </LinearLayout>
 </LinearLayout>

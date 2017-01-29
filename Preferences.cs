@@ -62,7 +62,8 @@ namespace Front_End
         {
             get
             {
-                return _SharedPreferences.GetInt("server_port", -1);
+                // Return 52029 (Default IIS port with Visual Studio) if it's not been set already.
+                return _SharedPreferences.GetInt("server_port", 52029);
             }
             set
             {

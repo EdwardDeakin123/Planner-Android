@@ -19,9 +19,8 @@ namespace Front_End.Backend
     {
         // Variables to handle building the request.
         private string _Protocol = "http";
-        // TODO need to be able to set this from the frontend.
-        private string _Server = "192.168.0.13";
-        private int _Port = 52029;
+        private string _Server;
+        private int _Port;
         protected string _Resource = "";
         protected string _Command = "";
         protected List<BackendParameter> _Parameters;
@@ -32,8 +31,6 @@ namespace Front_End.Backend
         // Define the timeout for the requests.
         protected const int TIMEOUT = 8000;
 
-        //TODO Cleanup parameters are POST or GET requests.
-
         public Backend()
         {
             _Parameters = new List<BackendParameter>();
@@ -41,13 +38,16 @@ namespace Front_End.Backend
             _CookieContainer = new CookieContainer();
             _Preferences = new Preferences();
 
+            // Get the server and port from the saved preferences.
+            _Server = _Preferences.ServerAddress;
+            _Port = _Preferences.ServerPort;
+
             // Restore the saved cookie, if it exists.
             Cookie savedCookie = _Preferences.AuthenticationCookie;
 
             // If the cookie exists, 
             if (savedCookie != default(Cookie))
                 _CookieContainer.Add(savedCookie);
-            //LoadCookie();
         }
 
         #region utility

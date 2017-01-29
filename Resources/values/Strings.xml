@@ -23,6 +23,8 @@
   <string name="connection_failed_message">Unable to connect to the backend</string>
   <string name="unexpected_error">Unexpected Error</string>
   <string name="unexpected_error_message">Received an unexpected error when connecting to the backend</string>
+  <string name="server_address_error">Server Address Error</string>
+  <string name="server_address_error_message">There is an error in the server address, make sure it is set correctly in Settings</string>
   <string name="retry">Retry</string>
   <string name="short_sunday">Sun</string>
   <string name="short_monday">Mon</string>
@@ -38,7 +40,7 @@
   <string name="weekly">Weekly</string>
   <string name="logout">Logout</string>
   <string name="demo_mode">Demo Mode</string>
-  <string name="server_ip">Server IP</string>
+  <string name="server_address">Server Address</string>
   <string name="server_port">Server Port</string>
   <string name="settings">Settings</string>
   <string name="on">On</string>

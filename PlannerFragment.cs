@@ -389,8 +389,13 @@ namespace Front_End
             }
             catch (BackendTimeoutException)
             {
-                // Display a popup.
+                // Hit a timeout while trying to connect to the backend.
                 DisplayAlert(GetString(Resource.String.timeout), GetString(Resource.String.timeout_message));
+            }
+            catch(UriFormatException)
+            {
+                // There is an error in the server address.
+                DisplayAlert(GetString(Resource.String.server_address_error), GetString(Resource.String.server_address_error_message));
             }
             catch (AggregateException ex)
             {
@@ -484,6 +489,11 @@ namespace Front_End
                 // Display a popup.
                 DisplayAlert(GetString(Resource.String.timeout), GetString(Resource.String.timeout_message));
             }
+            catch (UriFormatException)
+            {
+                // There is an error in the server address.
+                DisplayAlert(GetString(Resource.String.server_address_error), GetString(Resource.String.server_address_error_message));
+            }
             catch (AggregateException ex)
             {
                 // Catch the aggregate exception, this might be thrown by the asynchronous tasks in the backend.
@@ -575,6 +585,11 @@ namespace Front_End
             {
                 // Display a popup.
                 DisplayAlert(GetString(Resource.String.timeout), GetString(Resource.String.timeout_message));
+            }
+            catch (UriFormatException)
+            {
+                // There is an error in the server address.
+                DisplayAlert(GetString(Resource.String.server_address_error), GetString(Resource.String.server_address_error_message));
             }
             catch (AggregateException ex)
             {
