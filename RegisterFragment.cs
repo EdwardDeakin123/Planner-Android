@@ -5,36 +5,44 @@ using Android.Widget;
 using Front_End.Backend;
 using System.Net;
 using Front_End.Exceptions;
+using Android.Views;
 
 namespace Front_End
 {
     [Activity(Label = "Register")]
-    public class RegisterActivity : Activity
+    public class RegisterFragment : Fragment
     {
-        protected override void OnCreate(Bundle savedInstanceState)
+        public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+        }
 
-            // Set the Register layout.
-            SetContentView(Resource.Layout.Register);
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            // Return the layout to use in this fragment.
+            return inflater.Inflate(Resource.Layout.Register, container, false);
+        }
 
+
+        public override void OnViewCreated(View view, Bundle savedInstanceState)
+        {
             // Attach to the Create Account onclick event
-            FindViewById<Button>(Resource.Id.btnCreateAccount).Click += Register_OnClick;
+            View.FindViewById<Button>(Resource.Id.btnCreateAccount).Click += Register_OnClick;
         }
 
         #region event handlers
         private async void Register_OnClick(object sender, EventArgs e)
         {
             // Collect all of the data from the UI.
-            string firstname = FindViewById<EditText>(Resource.Id.etFirstName).Text;
-            string lastname = FindViewById<EditText>(Resource.Id.etLastName).Text;
-            string username = FindViewById<EditText>(Resource.Id.etUsername).Text;
-            string password = FindViewById<EditText>(Resource.Id.etPassword).Text;
+            string firstname = View.FindViewById<EditText>(Resource.Id.etFirstName).Text;
+            string lastname = View.FindViewById<EditText>(Resource.Id.etLastName).Text;
+            string username = View.FindViewById<EditText>(Resource.Id.etUsername).Text;
+            string password = View.FindViewById<EditText>(Resource.Id.etPassword).Text;
 
             if (firstname == "" || lastname == "" || username == "" || password == "")
             {
                 // At least one field is empty.
-                FindViewById<TextView>(Resource.Id.tvErrors).Text = GetString(Resource.String.register_required_fields);
+                View.FindViewById<TextView>(Resource.Id.tvErrors).Text = GetString(Resource.String.register_required_fields);
                 return;
             }
 
@@ -44,8 +52,13 @@ namespace Front_End
                 BackendUser backend = new BackendUser();
                 await backend.Register(firstname, lastname, username, password);
 
-                // If no exception is thrown, return to the previous activity.
-                Finish();
+                // Switch back to the login activity
+                Fragment fragment = new LoginFragment();
+
+                // Load the fragment.
+                FragmentManager.BeginTransaction()
+                    .Replace(Resource.Id.content, fragment)
+                    .Commit();
             }
             catch (WebException ex)
             {
@@ -53,16 +66,16 @@ namespace Front_End
                 if (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Forbidden)
                 {
                     // One of the fields is empty.
-                    FindViewById<TextView>(Resource.Id.tvErrors).Text = GetString(Resource.String.register_required_fields);
+                    View.FindViewById<TextView>(Resource.Id.tvErrors).Text = GetString(Resource.String.register_required_fields);
                 }
                 else if (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Conflict)
                 {
                     // Username is taken.
-                    FindViewById<TextView>(Resource.Id.tvErrors).Text = GetString(Resource.String.register_username_taken);
+                    View.FindViewById<TextView>(Resource.Id.tvErrors).Text = GetString(Resource.String.register_username_taken);
                 }
                 else
                 {
-                    FindViewById<TextView>(Resource.Id.tvErrors).Text = GetString(Resource.String.unknown_error);
+                    View.FindViewById<TextView>(Resource.Id.tvErrors).Text = GetString(Resource.String.unknown_error);
                 }
             }
             catch (BackendTimeoutException)
@@ -101,7 +114,7 @@ namespace Front_End
         #region utility
         private void DisplayAlert(string title, string message)
         {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this.Activity);
 
             builder.SetMessage(message);
             builder.SetTitle(title);

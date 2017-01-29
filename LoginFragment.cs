@@ -6,32 +6,38 @@ using Android.Widget;
 using System.Net;
 using Front_End.Backend;
 using Front_End.Exceptions;
+using Android.Views;
 
 namespace Front_End
 {
     [Activity(Label = "Login", Icon = "@drawable/icon")]
-    public class LoginActivity : Activity
+    public class LoginFragment : Fragment
     {
-        protected override void OnCreate(Bundle savedInstanceState)
+        public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+        }
 
-            // Create your application here
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+        {
+            // Return the layout to use in this fragment.
+            return inflater.Inflate(Resource.Layout.Login, container, false);
+        }
 
-            // Set the login layout.
-            SetContentView(Resource.Layout.Login);
 
+        public override void OnViewCreated(View view, Bundle savedInstanceState)
+        {
             // Attach the onclick listener to the login button.
-            FindViewById<Button>(Resource.Id.btnLogin).Click += Login_OnClick;
-            FindViewById<Button>(Resource.Id.btnCreateAccount).Click += Register_OnClick;
+            View.FindViewById<Button>(Resource.Id.btnLogin).Click += Login_OnClick;
+            View.FindViewById<Button>(Resource.Id.btnCreateAccount).Click += Register_OnClick;
         }
 
         #region event handlers
         private async void Login_OnClick(object sender, EventArgs e)
         {
             // Get the TextView's the contain the username and password.
-            TextView usernameTxt = FindViewById<TextView>(Resource.Id.txtUsername);
-            TextView passwordTxt = FindViewById<TextView>(Resource.Id.txtPassword);
+            TextView usernameTxt = View.FindViewById<TextView>(Resource.Id.txtUsername);
+            TextView passwordTxt = View.FindViewById<TextView>(Resource.Id.txtPassword);
 
             // Extract the text.
             string username = usernameTxt.Text.Trim();
@@ -39,7 +45,7 @@ namespace Front_End
 
             if(username == "" || password == "")
             {
-                FindViewById<TextView>(Resource.Id.tvErrors).Text = GetString(Resource.String.login_required_fields);
+                View.FindViewById<TextView>(Resource.Id.tvErrors).Text = GetString(Resource.String.login_required_fields);
                 return;
             }
 
@@ -50,8 +56,13 @@ namespace Front_End
                 BackendUser backend = new BackendUser();
                 await backend.Login(username, password);
 
-                // If no exception is thrown, return to the previous activity.
-                StartActivity(new Intent(this, typeof(MainActivity)));
+                // Switch back to the Planner fragment
+                Fragment fragment = new PlannerDailyFragment();
+
+                // Load the fragment.
+                FragmentManager.BeginTransaction()
+                    .Replace(Resource.Id.content, fragment)
+                    .Commit();
             }
             catch(WebException ex)
             {
@@ -59,12 +70,12 @@ namespace Front_End
                 if(((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Unauthorized)
                 {
                     // User failed to authenticate. Tell them the username or password is incorrect.
-                    FindViewById<TextView>(Resource.Id.tvErrors).Text = GetString(Resource.String.login_incorrect);
+                    View.FindViewById<TextView>(Resource.Id.tvErrors).Text = GetString(Resource.String.login_incorrect);
                 }
                 else
                 {
                     // Some other error was thrown.
-                    FindViewById<TextView>(Resource.Id.tvErrors).Text = GetString(Resource.String.unknown_error);
+                    View.FindViewById<TextView>(Resource.Id.tvErrors).Text = GetString(Resource.String.unknown_error);
                 }
             }
             catch (BackendTimeoutException)
@@ -101,14 +112,20 @@ namespace Front_End
 
         private void Register_OnClick(object sender, EventArgs e)
         {
-            StartActivity(new Intent(this, typeof(RegisterActivity)));
+            // Switch to the register fragment
+            Fragment fragment = new RegisterFragment();
+
+            // Load the fragment.
+            FragmentManager.BeginTransaction()
+                .Replace(Resource.Id.content, fragment)
+                .Commit();
         }
         #endregion
 
         #region utility
         private void DisplayAlert(string title, string message)
         {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(this.Activity);
 
             builder.SetMessage(message);
             builder.SetTitle(title);

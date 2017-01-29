@@ -104,6 +104,7 @@ namespace Front_End
                     {
                         // Make sure we're not running in demo mode, then logout and redirect to the login fragment.
                         Logout();
+                        fragment = new LoginFragment();
                     }
                     break;
             }
@@ -139,7 +140,7 @@ namespace Front_End
                 if (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Unauthorized)
                 {
                     // The user is not logged in. Move to the Login activity.
-                    StartActivity(new Intent(this, typeof(LoginActivity)));
+                    StartActivity(new Intent(this, typeof(LoginFragment)));
                 }
                 System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
             }

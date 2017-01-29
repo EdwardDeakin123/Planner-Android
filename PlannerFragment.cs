@@ -379,7 +379,7 @@ namespace Front_End
                 if (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Unauthorized)
                 {
                     // The user is not logged in. Move to the Login activity.
-                    StartActivity(new Intent(this.Activity, typeof(LoginActivity)));
+                    StartActivity(new Intent(this.Activity, typeof(LoginFragment)));
                 }
 
                 System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
@@ -414,7 +414,7 @@ namespace Front_End
                             if (((HttpWebResponse)wEx.Response).StatusCode == HttpStatusCode.Unauthorized)
                             {
                                 // The user is not logged in. Move to the Login activity.
-                                StartActivity(new Intent(this.Activity, typeof(LoginActivity)));
+                                StartActivity(new Intent(this.Activity, typeof(LoginFragment)));
 
                                 // The exception has been handled. Return true.
                                 return true;
@@ -466,7 +466,7 @@ namespace Front_End
                 if (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Unauthorized)
                 {
                     // The user is not logged in. Move to the Login activity.
-                    StartActivity(new Intent(this.Activity, typeof(LoginActivity)));
+                    StartActivity(new Intent(this.Activity, typeof(LoginFragment)));
                 }
                 System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
             }
@@ -501,7 +501,7 @@ namespace Front_End
                             if (((HttpWebResponse)wEx.Response).StatusCode == HttpStatusCode.Unauthorized)
                             {
                                 // The user is not logged in. Move to the Login activity.
-                                StartActivity(new Intent(this.Activity, typeof(LoginActivity)));
+                                StartActivity(new Intent(this.Activity, typeof(LoginFragment)));
 
                                 // The exception has been handled. Return true.
                                 return true;
@@ -552,7 +552,7 @@ namespace Front_End
                 if (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Unauthorized)
                 {
                     // The user is not logged in. Move to the Login activity.
-                    StartActivity(new Intent(this.Activity, typeof(LoginActivity)));
+                    StartActivity(new Intent(this.Activity, typeof(LoginFragment)));
                 }
                 System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
             }
@@ -587,7 +587,7 @@ namespace Front_End
                             if (((HttpWebResponse)wEx.Response).StatusCode == HttpStatusCode.Unauthorized)
                             {
                                 // The user is not logged in. Move to the Login activity.
-                                StartActivity(new Intent(this.Activity, typeof(LoginActivity)));
+                                StartActivity(new Intent(this.Activity, typeof(LoginFragment)));
 
                                 // The exception has been handled. Return true.
                                 return true;

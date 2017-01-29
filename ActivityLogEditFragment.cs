@@ -69,8 +69,6 @@ namespace Front_End
         #region backend
         private void UpdateUI()
         {
-            System.Diagnostics.Debug.WriteLine("Update UI Index Of: " + _ActivityLogIndex);
-            System.Diagnostics.Debug.WriteLine("Got activity: " + _ActivityLogs[_ActivityLogIndex].Activity.ActivityName);
             // Update the interface elements with data from the backend.
             View.FindViewById<TextView>(Resource.Id.tvActivityName).Text = _ActivityLogs[_ActivityLogIndex].Activity.ActivityName;
 
@@ -148,7 +146,7 @@ namespace Front_End
                 if (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Unauthorized)
                 {
                     // The user is not logged in. Move to the Login activity.
-                    StartActivity(new Intent(this.Activity, typeof(LoginActivity)));
+                    StartActivity(new Intent(this.Activity, typeof(LoginFragment)));
                 }
                 System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
             }
@@ -197,7 +195,7 @@ namespace Front_End
                     if (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Unauthorized)
                     {
                         // The user is not logged in. Move to the Login activity.
-                        StartActivity(new Intent(this.Activity, typeof(LoginActivity)));
+                        StartActivity(new Intent(this.Activity, typeof(LoginFragment)));
                     }
                     System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
                 }
@@ -254,8 +252,6 @@ namespace Front_End
         {
             // Add the activity logs and activities to an ObjectCacheModel object. This will help manage stale items in the cache.
             ObjectCache<List<ActivityLogModel>> activityLogCache = new ObjectCache<List<ActivityLogModel>>() { Object = _ActivityLogs };
-
-            System.Diagnostics.Debug.WriteLine("Serializing objects now.");
 
             // Serialize these objects and write them to the disk.
             Utility.WriteToFile(Utility.SerializeToString(activityLogCache), "activitylogs.txt");
