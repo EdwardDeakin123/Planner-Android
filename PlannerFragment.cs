@@ -378,8 +378,11 @@ namespace Front_End
             {
                 if (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    // The user is not logged in. Move to the Login activity.
-                    StartActivity(new Intent(this.Activity, typeof(LoginFragment)));
+                    // The user is not logged in. Load the Login fragment.
+                    Fragment fragment = new LoginFragment();
+                    FragmentManager.BeginTransaction()
+                        .Replace(Resource.Id.content, fragment)
+                        .Commit();
                 }
 
                 System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
@@ -413,8 +416,11 @@ namespace Front_End
 
                             if (((HttpWebResponse)wEx.Response).StatusCode == HttpStatusCode.Unauthorized)
                             {
-                                // The user is not logged in. Move to the Login activity.
-                                StartActivity(new Intent(this.Activity, typeof(LoginFragment)));
+                                // The user is not logged in. Load the Login fragment.
+                                Fragment fragment = new LoginFragment();
+                                FragmentManager.BeginTransaction()
+                                    .Replace(Resource.Id.content, fragment)
+                                    .Commit();
 
                                 // The exception has been handled. Return true.
                                 return true;
@@ -465,8 +471,11 @@ namespace Front_End
             {
                 if (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    // The user is not logged in. Move to the Login activity.
-                    StartActivity(new Intent(this.Activity, typeof(LoginFragment)));
+                    // The user is not logged in. Load the Login fragment.
+                    Fragment fragment = new LoginFragment();
+                    FragmentManager.BeginTransaction()
+                        .Replace(Resource.Id.content, fragment)
+                        .Commit();
                 }
                 System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
             }
@@ -500,8 +509,11 @@ namespace Front_End
 
                             if (((HttpWebResponse)wEx.Response).StatusCode == HttpStatusCode.Unauthorized)
                             {
-                                // The user is not logged in. Move to the Login activity.
-                                StartActivity(new Intent(this.Activity, typeof(LoginFragment)));
+                                // The user is not logged in. Load the Login fragment.
+                                Fragment fragment = new LoginFragment();
+                                FragmentManager.BeginTransaction()
+                                    .Replace(Resource.Id.content, fragment)
+                                    .Commit();
 
                                 // The exception has been handled. Return true.
                                 return true;
@@ -551,8 +563,11 @@ namespace Front_End
             {
                 if (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Unauthorized)
                 {
-                    // The user is not logged in. Move to the Login activity.
-                    StartActivity(new Intent(this.Activity, typeof(LoginFragment)));
+                    // The user is not logged in. Load the Login fragment.
+                    Fragment fragment = new LoginFragment();
+                    FragmentManager.BeginTransaction()
+                        .Replace(Resource.Id.content, fragment)
+                        .Commit();
                 }
                 System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
             }
@@ -586,8 +601,11 @@ namespace Front_End
 
                             if (((HttpWebResponse)wEx.Response).StatusCode == HttpStatusCode.Unauthorized)
                             {
-                                // The user is not logged in. Move to the Login activity.
-                                StartActivity(new Intent(this.Activity, typeof(LoginFragment)));
+                                // The user is not logged in. Load the Login fragment.
+                                Fragment fragment = new LoginFragment();
+                                FragmentManager.BeginTransaction()
+                                    .Replace(Resource.Id.content, fragment)
+                                    .Commit();
 
                                 // The exception has been handled. Return true.
                                 return true;
@@ -770,6 +788,7 @@ namespace Front_End
 
         protected void AddActivityLogToCalendar(ActivityLogModel activityLog)
         {
+            //TODO Fix displaying multiple activity logs side by side in weekly view.
             // Determine which dropzone to place this activitylog into.
             RelativeLayout dropzone;
 
@@ -839,7 +858,6 @@ namespace Front_End
 
             // Add a tag to the ActivityLog to identify it.
             vActivityLog.SetTag(Resource.Id.activity_log_id, activityLog.ActivityLogId);
-
             dropzone.AddView(vActivityLog);
 
             // Get the number of children elements in the Dropzone.
@@ -852,8 +870,13 @@ namespace Front_End
 
             for (int i = 0; i < childCount; i++)
             {
+                // Make sure the child view is a relative layout.
+                if(!(dropzone.GetChildAt(i) is RelativeLayout))
+                    continue;
+
                 // Get the child view from the dropzone.
                 childView = (RelativeLayout)dropzone.GetChildAt(i);
+                System.Diagnostics.Debug.WriteLine("22222");
 
                 if (childView.Id == vActivityLog.Id)
                 {
@@ -895,6 +918,7 @@ namespace Front_End
 
             // Assign this newly added activityLog to the right of the last one and tell it to expand to the parent elements right.
             RelativeLayout.LayoutParams alParameters = (RelativeLayout.LayoutParams)vActivityLog.LayoutParameters;
+
             if (adjacentLogs == 0)
             {
 

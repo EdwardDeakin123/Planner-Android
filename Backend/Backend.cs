@@ -27,6 +27,7 @@ namespace Front_End.Backend
         protected List<BackendParameter> _Parameters;
         protected Dictionary<string, Cookie> _Cookies;
         protected CookieContainer _CookieContainer;
+        protected Preferences _Preferences;
 
         // Define the timeout for the requests.
         protected const int TIMEOUT = 8000;
@@ -38,9 +39,15 @@ namespace Front_End.Backend
             _Parameters = new List<BackendParameter>();
             _Cookies = new Dictionary<string, Cookie>();
             _CookieContainer = new CookieContainer();
+            _Preferences = new Preferences();
 
-            // Restore the saved cookie.
-            LoadCookie();
+            // Restore the saved cookie, if it exists.
+            Cookie savedCookie = _Preferences.AuthenticationCookie;
+
+            // If the cookie exists, 
+            if (savedCookie != default(Cookie))
+                _CookieContainer.Add(savedCookie);
+            //LoadCookie();
         }
 
         #region utility
@@ -247,7 +254,12 @@ namespace Front_End.Backend
                     _CookieContainer.Add(response.Cookies);
 
                     // Save the cookie so it can be retrieved again later.
-                    SaveCookie();
+                    foreach (Cookie newCookie in response.Cookies)
+                    {
+                        // Save the cookie to Preferences and then leave the loop as we only want the first cookie.
+                        _Preferences.AuthenticationCookie = newCookie;
+                        break;
+                    }
                 }
             }
         }
@@ -295,67 +307,6 @@ namespace Front_End.Backend
 
             // Send the request asynchronously.
             await TaskWithTimeout(request.GetResponseAsync(), TIMEOUT);
-        }
-        #endregion
-
-        #region cookies
-        private void LoadCookie()
-        {
-            // Access the SharedPreferences and retrieve the saved cookie.
-            ISharedPreferences sharedPreferences = PreferenceManager.GetDefaultSharedPreferences(Android.App.Application.Context);
-
-            string cookieName = sharedPreferences.GetString("cookieName", "");
-            string cookieDomain = sharedPreferences.GetString("cookieDomain", "");
-            string cookieValue = sharedPreferences.GetString("cookieValue", "");
-            string cookiePath = sharedPreferences.GetString("cookiePath", "");
-
-            if(cookieName != "")
-            {
-                System.Diagnostics.Debug.WriteLine("The cookie is here!");
-                // If the cookieName is not empty, assume the other values were correctly retrieved.
-                // Create a cookie.
-                Cookie newCookie = new Cookie(cookieName, cookieValue, cookiePath, cookieDomain);
-
-
-                if (!newCookie.Expired)
-                {
-                    // Add the cookie to the collection.
-                    _CookieContainer.Add(newCookie);
-                }
-                else
-                {
-                    System.Diagnostics.Debug.WriteLine("This cookie has expired. Don't add it.");
-                }
-            }
-            else
-            {
-                System.Diagnostics.Debug.WriteLine("No cookies! :(");
-            }
-        }
-
-        private void SaveCookie()
-        {
-            //TODO Move this to the preferences class.
-            // Access the SharedPreferences and retrieve the saved cookie.
-            ISharedPreferences sharedPreferences = PreferenceManager.GetDefaultSharedPreferences(Android.App.Application.Context);
-            ISharedPreferencesEditor spEditor = sharedPreferences.Edit();
-
-            foreach(Cookie cookie in _CookieContainer.GetCookies(new Uri(GetUrlString())))
-            {
-                System.Diagnostics.Debug.WriteLine("The cookie is : " + cookie.ToString());
-                
-                // Save all of the cookie data into the shared preferences.
-                spEditor.PutString("cookieName", cookie.Name);
-                spEditor.PutString("cookieDomain", cookie.Domain);
-                spEditor.PutString("cookieValue", cookie.Value);
-                spEditor.PutString("cookiePath", cookie.Path);
-
-                // Only want to get the first cookie, so only loop once.
-                break;
-            }
-
-            // Apply the changes.
-            spEditor.Apply();
         }
         #endregion
     }

@@ -37,19 +37,10 @@ namespace Front_End
 
             SetContentView(Resource.Layout.Navigation);
 
-            System.Diagnostics.Debug.WriteLine("MainActivity is being created.");
-
             // Create an instance of Preferences which will manage the shared preferences in Android.
             _Preferences = new Preferences();
 
             // Set up the navigation drawer.
-            //string[] navigationArray = Resources.GetStringArray(Resource.Array.navigation_array);
-            //DrawerLayout navigationDraw = FindViewById<DrawerLayout>(Resource.Id.navigation_drawer);
-            //ListView navigationList = FindViewById<ListView>(Resource.Id.navigation_list);
-
-            //navigationList.Adapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, _NavigationItems);
-            //navigationList.ItemClick += SelectItem;
-
             CreateNavigationMenu();
 
             if (bundle == null)
@@ -104,6 +95,9 @@ namespace Front_End
                     {
                         // Make sure we're not running in demo mode, then logout and redirect to the login fragment.
                         Logout();
+
+                        // Destroy the local cookie.
+                        _Preferences.AuthenticationCookie = default(Cookie);
                         fragment = new LoginFragment();
                     }
                     break;
@@ -120,9 +114,6 @@ namespace Front_End
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
-            //MenuInflater.Inflate(Resource.Menu.menu_fragment_daily_planner, menu);
-
-            //MenuInflater.Inflate(Resource.Menu.top_menus, menu);
             return base.OnCreateOptionsMenu(menu);
         }
 
@@ -137,11 +128,6 @@ namespace Front_End
             }
             catch (System.Net.WebException ex)
             {
-                if (((HttpWebResponse)ex.Response).StatusCode == HttpStatusCode.Unauthorized)
-                {
-                    // The user is not logged in. Move to the Login activity.
-                    StartActivity(new Intent(this, typeof(LoginFragment)));
-                }
                 System.Diagnostics.Debug.WriteLine("Encountered an error while trying to connect to the server: " + ex.Message);
             }
         }
