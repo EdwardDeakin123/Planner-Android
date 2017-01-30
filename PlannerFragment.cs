@@ -91,26 +91,6 @@ namespace Front_End
                 {
                     _ViewDate = new DateTime(year, month, day, 0, 0, 0);
                 }
-
-                // Attempt to get an updated activity log from the bundle. This will only happen in demo mode.
-                string activityLogXml = this.Arguments.GetString("updatedActivityLog", "");
-
-                // Make sure the activity log is set.
-                if(activityLogXml != "")
-                {
-                    System.Diagnostics.Debug.WriteLine("Got an updated activity log!!!!!!! " + activityLogXml);
-
-                    ActivityLogModel updatedActLog = Utility.DeserializeFromString<ActivityLogModel>(activityLogXml);
-
-                    System.Diagnostics.Debug.WriteLine("About to remove it. ID: " + updatedActLog.ActivityLogId);
-                    // Remove the current version of this activity log from list of activity logs.
-                    _ActivityLogs.RemoveAll(actLog => actLog.ActivityLogId == updatedActLog.ActivityLogId);
-                    System.Diagnostics.Debug.WriteLine("Removed, about to add.");
-
-
-                    // Add the updated log into the list
-                    _ActivityLogs.Add(updatedActLog);
-                }
             }
 
             _ActivityColors = new List<KeyValuePair<int, Color>>();
@@ -129,7 +109,23 @@ namespace Front_End
 
             DrawHourMarkers();
             DrawTimes();
-            Refresh();
+
+            // Get the parent layout.
+            LinearLayout llPlannerParent = View.FindViewById<LinearLayout>(Resource.Id.llPlannerParent);
+
+            // Get the ViewTreeObserver and create a listener that will be fired when the layout has been drawn to screen.
+            // When displaying the activity logs at application start, the dropzone hadn't been measured, so using the ViewTreeObserver
+            // To detect when the layout had been drawn. This sometimes worked but not always.
+            // Found this forum post: https://forums.xamarin.com/discussion/50740/viewtreeobserver-predraw
+            // If the view hasn't been attached to the window before adding the event, the vto would be dead when accessed later.
+            if (llPlannerParent.IsAttachedToWindow)
+            {
+                llPlannerParent.ViewTreeObserver.GlobalLayout += PlannerParent_OnGlobalLayout;
+            }
+            else
+            {
+                llPlannerParent.ViewAttachedToWindow += PlannerParent_OnAttachedToWindow;
+            }
 
             // TODO Schedule this to update at regular intervals.
             DrawCurrentTime();
@@ -160,6 +156,33 @@ namespace Front_End
 
             return base.OnOptionsItemSelected(item);
         }
+
+        private void PlannerParent_OnGlobalLayout(object sender, EventArgs e)
+        {
+            ViewTreeObserver vto = (ViewTreeObserver)sender;
+
+            if(vto.IsAlive)
+            {
+                // Removing the handler so this only occurs once.
+                vto.GlobalLayout -= PlannerParent_OnGlobalLayout;
+
+                // Trigger a refresh which gets data from the database and then positions it onscreen.
+                Refresh();
+            }
+        }
+
+        private void PlannerParent_OnAttachedToWindow(object sender, View.ViewAttachedToWindowEventArgs e)
+        {
+            LinearLayout llPlannerParent = (LinearLayout)e.AttachedView;
+
+            // If the PlannerParent object is not attached to the window assigning the global layout event causes issues.
+            // Use this function to delay that until it has been attached if that happens.
+            // Remove this event so it isn't called again.
+            llPlannerParent.ViewAttachedToWindow -= PlannerParent_OnAttachedToWindow;
+
+            // Add the global layout event handler.
+            llPlannerParent.ViewTreeObserver.GlobalLayout += PlannerParent_OnGlobalLayout;
+        }
         #endregion
 
         protected abstract void Planner_OnRefresh(object sender, EventArgs e);
@@ -177,9 +200,6 @@ namespace Front_End
         {
             base.OnResume();
 
-            // Reload the planner when the activity is resumed.
-            //Refresh();
-
             /* TODO Need to update this to use the newer permission schemes in Android.
             TimesDatabase timeDb = new TimesDatabase();
 
@@ -193,8 +213,6 @@ namespace Front_End
         public override void OnSaveInstanceState(Bundle outState)
         {
             base.OnSaveInstanceState(outState);
-
-            System.Diagnostics.Debug.WriteLine("Saving Instance.");
 
             // When the instance is destroyed or recreated, save any important information for reuse.
             // This happens when the screen orientation changes.
@@ -210,8 +228,6 @@ namespace Front_End
         {
             base.OnStop();
 
-            System.Diagnostics.Debug.WriteLine("Stopping now...");
-
             // When the instance is stopped (for example, when changing from daily to weekly views), cache the activities and logs to disk.
             CacheToDisk();
         }
@@ -219,16 +235,12 @@ namespace Front_End
         #region UI
         protected void DrawHourMarkers()
         {
-            System.Diagnostics.Debug.WriteLine("Drawing markers.");
-
             int currentPos = 0;
             RelativeLayout rlPlanner = View.FindViewById<RelativeLayout>(Resource.Id.rlPlanner);
 
             for (int i = 0; i < 24; i++)
             {
                 currentPos += HOUR_DP;
-
-                //System.Diagnostics.Debug.WriteLine("Putting a marker at " + currentPos);
 
                 // Create a new horizontal divider.
                 View hourMarker = new View(this.Activity);
@@ -279,17 +291,14 @@ namespace Front_End
 
             if(GetPlannerMode() == DAILY_VIEW)
             {
-                System.Diagnostics.Debug.WriteLine("CurrentTime: Daily View");
-
                 if (!(_ViewDate.Day == currentTime.Day && _ViewDate.Month == currentTime.Month && _ViewDate.Year == currentTime.Year))
                 {
                     // Today's date is not displayed on the current screen. Don't do anything.
                     return;
                 }
-                    System.Diagnostics.Debug.WriteLine("CurrentTime: Displaying today.");
 
-                    // We are displaying today. Get the dropzone.
-                    dropzone = View.FindViewById<RelativeLayout>(Resource.Id.rlDropzone);
+                // We are displaying today. Get the dropzone.
+                dropzone = View.FindViewById<RelativeLayout>(Resource.Id.rlDropzone);
             }
             else
             {
@@ -341,13 +350,9 @@ namespace Front_End
                     // Get real data.
                     BackendActivity backend = new BackendActivity();
                     _Activities = await backend.GetAll();
-
-                    System.Diagnostics.Debug.WriteLine("Got " + _Activities.Count + " activities");
                 }
                 else
                 {
-                    System.Diagnostics.Debug.WriteLine("Running in dummy mode.");
-
                     // Populate the page with fake data.
                     _Activities = new List<ActivityModel>()
                     {
@@ -358,12 +363,8 @@ namespace Front_End
                     };
                 }
 
-                System.Diagnostics.Debug.WriteLine("Got some activities.");
-
                 foreach (ActivityModel act in _Activities)
                 {
-                    System.Diagnostics.Debug.WriteLine("Got activity: " + act.ActivityName);
-
                     Button actButton = new Button(this.Activity);
                     actButton.Text = act.ActivityName;
 
@@ -462,14 +463,22 @@ namespace Front_End
                     _ActivityLogs = await backend.GetByDate(startDate, endDate);
                 }
 
-                System.Diagnostics.Debug.WriteLine("Got " + _ActivityLogs.Count + " activity logs");
-
                 foreach (ActivityLogModel actLog in _ActivityLogs)
                 {
-                    Console.WriteLine("ActivityLog: " + actLog.Activity.ActivityName + " " + actLog.StartTime.ToString() + " " + actLog.EndTime.ToString());
+                    // Display the Activity Log on the calendar but don't realign until the end.
+                    AddActivityLogToCalendar(actLog, false);
+                }
 
-                    // Display the Activity Log on the calendar.
-                    AddActivityLogToCalendar(actLog);
+                // Loop through all of the dropzones on the screen and remove all child elements.
+                LinearLayout llDropzoneParent = View.FindViewById<LinearLayout>(Resource.Id.llDropzoneParent);
+
+                // Loop through the dropzones and realign all of the activity logs.
+                int childCount = llDropzoneParent.ChildCount;
+
+                for (int i = 0; i < childCount; i++)
+                {
+                    // Realign the activity logs in this view.
+                    AlignActivityLogs((RelativeLayout)llDropzoneParent.GetChildAt(i));
                 }
             }
             catch (WebException ex)
@@ -596,7 +605,6 @@ namespace Front_End
                 // Catch the aggregate exception, this might be thrown by the asynchronous tasks in the backend.
                 // Handle any of the types that we are aware of.
                 // Managing of aggregate exceptions modified from code found here: https://msdn.microsoft.com/en-us/library/dd537614%28v=vs.110%29.aspx?f=255&MSPPError=-2147217396
-
                 ex.Handle((x) =>
                 {
                     if (x is WebException)
@@ -642,8 +650,6 @@ namespace Front_End
         #region event handlers
         protected void Activity_LongClick(object sender, View.LongClickEventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("Activity Long Click... Starting Drag...");
-
             // Get the Activity button from the sender object.
             Button activityButton = (Button)sender;
 
@@ -707,8 +713,6 @@ namespace Front_End
                         // End time is the same as start time plus one hour.
                         startTime = new DateTime(_ViewDate.Year, _ViewDate.Month, _ViewDate.Day, hour, 0, 0);
                         endTime = new DateTime(_ViewDate.Year, _ViewDate.Month, _ViewDate.Day, hour + 1, 0, 0);
-
-                        System.Diagnostics.Debug.WriteLine("This is a daily view.");
                     }
                     else
                     {
@@ -718,8 +722,6 @@ namespace Front_End
 
                         // Get the date for the dropzone.
                         DateTime alDate = GetDateTimeForDayOfWeek(dzDow);
-
-                        System.Diagnostics.Debug.WriteLine("This is a weekly view. View Date is the " + alDate.Day + " day of the month");
 
                         startTime = new DateTime(alDate.Year, alDate.Month, alDate.Day, hour, 0, 0);
                         endTime = new DateTime(alDate.Year, alDate.Month, alDate.Day, hour + 1, 0, 0);
@@ -746,7 +748,6 @@ namespace Front_End
 
             // Get the activityLogId from the tag on the sending object, then get the activity log from the list.
             int activityLogId = int.Parse(((RelativeLayout)sender).GetTag(Resource.Id.activity_log_id).ToString());
-            //ActivityLogModel activityLog = _ActivityLogs.Where(actLog => actLog.ActivityLogId == activityLogId).FirstOrDefault();
 
             // Create a bundle that can be passed to the Edit Fragment.
             // Serialize the activity log so it can be sent and won't require another call to the backend to retrieve it.
@@ -756,7 +757,9 @@ namespace Front_End
             // Tell the Edit fragment which planner sent it so it can return to the correct type.
             fragmentBundle.PutInt("plannerMode", GetPlannerMode());
             activityLogEditFragment.Arguments = fragmentBundle;
-            fragmentTransaction.Replace(Resource.Id.content, activityLogEditFragment).Commit();
+            fragmentTransaction.Replace(Resource.Id.content, activityLogEditFragment)
+                .AddToBackStack(null)
+                .Commit();
         }
         #endregion
 
@@ -803,6 +806,12 @@ namespace Front_End
 
         protected void AddActivityLogToCalendar(ActivityLogModel activityLog)
         {
+            // Call AddActivityLogToCalendar with realign set to true.
+            AddActivityLogToCalendar(activityLog, true);
+        }
+
+        protected void AddActivityLogToCalendar(ActivityLogModel activityLog, bool realign)
+        {
             //TODO Fix displaying multiple activity logs side by side in weekly view.
             // Determine which dropzone to place this activitylog into.
             RelativeLayout dropzone;
@@ -835,31 +844,34 @@ namespace Front_End
 
             // Work out where to place the start of the activity log.
             int startHour = activityLog.StartTime.Hour;
+            int startMinute = activityLog.StartTime.Minute;
 
             // Calculate how big the View we're adding to the calendar will be.
-            int hours = (int)activityLog.EndTime.Subtract(activityLog.StartTime).TotalHours;
+            int minutes = (int)activityLog.EndTime.Subtract(activityLog.StartTime).TotalMinutes;
 
             // Get the start position and height in pixels.
-            float startPos = DPToPixels(startHour * HOUR_DP);
+            float hourPos = DPToPixels(startHour * HOUR_DP);
+            float minutePos = DPToPixels((int)((startMinute / 60.00F) * HOUR_DP));
+            float startPos = hourPos + minutePos;
 
             // Remove 1 DP from the end of the height so it doesn't overlap with any items below it.
-            float height = DPToPixels((hours * HOUR_DP) - 1);
+            float height = DPToPixels((int)(((minutes / 60.00F) * HOUR_DP) - 1));
 
             // Get the start and end times as strings.
             string startTime = activityLog.StartTime.ToString("HH:mm");
             string endTime = activityLog.EndTime.ToString("HH:mm");
 
             // Create the ActivityLog view and set the name and times in the TextView
-            View vActivityLog = Activity.LayoutInflater.Inflate(Resource.Layout.ActivityLogEvent, null);
+            RelativeLayout vActivityLog = (RelativeLayout)Activity.LayoutInflater.Inflate(Resource.Layout.ActivityLogEvent, null);
             vActivityLog.FindViewById<TextView>(Resource.Id.tvActivityName).Text = activityLog.Activity.ActivityName;
             vActivityLog.FindViewById<TextView>(Resource.Id.tvStartEndTimes).Text = startTime + " - " + endTime;
 
             // Get the color for thie activity.
             vActivityLog.SetBackgroundColor(GetActivityColor(activityLog.Activity.ActivityId));
 
-            RelativeLayout.LayoutParams rlParameters = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WrapContent, (int)height);
-            rlParameters.LeftMargin = 10;
-            rlParameters.RightMargin = 10;
+            RelativeLayout.LayoutParams rlParameters = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, (int)height);
+            rlParameters.LeftMargin = 2;
+            rlParameters.RightMargin = 2;
             vActivityLog.LayoutParameters = rlParameters;
 
             // Assign an ID to the newly created activity log view.
@@ -875,77 +887,130 @@ namespace Front_End
             vActivityLog.SetTag(Resource.Id.activity_log_id, activityLog.ActivityLogId);
             dropzone.AddView(vActivityLog);
 
+            if (realign)
+            {
+                // Realign the activity logs in this dropzone.
+                AlignActivityLogs(dropzone);
+            }
+        }
+
+        private void AlignActivityLogs(RelativeLayout dropzone)
+        {
+            // This method will resize activity logs and position them so they can all be seen onscreen.
+            // Start the search at the top of the dropzone and then move down hour by hour.
+            float increment = DPToPixels(HOUR_DP);
+            float searchStart = 0.0F;
+            float searchEnd = increment;
+            float maxSearch = 24 * increment;
+
             // Get the number of children elements in the Dropzone.
-            // This is used to find any views that are next to this one and position them correctly.
+            // Then loop through them all to find out which logs occur during this hour.
             // Based on this stackoverflow post: http://stackoverflow.com/questions/6615723/getting-child-elements-from-linearlayout
             int childCount = dropzone.ChildCount;
             RelativeLayout childView;
-            int adjacentLogs = 0;
-            int lastId = 0;
+            List<List<RelativeLayout>> hourlyLogs = new List<List<RelativeLayout>>();
 
-            for (int i = 0; i < childCount; i++)
+            // Loop through each hour, only stopping when we've reached midnight.
+            while (searchStart < maxSearch)
             {
-                // Make sure the child view is a relative layout.
-                if(!(dropzone.GetChildAt(i) is RelativeLayout))
-                    continue;
+                List<RelativeLayout> logs = new List<RelativeLayout>();
 
-                // Get the child view from the dropzone.
-                childView = (RelativeLayout)dropzone.GetChildAt(i);
-                System.Diagnostics.Debug.WriteLine("22222");
-
-                if (childView.Id == vActivityLog.Id)
+                for (int i = 0; i < childCount; i++)
                 {
-                    // This is the ActivityLog view, skip it.
-                    continue;
-                }
+                    // Make sure the child view is a relative layout.
+                    if (!(dropzone.GetChildAt(i) is RelativeLayout))
+                        continue;
 
-                // Measure the view so we can determine it's height.
-                childView.Measure(RelativeLayout.LayoutParams.WrapContent, RelativeLayout.LayoutParams.WrapContent);
+                    // Get the child view from the dropzone, this will be an activity log.
+                    childView = (RelativeLayout)dropzone.GetChildAt(i);
 
-                // Check to see if the new view will be positioned next to this one.
-                float startChildY = childView.GetY();
-                float endChildY = startChildY + childView.MeasuredHeight;
+                    // Measure the child's view so we can determine it's height.
+                    childView.Measure(RelativeLayout.LayoutParams.WrapContent, RelativeLayout.LayoutParams.WrapContent);
 
-                // Check if these two elements pass through each other at all.
-                if (startChildY <= startPos && endChildY >= startPos ||
-                    startChildY >= startPos && startChildY <= (startPos + height))
-                {
-                    // These elements are next to each other.
-                    // Get the layout parameters of the current childView.
-                    RelativeLayout.LayoutParams parameters = (RelativeLayout.LayoutParams)childView.LayoutParameters;
+                    // Get the start and end positions of this view to determine if it passes through this hour.
+                    float startChildY = childView.GetY();
+                    float endChildY = startChildY + childView.MeasuredHeight;
 
-                    // Disable any alignment rules on the view.
-                    parameters.RemoveRule(LayoutRules.AlignParentLeft);
-                    parameters.RemoveRule(LayoutRules.AlignParentRight);
-                    parameters.RemoveRule(LayoutRules.RightOf);
-
-                    if (adjacentLogs != 0)
+                    // Check if this element is in this hour.
+                    if (startChildY <= searchStart && endChildY >= searchStart ||
+                        startChildY >= searchStart && startChildY < searchEnd)
                     {
-                        // Assign this view to be to the right of the previous one.
-                        parameters.AddRule(LayoutRules.RightOf, lastId);
+                        // Element goes through this hour, add it to the list.
+                        logs.Add(childView);
                     }
-
-                    // Keep a record of this ID so the next view can be placed next to it.
-                    lastId = childView.Id;
-                    adjacentLogs++;
                 }
+
+                // Add the list of all of the logs to the hourly logs list.
+                hourlyLogs.Add(logs);
+
+                // Increment the start and end search values by an hour (in pixels).
+                searchStart += increment;
+                searchEnd += increment;
             }
 
-            // Assign this newly added activityLog to the right of the last one and tell it to expand to the parent elements right.
-            RelativeLayout.LayoutParams alParameters = (RelativeLayout.LayoutParams)vActivityLog.LayoutParameters;
+            // Keep a list of all the elements that have already been resized, this will prevent breaking already calculated widths.
+            List<int> positionedElements = new List<int>();
+            // Determine how much space should be left between logs.
+            int spaceBetween = (int)DPToPixels(1);
 
-            if (adjacentLogs == 0)
-            {
+            // Get the dropzone's width.
+            int dropzoneWidth = dropzone.MeasuredWidth;
 
-                System.Diagnostics.Debug.WriteLine("No adjacent logs");
-                // If there are no logs next to this one, make it use all the space.
-                alParameters.AddRule(LayoutRules.AlignParentLeft);
-                alParameters.AddRule(LayoutRules.AlignParentRight);
-            }
-            else
+            // Sort all of the lists by the number of elements. This means that elements will be resized to their minimum size once.
+            foreach (List<RelativeLayout> hourLogs in hourlyLogs.OrderByDescending(l => l.Count).ToList())
             {
-                alParameters.AddRule(LayoutRules.RightOf, lastId);
-                alParameters.AddRule(LayoutRules.AlignParentRight);
+                // Get the amount of available space in the dropzone.
+                int availableSpace = dropzoneWidth;
+
+                // Account for the space between each activity log in the available space.
+                availableSpace -= spaceBetween * hourLogs.Count;
+
+                // Get the amount of elements that need to be positioned
+                int numberOfElements = hourLogs.Count;
+
+                // Loop through the activity logs to determine how many elements have already been positioned previously.
+                foreach (RelativeLayout actLog in hourLogs)
+                {
+                    // Check if this elements has already been positioned.
+                    if(positionedElements.Contains(actLog.Id))
+                    {
+                        RelativeLayout.LayoutParams parameters = (RelativeLayout.LayoutParams)actLog.LayoutParameters;
+                        // Remove the width of any already positioned elements from the available space, so the width of elements is correctly calculated.
+                        // Remove one from the number of elements as this one is already positioned and it's space is accounted for.
+                        availableSpace -= actLog.MeasuredWidth;
+                        numberOfElements--;
+                    }
+                }
+
+                // Keep track of the left margin, this is used to position elements next to each other.
+                int leftMargin = 0;
+
+                // Loop through the list again, this time ordering by height, this should ensure that the bigger elements are always on the right
+                // which should make positioning a lot easier.
+                foreach(RelativeLayout actLog in hourLogs.OrderBy(l => l.MeasuredHeight))
+                {
+                    // Make sure this element has not been been placed already.
+                    if (!positionedElements.Contains(actLog.Id))
+                    { 
+                        // This element has not been positioned yet.
+                        // Calculate the width of the logs, this will be the width divided by the number of logs.
+                        // TODO include the margins in this calculation.
+                        int width = availableSpace / numberOfElements;
+
+                        RelativeLayout.LayoutParams parameters = (RelativeLayout.LayoutParams)actLog.LayoutParameters;
+                        parameters.Width = width;
+                        actLog.LayoutParameters = parameters;
+
+                        // Update the left margin of this object, then increment the stored margin by the width of this object.
+                        // Add the "spaceBetween" to the margin so that logs are not pressed up against each other.
+                        leftMargin += spaceBetween;
+                        parameters.LeftMargin = leftMargin;
+                        leftMargin += width;
+
+                        // Add this to the list of already positioned elements.
+                        positionedElements.Add(actLog.Id);
+                    }
+                }
             }
         }
         #endregion
@@ -1037,8 +1102,6 @@ namespace Front_End
             // Check if the current day of week is todays date in the current view.
             // Calculate the difference between the view date and the current day so we can calculate the actual date.
             int diff = dow - vdDow;
-
-            System.Diagnostics.Debug.WriteLine("Diff is: " + diff);
 
             // Add (or remove if negative) the difference from the view date.
             return _ViewDate.AddDays(diff);
@@ -1147,8 +1210,6 @@ namespace Front_End
             // Add the activity logs and activities to an ObjectCacheModel object. This will help manage stale items in the cache.
             ObjectCache<List<ActivityModel>> activityCache = new ObjectCache<List<ActivityModel>>() { Object = _Activities };
             ObjectCache<List<ActivityLogModel>> activityLogCache = new ObjectCache<List<ActivityLogModel>>() { Object = _ActivityLogs };
-
-            System.Diagnostics.Debug.WriteLine("Serializing objects now.");
 
             // Serialize these objects and write them to the disk.
             Utility.WriteToFile(Utility.SerializeToString(activityCache), "activities.txt");

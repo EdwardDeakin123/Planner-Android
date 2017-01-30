@@ -1,31 +1,18 @@
 ﻿using Android.App;
-using Android.Content;
-using Android.Graphics;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using Front_End.Models;
 using Front_End.Backend;
-using Front_End.Exceptions;
-using SQLite;
-using Front_End.Database;
-
-using Android.Support.V4.App;
-using Android.Support.V4.View;
-using Android.Support.V4.Widget;
-using Android.Support.V7.Widget;
-using Android.Support.V7.AppCompat;
 
 using Fragment = Android.App.Fragment;
 using FragmentManager = Android.App.FragmentManager;
 
 namespace Front_End
 {
-    [Activity(Label = "Activity Tracker", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "Activity Tracker", MainLauncher = true, Icon = "@drawable/ic_today_white_24dp")]
 	public class MainActivity : Activity
 	{
         // String array that contains the menu items.
@@ -108,6 +95,7 @@ namespace Front_End
                 // Load the requested fragment.
                 FragmentManager.BeginTransaction()
                     .Replace(Resource.Id.content, fragment)
+                    .AddToBackStack(null)
                     .Commit();
             }
         }

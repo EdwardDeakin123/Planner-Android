@@ -81,7 +81,6 @@ namespace Front_End
             using (var stream = new StreamReader(path))
             {
                 data = stream.ReadToEnd();
-                System.Diagnostics.Debug.WriteLine(data);
             }
 
             return data;

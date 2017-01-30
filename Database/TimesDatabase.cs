@@ -39,8 +39,6 @@ namespace Front_End.Database
                     return -1;
                 }
 
-                System.Diagnostics.Debug.WriteLine("Got the following day: " + result.Time);
-
                 return result.Time;
             }
             catch(SQLiteException)

@@ -55,9 +55,6 @@ namespace Front_End.Backend
         {
             // Build the URL from the global variables and query string.
             string url = _Protocol + "://" + _Server + ":" + _Port + "/api/" + _Resource + "/" + _Command;
-
-            System.Diagnostics.Debug.WriteLine("The URL is : " + url);
-
             return url;
         }
 
@@ -235,8 +232,6 @@ namespace Front_End.Backend
             HttpWebRequest request = GetWebRequest(url);
             request.Method = "POST";
 
-            System.Diagnostics.Debug.WriteLine("Post Request JSON string!" + jsonString);
-
             // Write the JSON data to the stream.
             using(var stream = new StreamWriter(request.GetRequestStream()))
             {
@@ -275,8 +270,6 @@ namespace Front_End.Backend
             HttpWebRequest request = GetWebRequest(url);
 
             request.Method = "PUT";
-
-            System.Diagnostics.Debug.WriteLine("PUT Request JSON string!" + jsonString);
 
             // Write the JSON data to the stream.
             using (var stream = new StreamWriter(request.GetRequestStream()))

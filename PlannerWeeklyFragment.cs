@@ -124,8 +124,6 @@ namespace Front_End
 
         protected override void Refresh()
         {
-            System.Diagnostics.Debug.WriteLine("Refreshing...");
-
             // Clear the activities and any dropzones.
             ClearActivities();
             ClearDropzone();

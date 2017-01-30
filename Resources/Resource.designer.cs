@@ -1772,26 +1772,26 @@ namespace Front_End
 			// aapt resource value: 0x7f0a003b
 			public const int customPanel = 2131361851;
 			
-			// aapt resource value: 0x7f0a0082
-			public const int dayofmonth_friday = 2131361922;
-			
-			// aapt resource value: 0x7f0a007e
-			public const int dayofmonth_monday = 2131361918;
-			
 			// aapt resource value: 0x7f0a0083
-			public const int dayofmonth_saturday = 2131361923;
-			
-			// aapt resource value: 0x7f0a007d
-			public const int dayofmonth_sunday = 2131361917;
-			
-			// aapt resource value: 0x7f0a0081
-			public const int dayofmonth_thursday = 2131361921;
+			public const int dayofmonth_friday = 2131361923;
 			
 			// aapt resource value: 0x7f0a007f
-			public const int dayofmonth_tuesday = 2131361919;
+			public const int dayofmonth_monday = 2131361919;
+			
+			// aapt resource value: 0x7f0a0084
+			public const int dayofmonth_saturday = 2131361924;
+			
+			// aapt resource value: 0x7f0a007e
+			public const int dayofmonth_sunday = 2131361918;
+			
+			// aapt resource value: 0x7f0a0082
+			public const int dayofmonth_thursday = 2131361922;
 			
 			// aapt resource value: 0x7f0a0080
-			public const int dayofmonth_wednesday = 2131361920;
+			public const int dayofmonth_tuesday = 2131361920;
+			
+			// aapt resource value: 0x7f0a0081
+			public const int dayofmonth_wednesday = 2131361921;
 			
 			// aapt resource value: 0x7f0a0045
 			public const int decor_content_parent = 2131361861;
@@ -1811,17 +1811,17 @@ namespace Front_End
 			// aapt resource value: 0x7f0a0072
 			public const int end_padder = 2131361906;
 			
-			// aapt resource value: 0x7f0a008b
-			public const int etFirstName = 2131361931;
-			
 			// aapt resource value: 0x7f0a008c
-			public const int etLastName = 2131361932;
-			
-			// aapt resource value: 0x7f0a008e
-			public const int etPassword = 2131361934;
+			public const int etFirstName = 2131361932;
 			
 			// aapt resource value: 0x7f0a008d
-			public const int etUsername = 2131361933;
+			public const int etLastName = 2131361933;
+			
+			// aapt resource value: 0x7f0a008f
+			public const int etPassword = 2131361935;
+			
+			// aapt resource value: 0x7f0a008e
+			public const int etUsername = 2131361934;
 			
 			// aapt resource value: 0x7f0a002a
 			public const int expand_activities_button = 2131361834;
@@ -1835,11 +1835,11 @@ namespace Front_End
 			// aapt resource value: 0x7f0a000f
 			public const int homeAsUp = 2131361807;
 			
-			// aapt resource value: 0x7f0a0075
-			public const int ibNextDate = 2131361909;
+			// aapt resource value: 0x7f0a0076
+			public const int ibNextDate = 2131361910;
 			
-			// aapt resource value: 0x7f0a0073
-			public const int ibPrevDate = 2131361907;
+			// aapt resource value: 0x7f0a0074
+			public const int ibPrevDate = 2131361908;
 			
 			// aapt resource value: 0x7f0a002e
 			public const int icon = 2131361838;
@@ -1865,11 +1865,14 @@ namespace Front_End
 			// aapt resource value: 0x7f0a002d
 			public const int list_item = 2131361837;
 			
-			// aapt resource value: 0x7f0a007c
-			public const int llActivities = 2131361916;
+			// aapt resource value: 0x7f0a007d
+			public const int llActivities = 2131361917;
 			
-			// aapt resource value: 0x7f0a007a
-			public const int llDropzoneParent = 2131361914;
+			// aapt resource value: 0x7f0a007b
+			public const int llDropzoneParent = 2131361915;
+			
+			// aapt resource value: 0x7f0a0073
+			public const int llPlannerParent = 2131361907;
 			
 			// aapt resource value: 0x7f0a0069
 			public const int media_actions = 2131361897;
@@ -1907,38 +1910,38 @@ namespace Front_End
 			// aapt resource value: 0x7f0a0040
 			public const int radio = 2131361856;
 			
-			// aapt resource value: 0x7f0a0096
-			public const int refresh = 2131361942;
+			// aapt resource value: 0x7f0a0097
+			public const int refresh = 2131361943;
 			
-			// aapt resource value: 0x7f0a007b
-			public const int rlDropzone = 2131361915;
-			
-			// aapt resource value: 0x7f0a0089
-			public const int rlFriDropzone = 2131361929;
-			
-			// aapt resource value: 0x7f0a0085
-			public const int rlMonDropzone = 2131361925;
-			
-			// aapt resource value: 0x7f0a0078
-			public const int rlPlanner = 2131361912;
+			// aapt resource value: 0x7f0a007c
+			public const int rlDropzone = 2131361916;
 			
 			// aapt resource value: 0x7f0a008a
-			public const int rlSatDropzone = 2131361930;
-			
-			// aapt resource value: 0x7f0a0084
-			public const int rlSunDropzone = 2131361924;
-			
-			// aapt resource value: 0x7f0a0088
-			public const int rlThuDropzone = 2131361928;
-			
-			// aapt resource value: 0x7f0a0079
-			public const int rlTimeMarkers = 2131361913;
+			public const int rlFriDropzone = 2131361930;
 			
 			// aapt resource value: 0x7f0a0086
-			public const int rlTueDropzone = 2131361926;
+			public const int rlMonDropzone = 2131361926;
+			
+			// aapt resource value: 0x7f0a0079
+			public const int rlPlanner = 2131361913;
+			
+			// aapt resource value: 0x7f0a008b
+			public const int rlSatDropzone = 2131361931;
+			
+			// aapt resource value: 0x7f0a0085
+			public const int rlSunDropzone = 2131361925;
+			
+			// aapt resource value: 0x7f0a0089
+			public const int rlThuDropzone = 2131361929;
+			
+			// aapt resource value: 0x7f0a007a
+			public const int rlTimeMarkers = 2131361914;
 			
 			// aapt resource value: 0x7f0a0087
-			public const int rlWedDropzone = 2131361927;
+			public const int rlTueDropzone = 2131361927;
+			
+			// aapt resource value: 0x7f0a0088
+			public const int rlWedDropzone = 2131361928;
 			
 			// aapt resource value: 0x7f0a0017
 			public const int screen = 2131361815;
@@ -2021,14 +2024,14 @@ namespace Front_End
 			// aapt resource value: 0x7f0a0052
 			public const int submit_area = 2131361874;
 			
+			// aapt resource value: 0x7f0a0078
+			public const int svCalendar = 2131361912;
+			
+			// aapt resource value: 0x7f0a0091
+			public const int swDemoMode = 2131361937;
+			
 			// aapt resource value: 0x7f0a0077
-			public const int svCalendar = 2131361911;
-			
-			// aapt resource value: 0x7f0a0090
-			public const int swDemoMode = 2131361936;
-			
-			// aapt resource value: 0x7f0a0076
-			public const int swiperefresh = 2131361910;
+			public const int swiperefresh = 2131361911;
 			
 			// aapt resource value: 0x7f0a000d
 			public const int tabMode = 2131361805;
@@ -2042,14 +2045,14 @@ namespace Front_End
 			// aapt resource value: 0x7f0a0039
 			public const int textSpacerNoButtons = 2131361849;
 			
-			// aapt resource value: 0x7f0a008f
-			public const int textView1 = 2131361935;
+			// aapt resource value: 0x7f0a0090
+			public const int textView1 = 2131361936;
 			
-			// aapt resource value: 0x7f0a0091
-			public const int textView2 = 2131361937;
+			// aapt resource value: 0x7f0a0092
+			public const int textView2 = 2131361938;
 			
-			// aapt resource value: 0x7f0a0093
-			public const int textView3 = 2131361939;
+			// aapt resource value: 0x7f0a0094
+			public const int textView3 = 2131361940;
 			
 			// aapt resource value: 0x7f0a006c
 			public const int time = 2131361900;
@@ -2060,8 +2063,8 @@ namespace Front_End
 			// aapt resource value: 0x7f0a0034
 			public const int title_template = 2131361844;
 			
-			// aapt resource value: 0x7f0a0095
-			public const int today = 2131361941;
+			// aapt resource value: 0x7f0a0096
+			public const int today = 2131361942;
 			
 			// aapt resource value: 0x7f0a0025
 			public const int top = 2131361829;
@@ -2078,8 +2081,8 @@ namespace Front_End
 			// aapt resource value: 0x7f0a0056
 			public const int tvActivityName = 2131361878;
 			
-			// aapt resource value: 0x7f0a0074
-			public const int tvDate = 2131361908;
+			// aapt resource value: 0x7f0a0075
+			public const int tvDate = 2131361909;
 			
 			// aapt resource value: 0x7f0a005e
 			public const int tvErrors = 2131361886;
@@ -2090,11 +2093,11 @@ namespace Front_End
 			// aapt resource value: 0x7f0a005d
 			public const int txtPassword = 2131361885;
 			
-			// aapt resource value: 0x7f0a0092
-			public const int txtServerAddress = 2131361938;
+			// aapt resource value: 0x7f0a0093
+			public const int txtServerAddress = 2131361939;
 			
-			// aapt resource value: 0x7f0a0094
-			public const int txtServerPort = 2131361940;
+			// aapt resource value: 0x7f0a0095
+			public const int txtServerPort = 2131361941;
 			
 			// aapt resource value: 0x7f0a005c
 			public const int txtUsername = 2131361884;

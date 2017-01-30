@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="5dp"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp">
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+                android:minWidth="5dp" >
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -11,7 +12,8 @@
         android:layout_marginTop="5dp"
         android:id="@+id/tvActivityName"
         android:textColor="@color/planner_activitylog_font"
-        android:text="Activity Name"
+        android:text=""
+        android:maxLines="1"
         android:textSize="12sp" />
     <TextView
         android:layout_width="wrap_content"
@@ -20,7 +22,8 @@
         android:textColor="@color/planner_activitylog_font"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp"
-        android:text="Start and End"
+        android:text=""
+        android:maxLines="1"
         android:layout_below="@+id/tvActivityName"
         android:textSize="10sp" />
 </RelativeLayout>

@@ -87,7 +87,6 @@ namespace Front_End
 
                 if (cookieName != "")
                 {
-                    System.Diagnostics.Debug.WriteLine("The cookie is here!");
                     // If the cookieName is not empty, assume the other values were correctly retrieved.
                     // Create a cookie.
                     Cookie newCookie = new Cookie(cookieName, cookieValue, cookiePath, cookieDomain);
