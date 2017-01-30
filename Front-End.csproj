@@ -159,7 +159,6 @@
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\Times.cs" />
     <Compile Include="SettingsFragment.cs" />
-    <Compile Include="PixelRange.cs" />
     <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
