@@ -7,42 +7,60 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+		android:gravity="center"
+        android:background="@color/blue"			
         android:layout_weight="1">
         <TextView
             android:text="@string/create_account"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
             android:textSize="20dip"
             android:gravity="center"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="20dp"
+			android:background="@android:color/background_light"
+			android:textColorHint="@android:color/black"
+			android:textColor="@android:color/black"
+			android:textScaleX="1.2"/>/>
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
             android:id="@+id/etFirstName"
             android:hint="@string/first_name"
             android:gravity="center"
-            android:layout_marginTop="20dp" />
+            android:background="@android:color/background_light"
+			android:textColorHint="@android:color/black"
+			android:textColor="@android:color/black"
+			android:textScaleX="1.2"/>
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
             android:id="@+id/etLastName"
             android:hint="@string/last_name"
             android:gravity="center"
-            android:layout_marginTop="20dp" />
+			android:background="@android:color/background_light"
+			android:textColorHint="@android:color/black"
+			android:textColor="@android:color/black"
+			android:textScaleX="1.2"/>
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+           android:layout_width="250dp"
+            android:layout_height="40dp"
             android:id="@+id/etUsername"
             android:hint="@string/username"
             android:gravity="center"
-            android:layout_marginTop="20dp" />
+			android:background="@android:color/background_light"
+			android:textColorHint="@android:color/black"
+			android:textColor="@android:color/black"
+			android:textScaleX="1.2"/>
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
             android:id="@+id/etPassword"
             android:hint="@string/password"
-            android:gravity="center"
-            android:layout_marginTop="20dp" />
+            android:gravity="center" 
+			android:background="@android:color/background_light"
+			android:textColorHint="@android:color/black"
+			android:textColor="@android:color/black"
+			android:textScaleX="1.2"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,14 +69,21 @@
             android:id="@+id/tvErrors" />
     </LinearLayout>
     <LinearLayout
-        android:orientation="horizontal"
-        android:background="@color/light_grey"
+        android:orientation="vertical"
+        android:background="@color/blue"
         android:layout_width="match_parent"
-        android:layout_height="60dp">
+        android:layout_height="200dp"
+		android:gravity="center">
         <Button
             android:id="@+id/btnCreateAccount"
             android:text="@string/create_account"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="250dp"
+            android:layout_height="50dip"
+			android:background="@android:color/background_light"
+			android:textColor="@android:color/black"/>
+		<Space
+			android:layout_width="match_parent"
+            android:layout_height="155dip"
+				/>
     </LinearLayout>
 </LinearLayout>
